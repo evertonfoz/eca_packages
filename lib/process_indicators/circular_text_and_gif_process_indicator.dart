@@ -4,25 +4,24 @@ import 'package:getwidget/getwidget.dart';
 
 class CircularTextAndGifProcessIndicator extends StatelessWidget {
   final MaterialColor loadingColor;
-  final String text1;
-  final String? text2;
-  final String? text3;
+  final List<String> texts;
   final double fontSize;
   final double textHeight;
 
   const CircularTextAndGifProcessIndicator({
     Key? key,
     required this.loadingColor,
-    required this.text1,
-    this.text2,
-    this.text3,
+    required this.texts,
     this.fontSize = 20,
     this.textHeight = 30,
-  }) : super(key: key);
+  })  : assert(texts.length > 0),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         GFLoader(
           type: GFLoaderType.circle,
@@ -41,16 +40,16 @@ class CircularTextAndGifProcessIndicator extends StatelessWidget {
               color: loadingColor.shade700,
             ),
             child: AnimatedTextKit(
-              animatedTexts: [
-                FadeAnimatedText(text1),
-                FadeAnimatedText(text2 ?? text1),
-                FadeAnimatedText(text3 ?? text1),
-              ],
+              animatedTexts: _buildAnimatedTexts(),
               isRepeatingAnimation: true,
             ),
           ),
         ),
       ],
     );
+  }
+
+  _buildAnimatedTexts() {
+    return texts.map((e) => FadeAnimatedText(e)).toList();
   }
 }
