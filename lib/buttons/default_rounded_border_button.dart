@@ -9,12 +9,13 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final double height;
   final double width;
   final double fontSize;
-  final Color fontColor;
-  final Color borderColor;
-  final Color invertedFontColor;
+  final Color? fontColor;
+  final Color? borderColor;
+  final Color? invertedFontColor;
   final double radius;
-  final Color checkedColor;
-  final Color uncheckedColor;
+  final Color? checkedColor;
+  final Color? uncheckedColor;
+  final FontWeight fontWeight;
 
   const DefaultRoundedBorderButton({
     Key? key,
@@ -25,15 +26,23 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.icon,
     this.height = 32,
     this.width = 111,
-    this.fontSize = 16,
-    required this.fontColor,
-    required this.invertedFontColor,
-    required this.borderColor,
+    this.fontSize = 20,
+    this.fontColor,
+    this.invertedFontColor,
+    this.borderColor,
     this.radius = 30,
-    required this.checkedColor,
-    required this.uncheckedColor,
+    this.checkedColor,
+    this.uncheckedColor,
+    this.fontWeight: FontWeight.bold,
   })  : assert(
-            (text != null && icon == null) || (text == null && icon != null)),
+          (text != null && icon == null) ||
+              (text == null && icon != null) ||
+              (text != null && fontColor == null) ||
+              (backgroundColor != null && checkedColor != null) ||
+              (backgroundColor != null && uncheckedColor != null) ||
+              (backgroundColor == null &&
+                  (checkedColor == null || uncheckedColor == null)),
+        ),
         super(key: key);
 
   @override
@@ -46,27 +55,9 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(radius))),
-          side: MaterialStateBorderSide.resolveWith((states) {
-            return BorderSide(
-              width: 1,
-              color: borderColor,
-            );
-          }),
-          // foregroundColor: MaterialStateProperty.all<Color>(
-          //     !checked ? Colors.grey.shade900 : kPrimaryColor),
-          backgroundColor: MaterialStateProperty.all<Color>(_backgroundColor()),
-          overlayColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.hovered)) {
-                return Colors.blue.withOpacity(0.04);
-              }
-              if (states.contains(MaterialState.focused) ||
-                  states.contains(MaterialState.pressed)) {
-                return Colors.blue.withOpacity(0.12);
-              }
-              return null; // Defer to the widget's default.
-            },
-          ),
+          side: _definingBorderSide(),
+          backgroundColor: _definingBackgroundColor(),
+          overlayColor: _definingOverlayColor(),
         ),
         child: _buttonChild(),
         onPressed: onPressed,
@@ -74,12 +65,13 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     );
   }
 
-  _backgroundColor() {
+  _borderAndBackgroundColor() {
     if (backgroundColor != null) {
       return backgroundColor;
     }
-    return !checked ? uncheckedColor : checkedColor;
-    // return !checked ? Colors.grey.shade100 : kHomeAppBarColor;
+    return !checked
+        ? uncheckedColor ?? Colors.transparent
+        : checkedColor ?? Colors.transparent;
   }
 
   _buttonChild() {
@@ -89,11 +81,55 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: fontSize,
-          color: !checked ? invertedFontColor : fontColor,
+          fontWeight: fontWeight,
+          color: !checked ? invertedFontColor ?? fontColor : fontColor,
         ),
       );
     } else {
       return icon;
     }
+  }
+
+  _definingBorderSide() {
+    return MaterialStateBorderSide.resolveWith((states) {
+      late Color _borderColor;
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          _borderColor = Colors.grey.shade200;
+        }
+        _borderColor = borderColor ?? _borderAndBackgroundColor();
+
+        return BorderSide(
+          width: 1,
+          color: _borderColor,
+        );
+      };
+    });
+  }
+
+  _definingBackgroundColor() {
+    return MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey.shade200;
+        }
+        return _borderAndBackgroundColor();
+      },
+    );
+  }
+
+  _definingOverlayColor() {
+    return MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.hovered)) {
+          return Colors.blue.withOpacity(0.04);
+        }
+        if (states.contains(MaterialState.focused) ||
+            states.contains(MaterialState.pressed)) {
+          return Colors.blue.withOpacity(0.12);
+        }
+        return null;
+      },
+    );
   }
 }
