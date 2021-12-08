@@ -33,7 +33,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.radius = 30,
     this.checkedColor,
     this.uncheckedColor,
-    this.fontWeight: FontWeight.bold,
+    this.fontWeight = FontWeight.bold,
   })  : assert(
           (text != null && icon == null) ||
               (text == null && icon != null) ||
