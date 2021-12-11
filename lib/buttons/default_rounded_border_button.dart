@@ -53,8 +53,10 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(radius))),
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(radius),
+            ),
+          ),
           side: _definingBorderSide(),
           backgroundColor: _definingBackgroundColor(),
           overlayColor: _definingOverlayColor(),
@@ -65,13 +67,22 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     );
   }
 
-  _borderAndBackgroundColor() {
+  _buttonBackgroundColor() {
     if (backgroundColor != null) {
       return backgroundColor;
     }
     return !checked
         ? uncheckedColor ?? Colors.transparent
-        : checkedColor ?? Colors.transparent;
+        : checkedColor ?? borderColor ?? Colors.transparent;
+  }
+
+  _buttonBorderColor() {
+    if (borderColor != null) {
+      return borderColor;
+    }
+    return !checked
+        ? uncheckedColor ?? Colors.transparent
+        : checkedColor ?? borderColor ?? Colors.transparent;
   }
 
   _buttonChild() {
@@ -91,19 +102,19 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _definingBorderSide() {
-    return MaterialStateBorderSide.resolveWith((states) {
-      late Color _borderColor;
-      (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
-          _borderColor = Colors.grey.shade200;
-        }
-        _borderColor = borderColor ?? _borderAndBackgroundColor();
-
+    return MaterialStateProperty.resolveWith<BorderSide?>(
+        (Set<MaterialState> states) {
+      if (states.contains(MaterialState.disabled)) {
         return BorderSide(
           width: 1,
-          color: _borderColor,
+          color: Colors.grey.shade200,
         );
-      };
+      }
+
+      return BorderSide(
+        width: 1,
+        color: borderColor ?? _buttonBorderColor(),
+      );
     });
   }
 
@@ -113,7 +124,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         if (states.contains(MaterialState.disabled)) {
           return Colors.grey.shade200;
         }
-        return _borderAndBackgroundColor();
+        return _buttonBackgroundColor();
       },
     );
   }
