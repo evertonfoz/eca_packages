@@ -1,4 +1,4 @@
-import 'package:eca_packages/buttons/default_rounded_border_button.dart';
+import 'package:eca_packages/src/buttons/default_rounded_border_button.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePageAccessButtons extends StatelessWidget {

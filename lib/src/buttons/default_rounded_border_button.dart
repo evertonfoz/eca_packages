@@ -104,16 +104,15 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   _definingBorderSide() {
     return MaterialStateProperty.resolveWith<BorderSide?>(
         (Set<MaterialState> states) {
+      Color _borderColor = borderColor ?? _buttonBorderColor();
+
       if (states.contains(MaterialState.disabled)) {
-        return BorderSide(
-          width: 1,
-          color: Colors.grey.shade200,
-        );
+        _borderColor = Colors.grey.shade200;
       }
 
       return BorderSide(
         width: 1,
-        color: borderColor ?? _buttonBorderColor(),
+        color: _borderColor,
       );
     });
   }
