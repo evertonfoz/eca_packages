@@ -8,8 +8,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   final int lastPageNumber;
   final VoidCallback onJumpButtonPressed;
   final VoidCallback onNextPagePressed;
-  final Color buttonTextColor;
-  final MaterialColor buttonColor;
+  final MaterialColor? foregroundColor;
+  final MaterialColor? backgroundColor;
 
   const WelcomePageNavigationButtons({
     Key? key,
@@ -17,8 +17,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     required this.lastPageNumber,
     required this.onJumpButtonPressed,
     required this.onNextPagePressed,
-    required this.buttonColor,
-    this.buttonTextColor = Colors.white,
+    this.backgroundColor,
+    this.foregroundColor,
   }) : super(key: key);
 
   @override
@@ -45,10 +45,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     return Expanded(
       flex: 3,
       child: DefaultTextButton(
-        textColor: Colors.white54,
         text: "Pular",
         onPressed: onJumpButtonPressed,
-        primaryColor: buttonTextColor,
       ),
     );
   }
@@ -57,11 +55,11 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     return Expanded(
       flex: 2,
       child: DefaultRoundedBorderButton(
-        backgroundColor: buttonColor.shade400,
-        borderColor: buttonColor.shade400,
+        backgroundColor: backgroundColor,
+        borderColor: backgroundColor,
         icon: Icon(
           Icons.arrow_forward,
-          color: buttonTextColor,
+          color: foregroundColor,
           size: 36,
         ),
         height: 70,

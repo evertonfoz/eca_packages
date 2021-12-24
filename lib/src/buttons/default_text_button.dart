@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 
 class DefaultTextButton extends StatelessWidget {
   final String text;
-  final Color textColor;
+  final Color? foregroundColor;
   final VoidCallback onPressed;
-  final Color buttonColor;
-  final Color primaryColor;
+  final Color? backgroundColor;
+  final Color? primaryColor;
   final double fontSize;
 
   const DefaultTextButton({
     Key? key,
     required this.text,
-    this.textColor = Colors.red,
+    this.foregroundColor,
+    this.backgroundColor,
+    this.primaryColor,
     required this.onPressed,
-    this.buttonColor = Colors.transparent,
-    required this.primaryColor,
     this.fontSize = 18,
   }) : super(key: key);
 
@@ -27,7 +27,7 @@ class DefaultTextButton extends StatelessWidget {
         text,
         style: TextStyle(
           fontSize: fontSize,
-          color: textColor,
+          // color: foregroundColor,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -36,8 +36,8 @@ class DefaultTextButton extends StatelessWidget {
 
   _buildTextButtonStyleFrom() {
     return TextButton.styleFrom(
-      primary: primaryColor,
-      backgroundColor: buttonColor,
+      primary: foregroundColor,
+      backgroundColor: backgroundColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
   }

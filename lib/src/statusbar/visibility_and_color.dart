@@ -3,56 +3,125 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class StatusBarVisibilityAndColor {
-  bool isVisible;
-  bool lastVisibleStatus;
-  MaterialColor androidColor;
+class StatusAndNavigationBarVisibilityAndColor {
+  bool _isStatusBarVisibleState = true;
+  bool _lastStatusBarVisibleState = false;
+  bool _isNavigationSystemBarVisibile = true;
+  bool _lastNavigationSystemBarVisibleState = false;
+  Color _androidStatusBarColor = Colors.transparent;
+  Color _androidSystemNavigatioBarColor = Colors.white;
 
-  StatusBarVisibilityAndColor({
-    required this.isVisible,
-    required this.lastVisibleStatus,
-    this.androidColor = Colors.indigo,
-  });
+  StatusAndNavigationBarVisibilityAndColor() {
+    _registerStatusBarAndNavigationBarColor();
+  }
 
-  restoreStatusBarVisibleState() {
-    if (isVisible && !lastVisibleStatus) {
-      _hideStatusBar();
-    } else if (!isVisible && lastVisibleStatus) {
-      _showStatusBar();
+// #region StatusBar State and Color
+  showStatusBar() {
+    if (!_isStatusBarVisibleState) {
+      _lastStatusBarVisibleState = false;
     }
+
+    _isStatusBarVisibleState = true;
+
+    _setStatusAndNavigationBarState();
   }
 
   hideStatusBar() {
-    if (isVisible) {
-      lastVisibleStatus = true;
+    if (_isStatusBarVisibleState) {
+      _lastStatusBarVisibleState = true;
     }
-    isVisible = false;
-    _hideStatusBar();
-  }
-
-  _hideStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-  }
-
-  showStatusBar() {
-    if (!isVisible) {
-      lastVisibleStatus = false;
-    }
-
-    isVisible = true;
-
-    _showStatusBar();
-  }
-
-  _showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    _isStatusBarVisibleState = false;
+    _setStatusAndNavigationBarState();
   }
 
   registerStatusBarColor({required Color color}) {
+    _androidStatusBarColor = color;
+    _registerStatusBarAndNavigationBarColor();
+  }
+
+  _getStatusBarColor() {
+    return _androidStatusBarColor;
+  }
+
+  restoreStatusBarVisibleState() {
+    if (_isStatusBarVisibleState && !_lastStatusBarVisibleState) {
+      hideStatusBar();
+    } else if (!_isStatusBarVisibleState && _lastStatusBarVisibleState) {
+      showStatusBar();
+    }
+  }
+// #endregion
+
+// #region SystemNavigationBar State and Color
+  showSystemNavigationBar() {
+    if (!_isNavigationSystemBarVisibile) {
+      _lastNavigationSystemBarVisibleState = false;
+    }
+
+    _isNavigationSystemBarVisibile = true;
+
+    _setStatusAndNavigationBarState();
+  }
+
+  hideSystemNavigationBar() {
+    if (_isNavigationSystemBarVisibile) {
+      _lastNavigationSystemBarVisibleState = true;
+    }
+    _isNavigationSystemBarVisibile = false;
+    _setStatusAndNavigationBarState();
+  }
+
+  registerNavigationBarColor({required Color color}) {
+    _androidSystemNavigatioBarColor = color;
+    _registerStatusBarAndNavigationBarColor();
+  }
+
+  _getSystemNavigationBarColor() {
+    return _androidSystemNavigatioBarColor;
+  }
+
+  restoreSystemNavigationBarVisibleState() {
+    if (_isNavigationSystemBarVisibile &&
+        !_lastNavigationSystemBarVisibleState) {
+      hideSystemNavigationBar();
+    } else if (!_isNavigationSystemBarVisibile &&
+        _lastNavigationSystemBarVisibleState) {
+      showSystemNavigationBar();
+    }
+  }
+// #endregion
+
+// #region Both
+  showBoth() {
+    showStatusBar();
+    showSystemNavigationBar();
+  }
+
+  _setStatusAndNavigationBarState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: _getStatusAndSystemNavigationVisibleState());
+  }
+
+  _registerStatusBarAndNavigationBarColor() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: color,
-      systemNavigationBarColor: (Platform.isAndroid) ? androidColor : null,
+      statusBarColor: _getStatusBarColor(),
+      systemNavigationBarDividerColor:
+          (Platform.isAndroid) ? _getSystemNavigationBarColor() : null,
+      systemNavigationBarColor:
+          (Platform.isAndroid) ? _getSystemNavigationBarColor() : null,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ));
   }
+
+  _getStatusAndSystemNavigationVisibleState() {
+    final List<SystemUiOverlay> _overlays = [];
+    if (_isNavigationSystemBarVisibile) {
+      _overlays.add(SystemUiOverlay.bottom);
+    }
+    if (_isStatusBarVisibleState) {
+      _overlays.add(SystemUiOverlay.top);
+    }
+    return _overlays;
+  }
+// #endregion
 }

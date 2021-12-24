@@ -38,7 +38,7 @@ class WelcomePageDotsIndicator extends StatelessWidget {
       height: 6,
       width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-        color: currentPage == index ? color.shade500 : color.shade100,
+        color: currentPage == index ? color.shade500 : color.shade300,
         borderRadius: BorderRadius.circular(3),
       ),
     );

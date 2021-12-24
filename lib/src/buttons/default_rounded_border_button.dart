@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DefaultRoundedBorderButton extends StatelessWidget {
   final String? text;
   final Color? backgroundColor;
-  final bool checked;
+  final bool? checked;
   final VoidCallback? onPressed;
   final Icon? icon;
   final double height;
@@ -21,7 +21,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     Key? key,
     this.text,
     this.backgroundColor,
-    this.checked = false,
+    this.checked,
     this.onPressed,
     this.icon,
     this.height = 32,
@@ -68,21 +68,21 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _buttonBackgroundColor() {
-    if (backgroundColor != null) {
-      return backgroundColor;
+    if (checked != null) {
+      return !checked!
+          ? uncheckedColor ?? Colors.transparent
+          : checkedColor ?? borderColor ?? Colors.transparent;
     }
-    return !checked
-        ? uncheckedColor ?? Colors.transparent
-        : checkedColor ?? borderColor ?? Colors.transparent;
+    return backgroundColor;
   }
 
   _buttonBorderColor() {
-    if (borderColor != null) {
-      return borderColor;
+    if (checked != null) {
+      return !checked!
+          ? uncheckedColor ?? Colors.transparent
+          : checkedColor ?? borderColor ?? Colors.transparent;
     }
-    return !checked
-        ? uncheckedColor ?? Colors.transparent
-        : checkedColor ?? borderColor ?? Colors.transparent;
+    return borderColor;
   }
 
   _buttonChild() {
@@ -93,7 +93,9 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
-          color: !checked ? invertedFontColor ?? fontColor : fontColor,
+          color: checked != null && !checked!
+              ? invertedFontColor ?? fontColor
+              : fontColor,
         ),
       );
     } else {
@@ -104,7 +106,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   _definingBorderSide() {
     return MaterialStateProperty.resolveWith<BorderSide?>(
         (Set<MaterialState> states) {
-      Color _borderColor = borderColor ?? _buttonBorderColor();
+      Color? _borderColor = borderColor ?? _buttonBorderColor();
 
       if (states.contains(MaterialState.disabled)) {
         _borderColor = Colors.grey.shade200;
@@ -112,7 +114,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
       return BorderSide(
         width: 1,
-        color: _borderColor,
+        color: _borderColor ?? Colors.transparent,
       );
     });
   }
