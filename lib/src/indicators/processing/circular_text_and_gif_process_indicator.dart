@@ -2,13 +2,13 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 
-class CircularTextAndGifProcessIndicator extends StatelessWidget {
+class IndicatorProcessingCircularTextAndGif extends StatelessWidget {
   final MaterialColor loadingColor;
   final List<String> texts;
   final double fontSize;
   final double textHeight;
 
-  const CircularTextAndGifProcessIndicator({
+  const IndicatorProcessingCircularTextAndGif({
     Key? key,
     required this.loadingColor,
     required this.texts,

@@ -4,33 +4,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class StatusAndNavigationBarVisibilityAndColor {
-  bool _isStatusBarVisibleState = true;
-  bool _lastStatusBarVisibleState = false;
-  bool _isNavigationSystemBarVisibile = true;
-  bool _lastNavigationSystemBarVisibleState = false;
-  Color _androidStatusBarColor = Colors.transparent;
-  Color _androidSystemNavigatioBarColor = Colors.white;
+  late bool _isStatusBarVisible;
+  late bool _lastStatusBarVisible;
+  late bool _isNavigationSystemBarVisibile;
+  late bool _lastNavigationSystemBarVisible;
+  late Color _androidStatusBarColor;
+  late Color _androidSystemNavigatioBarColor;
 
-  StatusAndNavigationBarVisibilityAndColor() {
+  StatusAndNavigationBarVisibilityAndColor({
+    bool? isStatusBarVisible = true,
+    bool? isNavigationSystemBarVisibile = true,
+    Color? androidStatusBarColor,
+    Color? androidSystemNavigatioBarColor,
+  }) {
+    _isStatusBarVisible = isStatusBarVisible!;
+    _isNavigationSystemBarVisibile = isNavigationSystemBarVisibile!;
+
+    _lastStatusBarVisible = !_isStatusBarVisible;
+    _lastNavigationSystemBarVisible = !_isNavigationSystemBarVisibile;
+
+    _androidStatusBarColor = androidStatusBarColor ?? Colors.transparent;
+    _androidSystemNavigatioBarColor =
+        androidSystemNavigatioBarColor ?? Colors.white;
+
     _registerStatusBarAndNavigationBarColor();
+    _registerStatusBarAndNavigationBarVisible();
   }
 
 // #region StatusBar State and Color
   showStatusBar() {
-    if (!_isStatusBarVisibleState) {
-      _lastStatusBarVisibleState = false;
+    if (!_isStatusBarVisible) {
+      _lastStatusBarVisible = false;
     }
 
-    _isStatusBarVisibleState = true;
+    _isStatusBarVisible = true;
 
     _setStatusAndNavigationBarState();
   }
 
   hideStatusBar() {
-    if (_isStatusBarVisibleState) {
-      _lastStatusBarVisibleState = true;
+    if (_isStatusBarVisible) {
+      _lastStatusBarVisible = true;
     }
-    _isStatusBarVisibleState = false;
+    _isStatusBarVisible = false;
     _setStatusAndNavigationBarState();
   }
 
@@ -44,9 +60,9 @@ class StatusAndNavigationBarVisibilityAndColor {
   }
 
   restoreStatusBarVisibleState() {
-    if (_isStatusBarVisibleState && !_lastStatusBarVisibleState) {
+    if (_isStatusBarVisible && !_lastStatusBarVisible) {
       hideStatusBar();
-    } else if (!_isStatusBarVisibleState && _lastStatusBarVisibleState) {
+    } else if (!_isStatusBarVisible && _lastStatusBarVisible) {
       showStatusBar();
     }
   }
@@ -55,7 +71,7 @@ class StatusAndNavigationBarVisibilityAndColor {
 // #region SystemNavigationBar State and Color
   showSystemNavigationBar() {
     if (!_isNavigationSystemBarVisibile) {
-      _lastNavigationSystemBarVisibleState = false;
+      _lastNavigationSystemBarVisible = false;
     }
 
     _isNavigationSystemBarVisibile = true;
@@ -65,7 +81,7 @@ class StatusAndNavigationBarVisibilityAndColor {
 
   hideSystemNavigationBar() {
     if (_isNavigationSystemBarVisibile) {
-      _lastNavigationSystemBarVisibleState = true;
+      _lastNavigationSystemBarVisible = true;
     }
     _isNavigationSystemBarVisibile = false;
     _setStatusAndNavigationBarState();
@@ -81,11 +97,10 @@ class StatusAndNavigationBarVisibilityAndColor {
   }
 
   restoreSystemNavigationBarVisibleState() {
-    if (_isNavigationSystemBarVisibile &&
-        !_lastNavigationSystemBarVisibleState) {
+    if (_isNavigationSystemBarVisibile && !_lastNavigationSystemBarVisible) {
       hideSystemNavigationBar();
     } else if (!_isNavigationSystemBarVisibile &&
-        _lastNavigationSystemBarVisibleState) {
+        _lastNavigationSystemBarVisible) {
       showSystemNavigationBar();
     }
   }
@@ -113,12 +128,25 @@ class StatusAndNavigationBarVisibilityAndColor {
     ));
   }
 
+  _registerStatusBarAndNavigationBarVisible() {
+    if (_isStatusBarVisible) {
+      showStatusBar();
+    } else {
+      hideStatusBar();
+    }
+    if (_isNavigationSystemBarVisibile) {
+      showSystemNavigationBar();
+    } else {
+      hideSystemNavigationBar();
+    }
+  }
+
   _getStatusAndSystemNavigationVisibleState() {
     final List<SystemUiOverlay> _overlays = [];
     if (_isNavigationSystemBarVisibile) {
       _overlays.add(SystemUiOverlay.bottom);
     }
-    if (_isStatusBarVisibleState) {
+    if (_isStatusBarVisible) {
       _overlays.add(SystemUiOverlay.top);
     }
     return _overlays;
