@@ -16,7 +16,7 @@ class FormFieldGroup extends StatelessWidget {
   const FormFieldGroup({
     Key? key,
     required this.textTitle,
-    required this.fontWeight,
+    this.fontWeight = FontWeight.w600,
     this.requiredOrientation = false,
     this.enableControllers = true,
     this.textInputAction = TextInputAction.next,

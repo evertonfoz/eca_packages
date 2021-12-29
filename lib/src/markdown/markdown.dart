@@ -43,11 +43,6 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
 
   _showStatusBar() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //   statusBarColor: widget.statusBarColor,
-    //   systemNavigationBarColor:
-    //       (Platform.isAndroid) ? widget.statusBarColor : null,
-    // ));
   }
 
   _hideStatusBar() {
@@ -75,7 +70,7 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
               child: Icon(
                 Icons.arrow_back,
                 color: widget.appBarIconAndTextColor ??
-                    Theme.of(context).appBarTheme.foregroundColor,
+                    Theme.of(context).appBarTheme.iconTheme?.color,
                 size: 30,
               ),
             ),

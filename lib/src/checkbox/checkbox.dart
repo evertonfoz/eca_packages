@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CheckBoxECA extends StatefulWidget {
   final Function(bool)? onChanged;
   final String? text;
-  final RichText? richText;
+  final Widget? widget;
   final Color? fillColor;
   final double scale;
   final double size;
@@ -18,10 +18,10 @@ class CheckBoxECA extends StatefulWidget {
     this.scale = 1,
     this.size = 24,
     this.checked,
-    this.richText,
+    this.widget,
     this.textFontSize = 14,
-  })  : assert((text != null && richText == null) ||
-            (text == null && richText != null)),
+  })  : assert((text != null && widget == null) ||
+            (text == null && widget != null)),
         super(key: key);
 
   @override
@@ -86,6 +86,6 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
         style: TextStyle(fontSize: widget.textFontSize),
       );
     }
-    return widget.richText;
+    return widget.widget;
   }
 }
