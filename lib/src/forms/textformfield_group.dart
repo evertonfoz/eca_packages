@@ -12,6 +12,7 @@ class FormFieldGroup extends StatelessWidget {
   final List<String> errorMessages;
   final List<Function(String?)> validationFunctions;
   final Function(String)? registerValueInStoreForm;
+  final bool obscureText;
 
   const FormFieldGroup({
     Key? key,
@@ -25,6 +26,7 @@ class FormFieldGroup extends StatelessWidget {
     this.errorMessages = const [],
     this.validationFunctions = const [],
     required this.registerValueInStoreForm,
+    this.obscureText = false,
   }) : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          obscureText: obscureText,
           enabled: enableControllers,
           textInputAction: textInputAction,
           textInputType: textInputType,

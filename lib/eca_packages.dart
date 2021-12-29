@@ -23,3 +23,5 @@ export 'src/forms/button.dart';
 export 'src/checkbox/checkbox.dart';
 export 'src/indicators/processing/circular_text_and_gif_process_indicator.dart';
 export 'src/indicators/steps/indicator_step_progress.dart';
+export 'src/password/mobx_controller.dart';
+export 'src/password/fields.dart';
