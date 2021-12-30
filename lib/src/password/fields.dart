@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../eca_packages.dart';
 
@@ -28,13 +29,6 @@ bool isAValidPasswordValidatorWithSymbols(String password) {
   return true;
 }
 
-bool isAValidPasswordValidatorOnlyLettersAndNumbers(String password) {
-  if (password.length < 6) return false;
-  if (!password.contains(RegExp(r"[a-z]"))) return false;
-  if (!password.contains(RegExp(r"[0-9]"))) return false;
-  return true;
-}
-
 bool isMatchValidator({required String value, required String otherValue}) {
   if (value != otherValue) return false;
   return true;
@@ -45,13 +39,18 @@ bool isMatchValidator({required String value, required String otherValue}) {
 class NewPasswordFields extends StatelessWidget {
   final NewPasswordStore newPasswordStore;
   final GlobalKey<FormState> formKey;
-  // final FocusNode _passwordFocusNode = FocusNode();
-  // final FocusNode _confirmedFocusNode = FocusNode();
+  final String passwordInvalidError;
+  final Function(String) invalidPasswordFunction;
 
-  const NewPasswordFields({
+  final FocusNode _passwordFocusNode = FocusNode();
+  final FocusNode _confirmedFocusNode = FocusNode();
+
+  NewPasswordFields({
     Key? key,
     required this.newPasswordStore,
     required this.formKey,
+    this.passwordInvalidError = kPasswordInvalidError,
+    this.invalidPasswordFunction = isAValidPasswordValidatorWithSymbols,
   }) : super(key: key);
 
   @override
@@ -64,94 +63,73 @@ class NewPasswordFields extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Observer(builder: (_) {
-              return FormFieldGroup(
-                textTitle: 'Nova senha',
-                requiredOrientation: true,
-                valueToTextController: newPasswordStore.newPassword,
-                errorMessages: const [
-                  kNewPasswordNullError,
-                  kPasswordInvalidError,
-                ],
-                validationFunctions: [
-                  (_password) => isNotEmptyValidator(_password ?? ''),
-                  (_password) =>
-                      isAValidPasswordValidatorWithSymbols(_password ?? ''),
-                ],
-                registerValueInStoreForm: newPasswordStore.registerNewPassword,
-              );
-            }),
-            // Observer(
-            //   builder: (_) => TextFormFieldDC(
-            //     focusNode: _passwordFocusNode,
-            //     obscureText: newPasswordStore.obscureNewPasswordText,
-            //     onPressAditionalSufixIcon: () =>
-            //         newPasswordStore.registerObscureNewPasswordText(
-            //             value: !newPasswordStore.obscureNewPasswordText),
-            //     textInputAction: TextInputAction.next,
-            //     aditionalSufixIcons: [
-            //       FontAwesomeIcons.eye,
-            //       FontAwesomeIcons.eyeSlash,
-            //     ],
-            //     errorMessages: [
-            //       kPasswordNullError,
-            //       kPasswordInvalidError,
-            //     ],
-            //     validationFunctions: [
-            //       (_password) =>
-            //           validators.isNotEmptyValidator(_password ?? ''),
-            //       (_password) =>
-            //           validators.isAValidPasswordValidator(_password ?? ''),
-            //     ],
-            //     onSaved: null,
-            //     registerStatusInStoreForm:
-            //         newPasswordStore.registerNewPasswordStatus,
-            //     registerValueInStoreForm: newPasswordStore.registerNewPassword,
-            //     errorMaxLines: 2,
-            //     nextFocus: _confirmedFocusNode,
-            //   ),
-            // ),
-            // SizedBox(height: 20),
-            // TextDC(
-            //   text: 'Confirmar senha',
-            //   fontSize: 14,
-            //   fontWeight: FontWeight.w600,
-            // ),
-            // SizedBox(height: 10),
-            // Observer(
-            //   builder: (_) => TextFormFieldDC(
-            //     focusNode: _confirmedFocusNode,
-            //     errorMaxLines: 2,
-            //     obscureText: newPasswordStore.obscureConfirmedPasswordText,
-            //     onPressAditionalSufixIcon: () =>
-            //         newPasswordStore.registerObscureConfirmedPasswordText(
-            //             value: !newPasswordStore.obscureConfirmedPasswordText),
-            //     aditionalSufixIcons: [
-            //       FontAwesomeIcons.eye,
-            //       FontAwesomeIcons.eyeSlash,
-            //     ],
-            //     errorMessages: [
-            //       kConfirmedPasswordNullError,
-            //       kPasswordMatchError,
-            //     ],
-            //     validationFunctions: [
-            //       (_confirmedPassword) =>
-            //           validators.isNotEmptyValidator(_confirmedPassword ?? ''),
-            //       (_confirmedPassword) => validators.isMatchValidator(
-            //           value: _confirmedPassword ?? '',
-            //           otherValue: newPasswordStore.newPassword),
-            //     ],
-            //     onSaved: null, // (newValue) => _password = newValue,
-            //     registerStatusInStoreForm:
-            //         newPasswordStore.registerConfirmedPasswordStatus,
-            //     registerValueInStoreForm:
-            //         newPasswordStore.registerConfirmedPassword,
-            //   ),
-            // ),
-            // SizedBox(height: 10),
+            _newPassword(),
+            _confirmedPassword(),
           ],
         ),
       ),
     );
+  }
+
+  _newPassword() {
+    return Observer(builder: (_) {
+      return FormFieldGroup(
+        obscureText: newPasswordStore.obscureNewPasswordText,
+        textTitle: 'Nova senha',
+        focusNode: _passwordFocusNode,
+        requiredOrientation: true,
+        valueToTextController: newPasswordStore.newPassword,
+        errorMessages: [
+          kNewPasswordNullError,
+          passwordInvalidError,
+        ],
+        validationFunctions: [
+          (_password) => isNotEmptyValidator(_password ?? ''),
+          (_password) => invalidPasswordFunction(_password ?? ''),
+        ],
+        registerValueInStoreForm: newPasswordStore.registerNewPassword,
+        aditionalSufixIcons: const [
+          FontAwesomeIcons.eye,
+          FontAwesomeIcons.eyeSlash,
+        ],
+        onPressAditionalSufixIcon: () =>
+            newPasswordStore.registerObscureNewPasswordText(
+                value: !newPasswordStore.obscureNewPasswordText),
+        errorMaxLines: 2,
+        nextFocus: _confirmedFocusNode,
+      );
+    });
+  }
+
+  _confirmedPassword() {
+    return Observer(builder: (_) {
+      return FormFieldGroup(
+        textInputAction: TextInputAction.done,
+        textTitle: 'Confimar senha',
+        obscureText: newPasswordStore.obscureConfirmedPasswordText,
+        focusNode: _confirmedFocusNode,
+        requiredOrientation: true,
+        valueToTextController: newPasswordStore.confirmedPassword,
+        errorMessages: const [
+          kConfirmedPasswordNullError,
+          kPasswordMatchError,
+        ],
+        validationFunctions: [
+          (_confirmedPassword) => isNotEmptyValidator(_confirmedPassword ?? ''),
+          (_confirmedPassword) => isMatchValidator(
+              value: _confirmedPassword ?? '',
+              otherValue: newPasswordStore.newPassword),
+        ],
+        registerValueInStoreForm: newPasswordStore.registerConfirmedPassword,
+        aditionalSufixIcons: const [
+          FontAwesomeIcons.eye,
+          FontAwesomeIcons.eyeSlash,
+        ],
+        onPressAditionalSufixIcon: () =>
+            newPasswordStore.registerObscureNewPasswordText(
+                value: !newPasswordStore.obscureConfirmedPasswordText),
+        errorMaxLines: 2,
+      );
+    });
   }
 }

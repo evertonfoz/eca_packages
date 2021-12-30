@@ -13,6 +13,12 @@ class FormFieldGroup extends StatelessWidget {
   final List<Function(String?)> validationFunctions;
   final Function(String)? registerValueInStoreForm;
   final bool obscureText;
+  final FocusNode? focusNode;
+  final FocusNode? nextFocus;
+  final List<IconData>? aditionalSufixIcons;
+  final VoidCallback? onPressAditionalSufixIcon;
+
+  final int errorMaxLines;
 
   const FormFieldGroup({
     Key? key,
@@ -27,6 +33,11 @@ class FormFieldGroup extends StatelessWidget {
     this.validationFunctions = const [],
     required this.registerValueInStoreForm,
     this.obscureText = false,
+    this.focusNode,
+    this.nextFocus,
+    this.aditionalSufixIcons,
+    this.onPressAditionalSufixIcon,
+    this.errorMaxLines = 1,
   }) : super(key: key);
 
   @override
@@ -41,6 +52,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          focusNode: focusNode,
           obscureText: obscureText,
           enabled: enableControllers,
           textInputAction: textInputAction,
@@ -49,6 +61,10 @@ class FormFieldGroup extends StatelessWidget {
           errorMessages: errorMessages,
           validationFunctions: validationFunctions,
           registerValueInStoreForm: registerValueInStoreForm,
+          onPressAditionalSufixIcon: onPressAditionalSufixIcon,
+          aditionalSufixIcons: aditionalSufixIcons,
+          errorMaxLines: errorMaxLines,
+          nextFocus: nextFocus,
         ),
         const SizedBox(height: 10),
       ],

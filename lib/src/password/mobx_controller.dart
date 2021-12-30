@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 
 part 'mobx_controller.g.dart';
@@ -9,6 +10,12 @@ part 'mobx_controller.g.dart';
 class NewPasswordStore = _NewPasswordStore with _$NewPasswordStore;
 
 abstract class _NewPasswordStore with Store {
+  _NewPasswordStore() {
+    if (!kReleaseMode) {
+      registerNewPassword('P@ssw0rd');
+      registerConfirmedPassword('P@ssw0rd');
+    }
+  }
   @observable
   String _newPassword = '';
 
