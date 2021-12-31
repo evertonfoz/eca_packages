@@ -11,6 +11,8 @@ class DropDown<T> extends StatelessWidget {
   bool Function(T?, T?)? compareFn;
   Function(T?)? onChanged;
   String Function(T?)? itemAsString;
+  final Color? fillColor;
+  final Color? selectedColorItem;
 
   DropDown({
     Key? key,
@@ -21,17 +23,17 @@ class DropDown<T> extends StatelessWidget {
     required this.compareFn,
     required this.onChanged,
     required this.itemAsString,
+    this.fillColor,
+    this.selectedColorItem,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // print('itemAsString $itemAsString');
     return DropdownSearch<T>(
       dropdownSearchDecoration: InputDecoration(
-        fillColor: Colors.green,
+        fillColor: fillColor,
         filled: true,
         hintText: hintText,
-        labelText: "Menu mode multiSelection*",
         contentPadding: const EdgeInsets.only(left: 10, top: 4),
         border: const OutlineInputBorder(),
       ),
@@ -48,10 +50,12 @@ class DropDown<T> extends StatelessWidget {
         ),
       ),
       popupSafeArea: const PopupSafeAreaProps(top: false),
-      popupBackgroundColor: Colors.yellow,
+      // popupBackgroundColor: Colors.yellow,
       maxHeight: items.length * 57,
       popupShape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
           bottomLeft: Radius.circular(10.0),
           bottomRight: Radius.circular(10.0),
         ),
@@ -77,7 +81,13 @@ class DropDown<T> extends StatelessWidget {
     String? itemUrlImage;
 
     if (item == null) {
-      return SizedBox(child: TextECA(text: hintText));
+      return SizedBox(
+        child: TextECA(
+          text: hintText,
+          textAlign: TextAlign.start,
+          fontSize: 16,
+        ),
+      );
     }
 
     if (!item.toString().contains('##')) {
@@ -100,7 +110,12 @@ class DropDown<T> extends StatelessWidget {
                 backgroundColor: Colors.transparent,
                 backgroundImage: AssetImage(itemUrlImage),
               ),
-        title: Text(itemName),
+        title: TextECA(
+          text: itemName,
+          textAlign: TextAlign.start,
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -131,7 +146,8 @@ class DropDown<T> extends StatelessWidget {
               ),
         title: TextECA(
           text: itemName ?? '',
-          color: isSelected ? Colors.blue : null,
+          color: isSelected ? selectedColorItem ?? Colors.blue : null,
+          textAlign: TextAlign.start,
           fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
         ),
         trailing: isSelected
