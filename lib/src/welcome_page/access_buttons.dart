@@ -48,7 +48,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
             // borderColor: topButtonBorderColor,
             height: 60,
             onPressed: onTopButtonPressed,
-            radius: 5,
+            radius: radius ?? 5,
           ),
           const SizedBox(height: 20),
           DefaultRoundedBorderButton(
@@ -64,7 +64,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
             width: MediaQuery.of(context).size.width * percentToWidth,
             height: 60,
             onPressed: onBottomButtonPressed,
-            radius: 5,
+            radius: radius ?? 5,
           )
         ],
       ),

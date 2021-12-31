@@ -36,7 +36,7 @@ bool isMatchValidator({required String value, required String otherValue}) {
 // #endregion
 
 // ignore: must_be_immutable
-class NewPasswordFields extends StatelessWidget {
+class NewPasswordFieldsECA extends StatelessWidget {
   final NewPasswordStore newPasswordStore;
   final GlobalKey<FormState> formKey;
   final String passwordInvalidError;
@@ -45,7 +45,7 @@ class NewPasswordFields extends StatelessWidget {
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _confirmedFocusNode = FocusNode();
 
-  NewPasswordFields({
+  NewPasswordFieldsECA({
     Key? key,
     required this.newPasswordStore,
     required this.formKey,

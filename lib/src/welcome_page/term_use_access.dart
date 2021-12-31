@@ -15,6 +15,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   final bool hideStatusBarOnDispose;
   final TextAlign textAlign;
   final double fontSize;
+  final Alignment? alignment;
 
   const WelcomePoliceAndTermUseAccess({
     Key? key,
@@ -30,6 +31,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     this.hideStatusBarOnDispose = false,
     this.textAlign = TextAlign.justify,
     this.fontSize = 18,
+    this.alignment,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: Align(
-        alignment: Alignment.centerLeft,
+        alignment: alignment ?? Alignment.centerLeft,
         child: RichText(
           textAlign: textAlign,
           text: TextSpan(
