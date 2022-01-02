@@ -67,7 +67,7 @@ class DropDown<T> extends StatelessWidget {
       mode: Mode.MENU,
       showSelectedItems: true,
       onChanged: onChanged,
-      selectedItem: null,
+      selectedItem: selectedItem,
       items: items,
       compareFn: compareFn,
       popupItemBuilder: _customPopupItemBuilder,
