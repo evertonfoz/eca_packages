@@ -20,27 +20,29 @@ class FormFieldGroup extends StatelessWidget {
   final VoidCallback? onPressAditionalSufixIcon;
   final List<TextInputFormatter>? textInputFormatters;
   final int errorMaxLines;
+  final int? maxLines;
 
-  const FormFieldGroup(
-      {Key? key,
-      required this.textTitle,
-      this.fontWeight = FontWeight.w600,
-      this.requiredOrientation = false,
-      this.enableControllers = true,
-      this.textInputAction = TextInputAction.next,
-      this.textInputType = TextInputType.text,
-      required this.valueToTextController,
-      this.errorMessages = const [],
-      this.validationFunctions = const [],
-      required this.registerValueInStoreForm,
-      this.obscureText = false,
-      this.focusNode,
-      this.nextFocus,
-      this.aditionalSufixIcons,
-      this.onPressAditionalSufixIcon,
-      this.errorMaxLines = 1,
-      this.textInputFormatters})
-      : super(key: key);
+  const FormFieldGroup({
+    Key? key,
+    required this.textTitle,
+    this.fontWeight = FontWeight.w600,
+    this.requiredOrientation = false,
+    this.enableControllers = true,
+    this.textInputAction = TextInputAction.next,
+    this.textInputType = TextInputType.text,
+    required this.valueToTextController,
+    this.errorMessages = const [],
+    this.validationFunctions = const [],
+    required this.registerValueInStoreForm,
+    this.obscureText = false,
+    this.focusNode,
+    this.nextFocus,
+    this.aditionalSufixIcons,
+    this.onPressAditionalSufixIcon,
+    this.errorMaxLines = 1,
+    this.textInputFormatters,
+    this.maxLines,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          maxLines: maxLines ?? 1,
           textInputFormatters: textInputFormatters,
           focusNode: focusNode,
           obscureText: obscureText,

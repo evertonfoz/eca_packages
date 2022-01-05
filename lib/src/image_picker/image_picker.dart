@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../eca_packages.dart';
-import 'mobx_controller.dart';
 
 const double kMaxWidth = 600;
 const double kMaxHeight = 1024;

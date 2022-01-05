@@ -98,6 +98,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       autofocus: widget.autofocus,
       enabled: widget.enabled,
       maxLines: widget.maxLines,
+      obscureText: widget.obscureText,
       focusNode: _focusNode,
       inputFormatters:
           widget.textInputFormatters != null ? widget.textInputFormatters! : [],
@@ -132,7 +133,6 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       },
       controller: _controller,
       textAlign: TextAlign.left,
-      obscureText: widget.obscureText,
       decoration: InputDecoration(
         prefixText: widget.prefixText ?? '',
         suffixIcon: _buildSufixIcon(context),
