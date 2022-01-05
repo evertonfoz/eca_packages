@@ -6,8 +6,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../eca_packages.dart';
 
-const double kMaxWidth = 600;
-const double kMaxHeight = 1024;
+const double kMaxWidthOfImage = 600;
+const double kMaxHeightOfImage = 1024;
 const int kImageQuality = 80;
 
 class ImagePickerECA extends StatefulWidget {
@@ -21,9 +21,11 @@ class ImagePickerECA extends StatefulWidget {
   final Color? galleryIconColor;
   final Color? cameraIconColor;
   final MaterialColor? indicatorProcessingColor;
-  final double maxWidth;
-  final double maxHeight;
+  final double maxWidthOfImage;
+  final double maxHeightOfImage;
+  final double heightImageContainer;
   final int imageQuality;
+  final bool showImageAfterPick;
 
   const ImagePickerECA({
     Key? key,
@@ -37,9 +39,11 @@ class ImagePickerECA extends StatefulWidget {
     this.cameraIconColor,
     this.indicatorProcessingColor,
     this.showFabButtonsInColumn = true,
-    this.maxWidth = kMaxWidth,
-    this.maxHeight = kMaxHeight,
+    this.maxWidthOfImage = kMaxWidthOfImage,
+    this.maxHeightOfImage = kMaxHeightOfImage,
     this.imageQuality = kImageQuality,
+    this.heightImageContainer = 200,
+    this.showImageAfterPick = true,
   }) : super(key: key);
 
   @override
@@ -56,6 +60,8 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
   set _imageFile(XFile? value) {
     _imageFileList = value == null ? null : [value];
   }
+
+  get _imagePathFile => _imageFileList != null ? _imageFileList![0].path : null;
 
   @override
   void dispose() {
@@ -80,7 +86,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       const SizedBox(width: 10),
       FloatingActionButton(
           heroTag: 'Camera',
-          backgroundColor: widget.galleryFloatActionButtonColor ??
+          backgroundColor: widget.cameraFloatActionButtonColor ??
               Theme.of(context).floatingActionButtonTheme.backgroundColor,
           child: Icon(
             Icons.add_a_photo_outlined,
@@ -107,6 +113,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
           Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 8, top: 10),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: _fabButtons(),
             ),
           ),
@@ -178,13 +185,16 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
     try {
       final pickedFile = await _picker.pickImage(
         source: source,
-        maxWidth: widget.maxHeight,
-        maxHeight: widget.maxHeight,
+        maxWidth: widget.maxHeightOfImage,
+        maxHeight: widget.maxHeightOfImage,
         imageQuality: widget.imageQuality,
       );
       setState(() {
         _imageFile = pickedFile;
       });
+      if (widget.onPickedNewAvatar != null) {
+        widget.onPickedNewAvatar!(_imagePathFile);
+      }
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -223,15 +233,16 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
     if (retrieveError != null) {
       return retrieveError;
     }
-    if (_imageFileList != null) {
-      final String imagePath = _imageFileList![0].path;
-
-      _imagePickerStore.registerNewAvatarPath(imagePath);
-      return Container(
+    if (_imageFileList != null && widget.showImageAfterPick) {
+      _imagePickerStore.registerNewAvatarPath(_imagePathFile);
+      return SizedBox(
+        height: widget.heightImageContainer,
         child: kIsWeb
-            ? Image.network(imagePath)
+            ? Image.network(
+                _imagePathFile,
+              )
             : Image.file(
-                File(imagePath),
+                File(_imagePathFile),
               ),
       );
     } else if (_pickImageError != null) {
