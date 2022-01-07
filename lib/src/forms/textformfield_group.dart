@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormFieldGroup extends StatelessWidget {
+  final Function(String?)? onSaved;
   final String textTitle;
   final FontWeight fontWeight;
   final bool requiredOrientation;
@@ -21,6 +22,9 @@ class FormFieldGroup extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatters;
   final int errorMaxLines;
   final int? maxLines;
+  final String? prefixText;
+  final TextEditingController? textEditingController;
+  final Function(bool)? registerStatusInStoreForm;
 
   const FormFieldGroup({
     Key? key,
@@ -42,6 +46,10 @@ class FormFieldGroup extends StatelessWidget {
     this.errorMaxLines = 1,
     this.textInputFormatters,
     this.maxLines,
+    this.prefixText,
+    this.textEditingController,
+    this.onSaved,
+    this.registerStatusInStoreForm,
   }) : super(key: key);
 
   @override
@@ -56,6 +64,8 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          textEditingController: textEditingController,
+          prefixText: prefixText,
           maxLines: maxLines ?? 1,
           textInputFormatters: textInputFormatters,
           focusNode: focusNode,
@@ -71,6 +81,8 @@ class FormFieldGroup extends StatelessWidget {
           aditionalSufixIcons: aditionalSufixIcons,
           errorMaxLines: errorMaxLines,
           nextFocus: nextFocus,
+          onSaved: onSaved,
+          registerStatusInStoreForm: registerStatusInStoreForm,
         ),
         const SizedBox(height: 10),
       ],

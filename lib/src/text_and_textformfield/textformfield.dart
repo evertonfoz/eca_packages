@@ -143,6 +143,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         hintText: widget.hintText ?? '',
         hintStyle: const TextStyle(fontSize: 14),
       ),
+      onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
           ? null
           : (value) => FocusScope.of(context).requestFocus(widget.nextFocus),
