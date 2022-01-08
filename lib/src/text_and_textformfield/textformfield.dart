@@ -23,7 +23,7 @@ class TextFormFieldECA extends StatefulWidget {
   final int maxLines;
   final String? hintText;
   final bool showSuffixIcon;
-  final bool enabled;
+  final bool? enabled;
   final bool autofocus;
   final Icon? suffixIcon;
   final Color? checkedSuffixColor;

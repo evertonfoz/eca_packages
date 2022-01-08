@@ -7,7 +7,7 @@ class FormFieldGroup extends StatelessWidget {
   final String textTitle;
   final FontWeight fontWeight;
   final bool requiredOrientation;
-  final bool enableControllers;
+  final bool? enableControllers;
   final TextInputAction textInputAction;
   final TextInputType textInputType;
   final String valueToTextController;

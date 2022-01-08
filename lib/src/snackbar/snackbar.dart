@@ -51,15 +51,18 @@ void showBottomSnackBar({
               child: TextECA(
                 text: title ?? '',
                 fontSize: 30,
+                color: textColor ??
+                    Theme.of(context).snackBarTheme.actionTextColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
             content: Visibility(
               visible: content != null,
               child: TextECA(
-                text: content ?? '',
-                fontSize: 20,
-              ),
+                  text: content ?? '',
+                  fontSize: 20,
+                  color: textColor ??
+                      Theme.of(context).snackBarTheme.actionTextColor),
             ),
             indicatorColor: Colors.red,
             icon: Icon(
