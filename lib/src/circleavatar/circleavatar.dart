@@ -5,14 +5,14 @@ import 'package:transparent_image/transparent_image.dart';
 
 enum TypeOfImageToAvatar { kAsset, kWeb, kFile }
 
-class CircleAvatarXB extends StatelessWidget {
+class CircleAvatarECA extends StatelessWidget {
   final double radius;
   final Color borderColor;
   final Color backgroundColor;
   final String imageURL;
   final TypeOfImageToAvatar typeOfImageToAvatar;
 
-  const CircleAvatarXB({
+  const CircleAvatarECA({
     Key? key,
     this.radius = 32,
     this.borderColor = Colors.white38,

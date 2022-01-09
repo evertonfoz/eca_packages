@@ -12,6 +12,7 @@ void showBottomSnackBar({
   Color? borderColor,
   Color? backgroundColor,
   Color? textColor,
+  TextAlign? textAlign,
 }) {
   assert(
       (title != null || content != null) &&
@@ -54,15 +55,18 @@ void showBottomSnackBar({
                 color: textColor ??
                     Theme.of(context).snackBarTheme.actionTextColor,
                 fontWeight: FontWeight.bold,
+                textAlign: textAlign ?? TextAlign.left,
               ),
             ),
             content: Visibility(
               visible: content != null,
               child: TextECA(
-                  text: content ?? '',
-                  fontSize: 20,
-                  color: textColor ??
-                      Theme.of(context).snackBarTheme.actionTextColor),
+                text: content ?? '',
+                fontSize: 20,
+                color: textColor ??
+                    Theme.of(context).snackBarTheme.actionTextColor,
+                textAlign: textAlign ?? TextAlign.left,
+              ),
             ),
             indicatorColor: Colors.red,
             icon: Icon(
@@ -97,7 +101,7 @@ void _showMessage({required String message, required BuildContext context}) {
               size: 36.0,
               color: Colors.black,
             ),
-            content: Text(message),
+            content: TextECA(text: message),
           ),
         );
       });
