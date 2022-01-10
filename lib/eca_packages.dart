@@ -30,3 +30,4 @@ export 'src/image_picker/image_picker.dart';
 export 'src/image_picker/mobx_controller.dart';
 export 'src/circleavatar/circleavatar.dart';
 export 'src/snackbar/snackbar.dart';
+export 'src/absorb_pointer_page/absorb_pointer_page.dart';
