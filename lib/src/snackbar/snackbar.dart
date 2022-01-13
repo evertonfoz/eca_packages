@@ -23,8 +23,9 @@ void showBottomSnackBar({
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
   showFlash(
+    persistent: true,
     context: context,
-    duration: Duration(seconds: durationSeconds),
+    // duration: Duration(seconds: durationSeconds),
     builder: (_, controller) {
       return Flash(
         barrierDismissible: false,
@@ -75,6 +76,18 @@ void showBottomSnackBar({
                   textColor ?? Theme.of(context).snackBarTheme.actionTextColor,
               size: 40,
             ),
+            primaryAction: TextButton(
+              onPressed: () => controller.dismiss(),
+              child: Text('DISMISS'),
+            ),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () => controller.dismiss('Yes, I do!'),
+                  child: Text('YES')),
+              TextButton(
+                  onPressed: () => controller.dismiss('No, I do not!'),
+                  child: Text('NO')),
+            ],
           ),
         ),
       );
