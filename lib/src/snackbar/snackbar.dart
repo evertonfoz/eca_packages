@@ -6,13 +6,16 @@ void showBottomSnackBar({
   bool persistent = true,
   EdgeInsets margin = EdgeInsets.zero,
   required BuildContext context,
-  int durationSeconds = 2,
+  int? durationSeconds,
   String? title,
   String? content,
   Color? borderColor,
   Color? backgroundColor,
   Color? textColor,
   TextAlign? textAlign,
+  Widget? primaryAction,
+  Function? onYesPressed,
+  Function? onNoPressed,
 }) {
   assert(
       (title != null || content != null) &&
@@ -23,9 +26,10 @@ void showBottomSnackBar({
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
   showFlash(
-    persistent: true,
+    persistent: durationSeconds == null,
     context: context,
-    // duration: Duration(seconds: durationSeconds),
+    duration:
+        durationSeconds == null ? null : Duration(seconds: durationSeconds),
     builder: (_, controller) {
       return Flash(
         barrierDismissible: false,
@@ -76,18 +80,41 @@ void showBottomSnackBar({
                   textColor ?? Theme.of(context).snackBarTheme.actionTextColor,
               size: 40,
             ),
-            primaryAction: TextButton(
-              onPressed: () => controller.dismiss(),
-              child: Text('DISMISS'),
-            ),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: () => controller.dismiss('Yes, I do!'),
-                  child: Text('YES')),
-              TextButton(
-                  onPressed: () => controller.dismiss('No, I do not!'),
-                  child: Text('NO')),
-            ],
+            primaryAction: primaryAction,
+            // TextButton(
+            //   onPressed: () => controller.dismiss(),
+            //   child: Text('DISMISS'),
+            // ),
+            actions: onYesPressed == null && onNoPressed == null
+                ? null
+                : <Widget>[
+                    TextButton(
+                        style: ButtonStyle(
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                            const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (onYesPressed != null) {
+                            onYesPressed();
+                          }
+                          controller.dismiss();
+                        },
+                        child: const Text('SIM')),
+                    TextButton(
+                        style: ButtonStyle(
+                          textStyle: MaterialStateProperty.all<TextStyle>(
+                            const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        onPressed: () {
+                          if (onNoPressed != null) {
+                            onNoPressed();
+                          }
+                          controller.dismiss();
+                        },
+                        child: const Text('NÃO')),
+                  ],
           ),
         ),
       );

@@ -37,7 +37,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
+      height: MediaQuery.of(context).size.height * 0.07,
       child: Align(
         alignment: alignment ?? Alignment.centerLeft,
         child: RichText(
