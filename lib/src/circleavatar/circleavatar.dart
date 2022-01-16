@@ -11,6 +11,9 @@ class CircleAvatarECA extends StatelessWidget {
   final Color backgroundColor;
   final String imageURL;
   final TypeOfImageToAvatar typeOfImageToAvatar;
+  final BoxFit? boxFit;
+  final double? width;
+  final double? height;
 
   const CircleAvatarECA({
     Key? key,
@@ -19,28 +22,10 @@ class CircleAvatarECA extends StatelessWidget {
     this.backgroundColor = Colors.transparent,
     required this.imageURL,
     this.typeOfImageToAvatar = TypeOfImageToAvatar.kAsset,
+    this.boxFit,
+    this.width,
+    this.height,
   }) : super(key: key);
-
-  _buildAvatarImage() {
-    if (typeOfImageToAvatar == TypeOfImageToAvatar.kAsset) {
-      return Image.asset(
-        imageURL,
-        fit: BoxFit.fill,
-      ).image;
-    } else if (typeOfImageToAvatar == TypeOfImageToAvatar.kFile) {
-      return Image.file(
-        File(imageURL),
-        fit: BoxFit.fill,
-      ).image;
-    }
-
-    return FadeInImage.memoryNetwork(
-      fit: BoxFit.fitWidth,
-      width: 210,
-      placeholder: kTransparentImage,
-      image: imageURL,
-    ).image;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,5 +37,31 @@ class CircleAvatarECA extends StatelessWidget {
           backgroundColor: backgroundColor,
           foregroundImage: _buildAvatarImage()),
     );
+  }
+
+  _buildAvatarImage() {
+    if (typeOfImageToAvatar == TypeOfImageToAvatar.kAsset) {
+      return Image.asset(
+        imageURL,
+        fit: boxFit ?? BoxFit.fill,
+        width: width ?? 210,
+        height: height ?? 210,
+      ).image;
+    } else if (typeOfImageToAvatar == TypeOfImageToAvatar.kFile) {
+      return Image.file(
+        File(imageURL),
+        fit: boxFit ?? BoxFit.fill,
+        width: width ?? 210,
+        height: height ?? 210,
+      ).image;
+    }
+
+    return FadeInImage.memoryNetwork(
+      fit: boxFit ?? BoxFit.fill,
+      width: width ?? 210,
+      placeholder: kTransparentImage,
+      image: imageURL,
+      height: height ?? 210,
+    ).image;
   }
 }
