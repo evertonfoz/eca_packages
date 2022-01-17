@@ -30,7 +30,7 @@ class CircleAvatarECA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius * 1.1,
+      radius: radius * 1,
       backgroundColor: borderColor,
       child: CircleAvatar(
           radius: radius * 0.95,
