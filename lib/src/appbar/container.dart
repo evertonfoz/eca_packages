@@ -12,7 +12,7 @@ class AppBarContainer extends StatelessWidget {
   const AppBarContainer({
     Key? key,
     this.width = kAppBarContainerWidth,
-    this.height = kAppBarContainerHeight,
+    this.height = kAppBarContainerHeight, // * 1.6,
     this.child,
     this.testColor,
   }) : super(key: key);
@@ -24,7 +24,8 @@ class AppBarContainer extends StatelessWidget {
       child: SizedBox(
         width: width,
         height: height,
-        child: Center(
+        child: Align(
+          alignment: Alignment.center,
           child: child ?? Container(),
         ),
       ),
