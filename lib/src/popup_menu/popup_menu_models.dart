@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PopupMenuTitleModelECA {
-  final String title;
+  final String text;
   final Color? color;
   final double? fontSize;
   final FontWeight? fontWeight;
 
   PopupMenuTitleModelECA({
-    required this.title,
+    required this.text,
     this.color,
     this.fontSize,
     this.fontWeight,
@@ -20,7 +20,9 @@ class PopupMenuItemModelECA<T> {
   final dynamic value;
   final Color? color;
   final double? fontSize;
+  final double? iconSize;
   final FontWeight? fontWeight;
+  final bool doubleSeparatorBefore;
 
   PopupMenuItemModelECA({
     required this.text,
@@ -29,5 +31,7 @@ class PopupMenuItemModelECA<T> {
     this.color,
     this.fontSize,
     this.fontWeight,
+    this.iconSize,
+    this.doubleSeparatorBefore = false,
   });
 }

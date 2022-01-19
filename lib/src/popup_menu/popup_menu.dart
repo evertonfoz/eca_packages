@@ -4,20 +4,53 @@ import '../../eca_packages.dart';
 
 final List<PopupMenuEntry> _itemsPopupMenuEntry = [];
 
+popupCreateMenuECA({
+  required PopupMenuTitleModelECA title,
+  required List<PopupMenuItemModelECA> items,
+  required BuildContext context,
+  int titleTimesSeparator = 2,
+  int itemTimesSeparator = 1,
+}) {
+  _itemsPopupMenuEntry.clear();
+  _itemsPopupMenuEntry.add(popupMenuTitleECA(context: context, title: title));
+
+  for (int i = 0; i < titleTimesSeparator; i++) {
+    _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
+  }
+
+  for (int i = 0; i < items.length; i++) {
+    _itemsPopupMenuEntry
+        .add(popupMenuItemECA(context: context, item: items[i]));
+
+    // Não é o último e nem é para ter separador duplo
+    if ((i != (items.length) - 2) && (!items[i].doubleSeparatorBefore)) {
+      for (int j = 0; j < itemTimesSeparator; j++) {
+        _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
+      }
+    }
+
+    // É para ter separador duplo
+    else if (!items[i].doubleSeparatorBefore) {
+      for (int k = 0; k < titleTimesSeparator; k++) {
+        _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
+      }
+    }
+  }
+
+  return _itemsPopupMenuEntry;
+}
+
 popupMenuTitleECA<T>({
   required BuildContext context,
-  required String title,
-  final Color? color,
-  final double? fontSize,
-  final FontWeight? fontWeight,
+  required PopupMenuTitleModelECA title,
 }) {
   return PopupMenuItem<T>(
     child: Center(
       child: TextECA(
-        text: title,
-        fontSize: fontSize ?? 34,
-        fontWeight: fontWeight ?? FontWeight.bold,
-        color: color ?? Theme.of(context).primaryColor,
+        text: title.text,
+        fontSize: title.fontSize ?? 34,
+        fontWeight: title.fontWeight ?? FontWeight.bold,
+        color: title.color ?? Theme.of(context).primaryColor,
       ),
     ),
   );
@@ -25,13 +58,7 @@ popupMenuTitleECA<T>({
 
 popupMenuItemECA<T>({
   required BuildContext context,
-  required IconData icon,
-  required String text,
-  dynamic value,
-  Color? color,
-  double? iconSize,
-  double? fontSize,
-  FontWeight? fontWeight,
+  required PopupMenuItemModelECA item,
 }) {
   return PopupMenuItem<T>(
     child: Container(
@@ -39,20 +66,24 @@ popupMenuItemECA<T>({
       child: Row(
         children: [
           IconECA(
-            size: iconSize ?? 24,
-            color: color ?? Theme.of(context).primaryColor,
-            icon: icon,
+            size: item.iconSize ?? 24,
+            color: item.color ?? Theme.of(context).primaryColor,
+            icon: item.icon,
           ),
           const SizedBox(width: 15),
           TextECA(
-            text: text,
-            fontSize: fontSize ?? 24,
-            fontWeight: fontWeight ?? FontWeight.bold,
-            color: color ?? Theme.of(context).primaryColor,
+            text: item.text,
+            fontSize: item.fontSize ?? 24,
+            fontWeight: item.fontWeight ?? FontWeight.bold,
+            color: item.color ?? Theme.of(context).primaryColor,
           ),
         ],
       ),
     ),
-    value: value as T,
+    value: item.value as T,
   );
+}
+
+popupMenuSeparatorECA({double height = 2}) {
+  return PopupMenuDivider(height: height);
 }
