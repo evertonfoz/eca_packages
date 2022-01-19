@@ -34,3 +34,5 @@ export 'src/absorb_pointer_page/absorb_pointer_page.dart';
 export 'src/icons/eca_icons.dart';
 export 'src/icons/notifications_icon.dart';
 export 'src/circle/circle.dart';
+export 'src/popup_menu/popup_menu.dart';
+export 'src/popup_menu/popup_menu_models.dart';
