@@ -31,4 +31,6 @@ export 'src/image_picker/mobx_controller.dart';
 export 'src/circleavatar/circleavatar.dart';
 export 'src/snackbar/snackbar.dart';
 export 'src/absorb_pointer_page/absorb_pointer_page.dart';
-export 'src/icons/bell_icon.dart';
+export 'src/icons/eca_icons.dart';
+export 'src/icons/notifications_icon.dart';
+export 'src/circle/circle.dart';

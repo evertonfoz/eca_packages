@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class AbsorbPointerPageWidget extends StatelessWidget {
   final bool isInProcessing;
   final Widget child;
+  final double? opacity;
 
   const AbsorbPointerPageWidget({
     Key? key,
     required this.isInProcessing,
     required this.child,
+    this.opacity,
   }) : super(key: key);
 
   @override
@@ -15,7 +17,7 @@ class AbsorbPointerPageWidget extends StatelessWidget {
     if (isInProcessing) {
       return AbsorbPointer(
         child: Opacity(
-          opacity: 0.9,
+          opacity: opacity ?? 0.9,
           child: child,
         ),
       );

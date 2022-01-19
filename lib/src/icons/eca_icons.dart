@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class IconBell extends StatelessWidget {
+const IconData kIconBell = FontAwesomeIcons.bell;
+const IconData kIconProfile = FontAwesomeIcons.user;
+const IconData kIconCalendar = FontAwesomeIcons.calendar;
+const IconData kIconAbout = FontAwesomeIcons.infoCircle;
+const IconData kIconExit = FontAwesomeIcons.doorOpen;
+
+class IconECA extends StatelessWidget {
   final Color? color;
   final double? size;
+  final IconData icon;
 
-  const IconBell({
+  const IconECA({
     Key? key,
     this.color,
     this.size,
+    required this.icon,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FaIcon(
-      FontAwesomeIcons.bell,
+      icon,
       color: color ?? Theme.of(context).textTheme.caption?.color,
       size: size ?? 32,
     );
