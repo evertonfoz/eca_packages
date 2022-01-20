@@ -6,6 +6,7 @@ const IconData kIconProfile = FontAwesomeIcons.user;
 const IconData kIconCalendar = FontAwesomeIcons.calendar;
 const IconData kIconAbout = FontAwesomeIcons.infoCircle;
 const IconData kIconExit = FontAwesomeIcons.doorOpen;
+const IconData kIconArrowBack = FontAwesomeIcons.arrowLeft;
 
 class IconECA extends StatelessWidget {
   final Color? color;
