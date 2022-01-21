@@ -7,6 +7,7 @@ class ListTileECA extends StatelessWidget {
   final Widget? trailing;
   final double? tileHeight;
   final VoidCallback? onTap;
+  final bool useCard;
 
   const ListTileECA({
     Key? key,
@@ -14,12 +15,23 @@ class ListTileECA extends StatelessWidget {
     this.title,
     this.subtitle,
     this.trailing,
-    this.tileHeight, //: 50,
+    this.tileHeight,
     this.onTap,
+    this.useCard = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    if (useCard) {
+      return Card(
+        elevation: 10,
+        child: _buildListTile(),
+      );
+    }
+    return _buildListTile();
+  }
+
+  _buildListTile() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: SizedBox(
