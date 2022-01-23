@@ -12,8 +12,8 @@ getDateAndHourADate({required DateTime dateTime}) {
 
   String timeStamp =
       TimeElapsed.fromDateTime(dateTime).toCustomTimeElapsed(customDate);
-  if (timeStamp.toLowerCase() == 'agora') {
-    return timeStamp;
+  if (timeStamp.contains('agora')) {
+    return timeStamp.trim();
   }
   return '$timeStamp atrás';
 }

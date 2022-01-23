@@ -37,6 +37,7 @@ class ListTileECA extends StatelessWidget {
       child: SizedBox(
         height: tileHeight,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             leading ?? Container(),
             const SizedBox(width: 10),
