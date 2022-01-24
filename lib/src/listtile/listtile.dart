@@ -8,6 +8,7 @@ class ListTileECA extends StatelessWidget {
   final double? tileHeight;
   final VoidCallback? onTap;
   final bool useCard;
+  final bool emphasisColor;
 
   const ListTileECA({
     Key? key,
@@ -18,12 +19,14 @@ class ListTileECA extends StatelessWidget {
     this.tileHeight,
     this.onTap,
     this.useCard = true,
+    required this.emphasisColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     if (useCard) {
       return Card(
+        color: emphasisColor ? Colors.white : Colors.grey.shade200,
         elevation: 10,
         child: _buildListTile(),
       );
