@@ -68,6 +68,6 @@ abstract class _NewPasswordStore with Store {
   @action
   registerConfirmedPassword(String value) {
     _confirmedNewPassword = value;
-    _confirmedPasswordIsValid = _confirmedNewPassword.isNotEmpty;
+    _confirmedPasswordIsValid = _newPassword == _confirmedNewPassword;
   }
 }

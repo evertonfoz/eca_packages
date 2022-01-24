@@ -126,7 +126,7 @@ class NewPasswordFieldsECA extends StatelessWidget {
           FontAwesomeIcons.eyeSlash,
         ],
         onPressAditionalSufixIcon: () =>
-            newPasswordStore.registerObscureNewPasswordText(
+            newPasswordStore.registerObscureConfirmedPasswordText(
                 value: !newPasswordStore.obscureConfirmedPasswordText),
         errorMaxLines: 2,
       );
