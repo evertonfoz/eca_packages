@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../eca_packages.dart';
 
 // #region Constants
-const String kNewPasswordNullError = 'Por favor, informe o seu nome';
+const String kNewPasswordNullError = 'Por favor, informe a sua senha';
 const String kConfirmedNewPasswordlNullError = 'Por favor, informe o seu email';
 const String kPasswordInvalidError =
     'Mínimo 8 caracteres, sendo necessário: 1 letra maiuscula, 1 minúscula, 1 número e 1 símbolo';
@@ -26,6 +26,13 @@ bool isAValidPasswordValidatorWithSymbols(String password) {
   if (!password.contains(RegExp(r"[A-Z]"))) return false;
   if (!password.contains(RegExp(r"[0-9]"))) return false;
   if (!password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) return false;
+  return true;
+}
+
+bool isAValidPasswordValidatorOnlyLettersAndNumbers(String password) {
+  if (password.length < 6) return false;
+  if (!password.contains(RegExp(r"[a-z]"))) return false;
+  if (!password.contains(RegExp(r"[0-9]"))) return false;
   return true;
 }
 
@@ -87,7 +94,8 @@ class NewPasswordFieldsECA extends StatelessWidget {
           (_password) => isNotEmptyValidator(_password ?? ''),
           (_password) => invalidPasswordFunction(_password ?? ''),
         ],
-        registerValueInStoreForm: newPasswordStore.registerNewPassword,
+        registerValueInStoreForm: (value) => newPasswordStore
+            .registerNewPassword(value, invalidPasswordFunction),
         aditionalSufixIcons: const [
           FontAwesomeIcons.eye,
           FontAwesomeIcons.eyeSlash,

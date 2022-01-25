@@ -171,11 +171,12 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
   }
 
   @override
-  dynamic registerNewPassword(String value) {
+  dynamic registerNewPassword(
+      String value, dynamic Function(String) invalidPasswordFunction) {
     final _$actionInfo = _$_NewPasswordStoreActionController.startAction(
         name: '_NewPasswordStore.registerNewPassword');
     try {
-      return super.registerNewPassword(value);
+      return super.registerNewPassword(value, invalidPasswordFunction);
     } finally {
       _$_NewPasswordStoreActionController.endAction(_$actionInfo);
     }

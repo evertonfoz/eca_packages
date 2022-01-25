@@ -12,8 +12,8 @@ class NewPasswordStore = _NewPasswordStore with _$NewPasswordStore;
 abstract class _NewPasswordStore with Store {
   _NewPasswordStore() {
     if (!kReleaseMode) {
-      registerNewPassword('P@ssw0rd');
-      registerConfirmedPassword('P@ssw0rd');
+      // registerNewPassword('P@ssw0rd');
+      // registerConfirmedPassword('P@ssw0rd');
     }
   }
   @observable
@@ -60,9 +60,9 @@ abstract class _NewPasswordStore with Store {
   }
 
   @action
-  registerNewPassword(String value) {
+  registerNewPassword(String value, Function(String) invalidPasswordFunction) {
     _newPassword = value;
-    _newPasswordIsValid = _newPassword.isNotEmpty;
+    _newPasswordIsValid = invalidPasswordFunction(_newPassword);
   }
 
   @action
