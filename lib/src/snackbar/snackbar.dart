@@ -25,6 +25,11 @@ void showBottomSnackBar({
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
+  final AnimationController _animationController = AnimationController(
+      duration: const Duration(seconds: 1), vsync: Scaffold.of(context));
+  Animation<Color?> _animationColor =
+      ColorTween(begin: Colors.indigo, end: Colors.lime)
+          .animate(_animationController);
   showFlash(
     persistent: durationSeconds == null,
     context: context,
@@ -53,7 +58,9 @@ void showBottomSnackBar({
           child: FlashBar(
             padding: const EdgeInsets.all(25),
             showProgressIndicator: true,
-
+            progressIndicatorBackgroundColor: borderColor,
+            progressIndicatorController: _animationController,
+            progressIndicatorValueColor: _animationColor!,
             title: Visibility(
               visible: title != null,
               child: TextECA(
