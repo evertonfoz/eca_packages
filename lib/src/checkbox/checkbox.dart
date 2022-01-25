@@ -1,3 +1,4 @@
+import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 
 class CheckBoxECA extends StatefulWidget {
@@ -41,37 +42,40 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Transform.scale(
-          scale: widget.scale,
-          child: SizedBox(
-            width: widget.size,
-            height: widget.size,
-            child: Checkbox(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              ),
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              fillColor: MaterialStateProperty.all<Color>(widget.fillColor ??
-                  Theme.of(context).iconTheme.color ??
-                  Colors.black),
-              value: _checked,
-              onChanged: (value) {
-                setState(() {
-                  _checked = !_checked;
-                });
+        Flexible(
+          child: Transform.scale(
+            scale: widget.scale,
+            child: SizedBox(
+              width: widget.size,
+              height: widget.size,
+              child: Checkbox(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                fillColor: MaterialStateProperty.all<Color>(widget.fillColor ??
+                    Theme.of(context).iconTheme.color ??
+                    Colors.black),
+                value: _checked,
+                onChanged: (value) {
+                  setState(() {
+                    _checked = !_checked;
+                  });
 
-                if (widget.onChanged != null) {
-                  widget.onChanged!(value!);
-                }
-              },
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(value!);
+                  }
+                },
+              ),
             ),
           ),
         ),
         const SizedBox(
           width: 10,
         ),
-        Expanded(
+        Flexible(
           flex: 1,
           child: _buildText(),
         ),
@@ -81,9 +85,9 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
 
   _buildText() {
     if (widget.text != null) {
-      return Text(
-        widget.text!,
-        style: TextStyle(fontSize: widget.textFontSize),
+      return TextECA(
+        text: widget.text!,
+        fontSize: widget.textFontSize,
       );
     }
     return widget.widget;
