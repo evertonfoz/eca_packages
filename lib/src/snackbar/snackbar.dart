@@ -16,6 +16,8 @@ void showBottomSnackBar({
   Widget? primaryAction,
   Function? onYesPressed,
   Function? onNoPressed,
+  Color? progressIndicatorBackgroundColor,
+  Color? progressIndicatorValueColor,
 }) {
   assert(
       (title != null || content != null) &&
@@ -25,11 +27,8 @@ void showBottomSnackBar({
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
-  final AnimationController _animationController = AnimationController(
-      duration: const Duration(seconds: 1), vsync: Scaffold.of(context));
-  Animation<Color?> _animationColor =
-      ColorTween(begin: Colors.indigo, end: Colors.lime)
-          .animate(_animationController);
+  // final AnimationController _animationController = AnimationController(
+  //     duration: Duration(milliseconds: 100), vsync: Scaffold.of(context));
   showFlash(
     persistent: durationSeconds == null,
     context: context,
@@ -57,10 +56,13 @@ void showBottomSnackBar({
                   textColor ?? Theme.of(context).snackBarTheme.actionTextColor),
           child: FlashBar(
             padding: const EdgeInsets.all(25),
-            showProgressIndicator: true,
-            progressIndicatorBackgroundColor: borderColor,
-            progressIndicatorController: _animationController,
-            progressIndicatorValueColor: _animationColor!,
+            showProgressIndicator: progressIndicatorBackgroundColor != null ||
+                progressIndicatorValueColor != null,
+            progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
+            // progressIndicatorController: _animationController,
+            progressIndicatorValueColor:
+                AlwaysStoppedAnimation<Color>(progressIndicatorValueColor!),
+
             title: Visibility(
               visible: title != null,
               child: TextECA(
@@ -129,6 +131,7 @@ void showBottomSnackBar({
       );
     },
   ).then((_) {
+    // _animationController.dispose();
     if (_ != null) {
       _showMessage(message: _.toString(), context: context);
     }
