@@ -52,6 +52,8 @@ void showBottomSnackBar({
                   textColor ?? Theme.of(context).snackBarTheme.actionTextColor),
           child: FlashBar(
             padding: const EdgeInsets.all(25),
+            showProgressIndicator: true,
+
             title: Visibility(
               visible: title != null,
               child: TextECA(
