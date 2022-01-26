@@ -60,8 +60,9 @@ void showBottomSnackBar({
                 progressIndicatorValueColor != null,
             progressIndicatorBackgroundColor: progressIndicatorBackgroundColor,
             // progressIndicatorController: _animationController,
-            progressIndicatorValueColor:
-                AlwaysStoppedAnimation<Color>(progressIndicatorValueColor!),
+            progressIndicatorValueColor: progressIndicatorValueColor != null
+                ? AlwaysStoppedAnimation<Color>(progressIndicatorValueColor)
+                : null,
 
             title: Visibility(
               visible: title != null,
