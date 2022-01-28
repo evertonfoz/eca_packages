@@ -20,6 +20,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? uncheckedColor;
   final FontWeight fontWeight;
   final IconPositionOfRoundedBorderButton? iconPosition;
+  final double textBottomPadding;
 
   const DefaultRoundedBorderButton({
     Key? key,
@@ -39,6 +40,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.uncheckedColor,
     this.fontWeight = FontWeight.bold,
     this.iconPosition,
+    this.textBottomPadding = 0,
   })  : assert(
           (text != null || icon != null) ||
               (icon != null && iconPosition != null) ||
@@ -129,14 +131,17 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
     if (text != null) {
       _rowOrColumnContainer.children.add(
-        TextECA(
-          text: text!,
-          textAlign: TextAlign.center,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: checked != null && !checked!
-              ? invertedFontColor ?? fontColor
-              : fontColor,
+        Padding(
+          padding: EdgeInsets.only(bottom: textBottomPadding),
+          child: TextECA(
+            text: text!,
+            textAlign: TextAlign.center,
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+            color: checked != null && !checked!
+                ? invertedFontColor ?? fontColor
+                : fontColor,
+          ),
         ),
       );
     }
