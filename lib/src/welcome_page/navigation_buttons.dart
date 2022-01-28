@@ -57,6 +57,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
       child: DefaultRoundedBorderButton(
         backgroundColor: backgroundColor,
         borderColor: backgroundColor,
+        fontColor: foregroundColor,
         icon: Icon(
           Icons.arrow_forward,
           color: foregroundColor,
@@ -65,6 +66,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
         height: 70,
         onPressed: onNextPagePressed,
         radius: 15,
+        // width: 200,
       ),
     );
   }

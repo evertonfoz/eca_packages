@@ -49,6 +49,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
             height: 60,
             onPressed: onTopButtonPressed,
             radius: radius ?? 5,
+            fontColor: topButtonTextColor,
           ),
           const SizedBox(height: 20),
           DefaultRoundedBorderButton(

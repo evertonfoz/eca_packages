@@ -1,4 +1,7 @@
+import 'package:eca_packages/src/text_and_textformfield/text.dart';
 import 'package:flutter/material.dart';
+
+enum IconPositionOfRoundedBorderButton { left, top }
 
 class DefaultRoundedBorderButton extends StatelessWidget {
   final String? text;
@@ -16,6 +19,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? checkedColor;
   final Color? uncheckedColor;
   final FontWeight fontWeight;
+  final IconPositionOfRoundedBorderButton? iconPosition;
 
   const DefaultRoundedBorderButton({
     Key? key,
@@ -34,9 +38,10 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.checkedColor,
     this.uncheckedColor,
     this.fontWeight = FontWeight.bold,
+    this.iconPosition,
   })  : assert(
-          (text != null && icon == null) ||
-              (text == null && icon != null) ||
+          (text != null || icon != null) ||
+              (icon != null && iconPosition != null) ||
               (text != null && fontColor == null) ||
               (backgroundColor != null && checkedColor != null) ||
               (backgroundColor != null && uncheckedColor != null) ||
@@ -60,11 +65,16 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           side: _definingBorderSide(),
           backgroundColor: _definingBackgroundColor(),
           overlayColor: _definingOverlayColor(),
+          foregroundColor: _definingForegroundColor(),
         ),
         child: _buttonChild(),
         onPressed: onPressed,
       ),
     );
+  }
+
+  _buttonForegroundColor() {
+    return fontColor;
   }
 
   _buttonBackgroundColor() {
@@ -86,11 +96,42 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _buttonChild() {
+    late Flex _rowOrColumnContainer;
+    late SizedBox _sizedBox;
+
+    if (iconPosition == IconPositionOfRoundedBorderButton.top) {
+      _rowOrColumnContainer = Column(
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+      );
+      _sizedBox = SizedBox(height: icon != null ? 20 : 0);
+    } else {
+      _rowOrColumnContainer = Row(
+        // ignore: prefer_const_literals_to_create_immutables
+        children: [],
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+      );
+      _sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
+    }
+
+    if (icon != null) {
+      _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
+    }
+
+    if (icon != null && text != null) {
+      _rowOrColumnContainer.children.add(_sizedBox);
+    }
+
     if (text != null) {
-      return Text(
-        text!,
-        textAlign: TextAlign.center,
-        style: TextStyle(
+      _rowOrColumnContainer.children.add(
+        TextECA(
+          text: text!,
+          textAlign: TextAlign.center,
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: checked != null && !checked!
@@ -98,9 +139,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
               : fontColor,
         ),
       );
-    } else {
-      return icon;
     }
+    return _rowOrColumnContainer;
   }
 
   _definingBorderSide() {
@@ -117,6 +157,17 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         color: _borderColor ?? Colors.transparent,
       );
     });
+  }
+
+  _definingForegroundColor() {
+    return MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey.shade200;
+        }
+        return _buttonForegroundColor();
+      },
+    );
   }
 
   _definingBackgroundColor() {
