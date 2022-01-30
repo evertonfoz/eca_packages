@@ -19,7 +19,7 @@ class GradientBottomCenter extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: colors,
+            colors: colors, //[Colors.transparent, Colors.black],
           ),
         ),
       ),
