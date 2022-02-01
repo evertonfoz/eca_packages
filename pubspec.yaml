@@ -21,6 +21,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   getwidget: ^2.0.4
   image_picker: ^0.8.4+4
+  intl: ^0.17.0
   mobx: ^2.0.6+1
   step_progress_indicator: ^1.0.1
   time_elapsed: ^0.2.6
