@@ -25,6 +25,7 @@ class FormFieldGroup extends StatelessWidget {
   final String? prefixText;
   final TextEditingController? textEditingController;
   final Function(bool)? registerStatusInStoreForm;
+  final TextAlign? textFieldTextAlign;
 
   const FormFieldGroup({
     Key? key,
@@ -50,6 +51,7 @@ class FormFieldGroup extends StatelessWidget {
     this.textEditingController,
     this.onSaved,
     this.registerStatusInStoreForm,
+    this.textFieldTextAlign,
   }) : super(key: key);
 
   @override
@@ -64,6 +66,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          textFieldTextAlign: textFieldTextAlign,
           textEditingController: textEditingController,
           prefixText: prefixText,
           maxLines: maxLines ?? 1,
