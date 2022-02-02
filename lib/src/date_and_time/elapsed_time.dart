@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:time_elapsed/time_elapsed.dart';
 
 getDateAndHourADate({required DateTime dateTime}) {
@@ -16,4 +17,13 @@ getDateAndHourADate({required DateTime dateTime}) {
     return timeStamp.trim();
   }
   return '$timeStamp atrás';
+}
+
+hourAndMinuteFormatted(DateTime dateTime) {
+  final dateTimeFormatter = DateFormat.Hm(
+    Intl.defaultLocale,
+  );
+  return dateTimeFormatter.format(
+    dateTime,
+  );
 }

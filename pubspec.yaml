@@ -23,6 +23,8 @@ dependencies:
   image_picker: ^0.8.4+4
   intl: ^0.17.0
   mobx: ^2.0.6+1
+  page_transition: ^2.0.4
+  shared_preferences: ^2.0.12
   step_progress_indicator: ^1.0.1
   time_elapsed: ^0.2.6
   transparent_image: ^2.0.0

@@ -59,7 +59,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.checkedSuffixColor,
     this.errorSuffixColor,
     this.isObservable = false,
-    this.textFieldTextAlign = TextAlign.left,
+    this.textFieldTextAlign,
   }) : super(key: key);
 
   @override
@@ -136,7 +136,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         return null;
       },
       controller: _controller,
-      textAlign: widget.textFieldTextAlign!,
+      textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
         prefixText: widget.prefixText ?? '',
         suffixIcon: _buildSufixIcon(context),
@@ -186,9 +186,9 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       }
     }
 
-    hasSufixIcons = sufixIcons.length > 0;
+    hasSufixIcons = sufixIcons.isNotEmpty;
     return Padding(
-      padding: EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right: 8.0),
       child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           mainAxisSize: MainAxisSize.min,

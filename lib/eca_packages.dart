@@ -41,3 +41,4 @@ export 'src/listtile/listtile.dart';
 export 'src/date_and_time/elapsed_time.dart';
 export 'src/input_formatters/currency_formatter.dart';
 export 'src/number_formatters/number_formatters.dart';
+export 'src/page_transitions/preferences.dart';
