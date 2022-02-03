@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 enum IconPositionOfRoundedBorderButton { left, top }
 
+// ignore: must_be_immutable
 class DefaultRoundedBorderButton extends StatelessWidget {
   final String? text;
   final Color? backgroundColor;
@@ -20,9 +21,12 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? uncheckedColor;
   final FontWeight fontWeight;
   final IconPositionOfRoundedBorderButton? iconPosition;
+
+  BuildContext? _context;
+
   final double textBottomPadding;
 
-  const DefaultRoundedBorderButton({
+  DefaultRoundedBorderButton({
     Key? key,
     this.text,
     this.backgroundColor,
@@ -54,6 +58,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return SizedBox(
       width: width,
       height: height,
@@ -140,7 +145,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
             fontWeight: fontWeight,
             color: checked != null && !checked!
                 ? invertedFontColor ?? fontColor
-                : fontColor,
+                : fontColor ?? Theme.of(_context!).primaryColor,
           ),
         ),
       );

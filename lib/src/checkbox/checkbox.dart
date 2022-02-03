@@ -44,7 +44,8 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
+        Expanded(
+          flex: 1,
           child: Transform.scale(
             scale: widget.scale,
             child: SizedBox(
@@ -75,8 +76,8 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
         const SizedBox(
           width: 10,
         ),
-        Flexible(
-          flex: 1,
+        Expanded(
+          flex: 6,
           child: _buildText(),
         ),
       ],
