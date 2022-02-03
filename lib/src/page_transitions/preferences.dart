@@ -34,7 +34,7 @@ class PageTranstionPreferences {
         (int index) => _pageTranstionsDisponiveis![index]);
   }
 
-  static getPreferences() async {
+  static _getPreferences() async {
     if (!kIsWeb) {
       final SharedPreferences? prefs = await SharedPreferences.getInstance();
       _pageTranstionsParaUtilizar =
@@ -42,7 +42,7 @@ class PageTranstionPreferences {
     }
   }
 
-  static PageTranstionArgs getPageTransition() {
+  static PageTranstionArgs _getPageTransition() {
     var random = Random();
 
     if (_pageTranstionsDisponiveis == null) _generateAvailableList();
@@ -163,5 +163,20 @@ class PageTranstionPreferences {
         pageTranstionType: PageTransitionType.leftToRightWithFade));
 
     _maxTranstions = _pageTransitions.length;
+  }
+
+  static getPageTransition(RouteSettings settings, Widget route) {
+    PageTranstionArgs pageTransition =
+        PageTranstionPreferences._getPageTransition();
+
+    /// Tipifiquei o retorno em String pelo fato das search pages retornarem string
+    /// no pop(). Ainda é preciso repensar essa situação.
+    return PageTransition<String>(
+      duration: const Duration(milliseconds: 500),
+      child: route,
+      type: pageTransition.pageTranstionType,
+      alignment: pageTransition.alignment,
+      settings: settings,
+    );
   }
 }
