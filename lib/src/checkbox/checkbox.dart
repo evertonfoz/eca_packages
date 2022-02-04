@@ -42,6 +42,7 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
@@ -87,9 +88,9 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
   _buildText() {
     if (widget.text != null) {
       return TextECA(
-        text: widget.text!,
-        fontSize: widget.textFontSize,
-      );
+          text: widget.text!,
+          fontSize: widget.textFontSize,
+          textAlign: TextAlign.start);
     }
     return widget.widget;
   }
