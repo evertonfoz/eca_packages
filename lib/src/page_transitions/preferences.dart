@@ -34,13 +34,13 @@ class PageTranstionPreferences {
         (int index) => _pageTranstionsDisponiveis![index]);
   }
 
-  static _getPreferences() async {
-    if (!kIsWeb) {
-      final SharedPreferences? prefs = await SharedPreferences.getInstance();
-      _pageTranstionsParaUtilizar =
-          prefs!.getStringList(kPageTranstionsPreference);
-    }
-  }
+  // static _getPreferences() async {
+  //   if (!kIsWeb) {
+  //     final SharedPreferences? prefs = await SharedPreferences.getInstance();
+  //     _pageTranstionsParaUtilizar =
+  //         prefs!.getStringList(kPageTranstionsPreference);
+  //   }
+  // }
 
   static PageTranstionArgs _getPageTransition() {
     var random = Random();
