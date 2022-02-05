@@ -44,3 +44,4 @@ export 'src/number_formatters/number_formatters.dart';
 export 'src/page_transitions/preferences.dart';
 export 'src/input_validators/input_validators.dart';
 export 'src/date_and_time/formated_datetime.dart';
+export 'src/rounded_container/rounded_container.dart';
