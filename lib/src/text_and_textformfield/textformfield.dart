@@ -142,8 +142,13 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         suffixIcon: _buildSufixIcon(context),
         filled: true,
         errorMaxLines: widget.errorMaxLines,
-        contentPadding: EdgeInsets.symmetric(
-            vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
+        contentPadding: EdgeInsets.only(
+          top: 10.0,
+          bottom: 10.0,
+          left: 10.0,
+          right: !hasSufixIcons ? 10.0 : 0,
+        ),
+        // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
         hintText: widget.hintText ?? '',
         hintStyle: const TextStyle(fontSize: 14),
       ),

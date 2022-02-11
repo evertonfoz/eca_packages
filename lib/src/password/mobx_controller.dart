@@ -1,3 +1,4 @@
+import 'package:eca_packages/src/password/fields.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,8 +13,8 @@ class NewPasswordStore = _NewPasswordStore with _$NewPasswordStore;
 abstract class _NewPasswordStore with Store {
   _NewPasswordStore() {
     if (!kReleaseMode) {
-      // registerNewPassword('P@ssw0rd');
-      // registerConfirmedPassword('P@ssw0rd');
+      registerNewPassword('P@ssw0rd', isAValidPasswordValidatorWithSymbols);
+      registerConfirmedPassword('P@ssw0rd');
     }
   }
   @observable
