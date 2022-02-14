@@ -13,3 +13,7 @@ dayMonthAndYearFormatted(DateTime dateTime) {
   final dateTimeFormatter = DateFormat('dd/MM/yyyy');
   return dateTimeFormatter.format(dateTime);
 }
+
+DateTime convertDDMMYYToDateTime(String dateTime) {
+  return DateFormat("dd/MM/yyyy").parse(dateTime);
+}
