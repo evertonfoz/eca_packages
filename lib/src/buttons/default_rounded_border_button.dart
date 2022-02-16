@@ -9,6 +9,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? backgroundColor;
   final bool? checked;
   final VoidCallback? onPressed;
+  final Image? image;
   final Icon? icon;
   final double height;
   final double width;
@@ -33,6 +34,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.checked,
     this.onPressed,
     this.icon,
+    this.image,
     this.height = 32,
     this.width = 111,
     this.fontSize = 20,
@@ -46,7 +48,10 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.iconPosition,
     this.textBottomPadding = 0,
   })  : assert(
-          (text != null || icon != null) ||
+          (icon == null && image == null) ||
+              (icon != null && image != null ||
+                  icon == null && image != null) ||
+              (text != null || icon != null) ||
               (icon != null && iconPosition != null) ||
               (text != null && fontColor == null) ||
               (backgroundColor != null && checkedColor != null) ||
@@ -130,7 +135,11 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
-    if (icon != null && text != null) {
+    if (image != null) {
+      _rowOrColumnContainer.children.add(Expanded(child: image ?? Container()));
+    }
+
+    if (icon != null && text != null && image != null) {
       _rowOrColumnContainer.children.add(_sizedBox);
     }
 
