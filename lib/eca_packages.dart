@@ -46,3 +46,4 @@ export 'src/input_validators/input_validators.dart';
 export 'src/date_and_time/formated_datetime.dart';
 export 'src/rounded_container/rounded_container.dart';
 export 'src/device/platform_version.dart';
+export 'src/device/android_navigation_bar.dart';

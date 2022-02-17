@@ -16,6 +16,7 @@ void showBottomSnackBar({
   Widget? primaryAction,
   Function? onYesPressed,
   Function? onNoPressed,
+  Function? onHide,
   Color? progressIndicatorBackgroundColor,
   Color? progressIndicatorValueColor,
 }) {
@@ -132,6 +133,10 @@ void showBottomSnackBar({
       );
     },
   ).then((_) {
+    if (onHide != null) {
+      onHide();
+    }
+
     // _animationController.dispose();
     if (_ != null) {
       _showMessage(message: _.toString(), context: context);
