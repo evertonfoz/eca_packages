@@ -57,6 +57,7 @@ class CircleAvatarECA extends StatelessWidget {
     }
 
     return FadeInImage.memoryNetwork(
+      key: UniqueKey(),
       fit: boxFit ?? BoxFit.fill,
       width: width ?? 210,
       placeholder: kTransparentImage,
