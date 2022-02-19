@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   animated_text_kit: ^4.2.1
+  back_button_interceptor: ^5.0.2
   badges: ^2.0.2
   blur: ^3.0.0
   dropdown_search: ^2.0.1
