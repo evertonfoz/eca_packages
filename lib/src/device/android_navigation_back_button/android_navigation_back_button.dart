@@ -11,6 +11,7 @@ class AndroidNavigationBackButtonECA extends StatelessWidget {
   final VoidCallback? executeOnTapped;
   final Widget child;
   late BuildContext _context;
+  static String? actualRouteName;
 
   AndroidNavigationBackButtonECA({
     Key? key,
@@ -54,10 +55,18 @@ class AndroidNavigationBackButtonECA extends StatelessWidget {
     return true;
   }
 
+  static void removeInterceptorOfActualRouteName() {
+    if (actualRouteName != null) {
+      BackButtonInterceptor.removeByName(actualRouteName!);
+      actualRouteName = null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _context = context;
-    debugPrint(BackButtonInterceptor.getCurrentNavigatorRouteName(_context));
+    actualRouteName = routeNameToInterceptor;
+    // debugPrint(BackButtonInterceptor.getCurrentNavigatorRouteName(_context));
 
     if (_androidNavigationBackButtonStore.actualRouteName !=
         routeNameToInterceptor) {

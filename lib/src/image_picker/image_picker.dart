@@ -26,6 +26,8 @@ class ImagePickerECA extends StatefulWidget {
   final double heightImageContainer;
   final int imageQuality;
   final bool showImageAfterPick;
+  final Widget? galleryPicker;
+  final Widget? cameraPicker;
 
   const ImagePickerECA({
     Key? key,
@@ -44,6 +46,8 @@ class ImagePickerECA extends StatefulWidget {
     this.imageQuality = kImageQuality,
     this.heightImageContainer = 200,
     this.showImageAfterPick = true,
+    this.galleryPicker,
+    this.cameraPicker,
   }) : super(key: key);
 
   @override
@@ -68,35 +72,48 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
     super.dispose();
   }
 
-  _fabButtons() {
+  List<Widget> _fabButtons() {
     return [
-      FloatingActionButton(
-          heroTag: 'Galeria',
-          backgroundColor: widget.galleryFloatActionButtonColor ??
-              Theme.of(context).floatingActionButtonTheme.backgroundColor,
-          child: Icon(
-            Icons.collections_outlined,
-            color: widget.galleryIconColor ??
-                Theme.of(context).floatingActionButtonTheme.foregroundColor,
-            size: 30,
-          ),
-          onPressed: () {
-            _onImageButtonPressed(ImageSource.gallery);
-          }),
+      widget.galleryPicker != null
+          ? InkWell(
+              child: widget.galleryPicker!,
+              onTap: () => _onImageButtonPressed(ImageSource.gallery),
+            )
+          : FloatingActionButton(
+              heroTag: 'Galeria',
+              backgroundColor: widget.galleryFloatActionButtonColor ??
+                  Theme.of(context).floatingActionButtonTheme.backgroundColor,
+              child: Icon(
+                Icons.collections_outlined,
+                color: widget.galleryIconColor ??
+                    Theme.of(context).floatingActionButtonTheme.foregroundColor,
+                size: 30,
+              ),
+              onPressed: () {
+                _onImageButtonPressed(ImageSource.gallery);
+              }),
+      widget.showFabButtonsInColumn
+          ? const SizedBox(height: 10)
+          : const SizedBox(width: 10),
       const SizedBox(width: 10),
-      FloatingActionButton(
-          heroTag: 'Camera',
-          backgroundColor: widget.cameraFloatActionButtonColor ??
-              Theme.of(context).floatingActionButtonTheme.backgroundColor,
-          child: Icon(
-            Icons.add_a_photo_outlined,
-            color: widget.galleryIconColor ??
-                Theme.of(context).floatingActionButtonTheme.foregroundColor,
-            size: 30,
-          ),
-          onPressed: () {
-            _onImageButtonPressed(ImageSource.camera);
-          }),
+      widget.cameraPicker != null
+          ? InkWell(
+              child: widget.cameraPicker!,
+              onTap: () => _onImageButtonPressed(ImageSource.camera),
+            )
+          : FloatingActionButton(
+              heroTag: 'Camera',
+              backgroundColor: widget.cameraFloatActionButtonColor ??
+                  Theme.of(context).floatingActionButtonTheme.backgroundColor,
+              child: Icon(
+                Icons.add_a_photo_outlined,
+                color: widget.galleryIconColor ??
+                    Theme.of(context).floatingActionButtonTheme.foregroundColor,
+                size: 30,
+              ),
+              onPressed: () {
+                _onImageButtonPressed(ImageSource.camera);
+              }),
     ];
   }
 
@@ -112,7 +129,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 8, top: 10),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: _fabButtons(),
             ),
