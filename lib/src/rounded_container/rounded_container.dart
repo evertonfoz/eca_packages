@@ -6,6 +6,7 @@ class RoundedContainerECA extends StatelessWidget {
   final Widget child;
   final Color? backgroundColor;
   final Color borderColor;
+  final double? height;
 
   const RoundedContainerECA({
     Key? key,
@@ -15,11 +16,13 @@ class RoundedContainerECA extends StatelessWidget {
     required this.child,
     this.backgroundColor,
     this.borderColor = Colors.black,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
       decoration: BoxDecoration(
         color: backgroundColor ?? Colors.white,
         border: Border.all(

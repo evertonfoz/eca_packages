@@ -39,7 +39,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           DefaultRoundedBorderButton(
-            // backgroundColor: topButtonBackgroundColor,
+            backgroundColor: topButtonBackgroundColor,
             // fontColor: topButtonTextColor,
             fontSize: 20,
             text: topButtonCaption,

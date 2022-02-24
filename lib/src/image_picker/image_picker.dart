@@ -10,6 +10,8 @@ const double kMaxWidthOfImage = 600;
 const double kMaxHeightOfImage = 1024;
 const int kImageQuality = 80;
 
+// TODO Refatorar após a inclusão de receber widgets para as capturas
+
 class ImagePickerECA extends StatefulWidget {
   final bool showFabButtonsInColumn;
   final VoidCallback? onCancelPress;
@@ -28,6 +30,7 @@ class ImagePickerECA extends StatefulWidget {
   final bool showImageAfterPick;
   final Widget? galleryPicker;
   final Widget? cameraPicker;
+  final bool doPopAfterPicker;
 
   const ImagePickerECA({
     Key? key,
@@ -48,6 +51,7 @@ class ImagePickerECA extends StatefulWidget {
     this.showImageAfterPick = true,
     this.galleryPicker,
     this.cameraPicker,
+    this.doPopAfterPicker = false,
   }) : super(key: key);
 
   @override
@@ -74,28 +78,6 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
 
   List<Widget> _fabButtons() {
     return [
-      widget.galleryPicker != null
-          ? InkWell(
-              child: widget.galleryPicker!,
-              onTap: () => _onImageButtonPressed(ImageSource.gallery),
-            )
-          : FloatingActionButton(
-              heroTag: 'Galeria',
-              backgroundColor: widget.galleryFloatActionButtonColor ??
-                  Theme.of(context).floatingActionButtonTheme.backgroundColor,
-              child: Icon(
-                Icons.collections_outlined,
-                color: widget.galleryIconColor ??
-                    Theme.of(context).floatingActionButtonTheme.foregroundColor,
-                size: 30,
-              ),
-              onPressed: () {
-                _onImageButtonPressed(ImageSource.gallery);
-              }),
-      widget.showFabButtonsInColumn
-          ? const SizedBox(height: 10)
-          : const SizedBox(width: 10),
-      const SizedBox(width: 10),
       widget.cameraPicker != null
           ? InkWell(
               child: widget.cameraPicker!,
@@ -113,6 +95,28 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
               ),
               onPressed: () {
                 _onImageButtonPressed(ImageSource.camera);
+              }),
+      widget.showFabButtonsInColumn
+          ? const SizedBox(height: 10)
+          : const SizedBox(width: 10),
+      const SizedBox(width: 20),
+      widget.galleryPicker != null
+          ? InkWell(
+              child: widget.galleryPicker!,
+              onTap: () => _onImageButtonPressed(ImageSource.gallery),
+            )
+          : FloatingActionButton(
+              heroTag: 'Galeria',
+              backgroundColor: widget.galleryFloatActionButtonColor ??
+                  Theme.of(context).floatingActionButtonTheme.backgroundColor,
+              child: Icon(
+                Icons.collections_outlined,
+                color: widget.galleryIconColor ??
+                    Theme.of(context).floatingActionButtonTheme.foregroundColor,
+                size: 30,
+              ),
+              onPressed: () {
+                _onImageButtonPressed(ImageSource.gallery);
               }),
     ];
   }
@@ -173,8 +177,9 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
                               );
                             } else {
                               return TextECA(
-                                text:
-                                    'Você ainda não selecionou nenhuma imagem.',
+                                text: widget.cameraPicker == null
+                                    ? 'Você ainda não selecionou nenhuma imagem.'
+                                    : '',
                                 textAlign: TextAlign.center,
                               );
                             }
@@ -211,6 +216,9 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       });
       if (widget.onPickedNewAvatar != null) {
         widget.onPickedNewAvatar!(_imagePathFile);
+        if (widget.doPopAfterPicker) {
+          Navigator.of(context).pop();
+        }
       }
     } catch (e) {
       if (kDebugMode) {
@@ -268,8 +276,10 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
         textAlign: TextAlign.center,
       );
     } else {
-      return const Text(
-        'Você ainda não selecionou uma imagem',
+      return Text(
+        widget.cameraPicker == null
+            ? 'Você ainda não selecionou uma imagem'
+            : '',
         textAlign: TextAlign.center,
       );
     }
