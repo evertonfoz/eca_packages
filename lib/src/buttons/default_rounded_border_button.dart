@@ -17,7 +17,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? fontColor;
   final Color? borderColor;
   final Color? invertedFontColor;
-  final double radius;
+  final double? radius;
   final Color? checkedColor;
   final Color? uncheckedColor;
   final FontWeight fontWeight;
@@ -71,7 +71,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(radius),
+              borderRadius: BorderRadius.circular(radius ?? 0),
             ),
           ),
           side: _definingBorderSide(),
