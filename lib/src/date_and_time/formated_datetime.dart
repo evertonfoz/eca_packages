@@ -17,3 +17,7 @@ dayMonthAndYearFormatted(DateTime dateTime) {
 DateTime convertDDMMYYToDateTime(String dateTime) {
   return DateFormat("dd/MM/yyyy").parse(dateTime);
 }
+
+String convertDateTimeToLongFormat(DateTime dateTime) {
+  return DateFormat.yMMMMEEEEd().format(DateTime.now());
+}
