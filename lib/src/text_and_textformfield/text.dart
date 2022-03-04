@@ -10,6 +10,7 @@ class TextECA extends StatelessWidget {
   final bool requiredOrientation;
   final bool italic;
   late TextOverflow? textOverflow;
+  final int? maxLines;
 
   TextECA({
     Key? key,
@@ -21,6 +22,7 @@ class TextECA extends StatelessWidget {
     this.requiredOrientation = false,
     this.italic = false,
     this.textOverflow,
+    this.maxLines,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -46,6 +48,7 @@ class TextECA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      maxLines: maxLines,
       overflow: textOverflow ?? TextOverflow.fade,
       textAlign: textAlign ?? TextAlign.center,
       text: TextSpan(

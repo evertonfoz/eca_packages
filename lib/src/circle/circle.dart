@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class CircleECA extends StatelessWidget {
   final double raio;
   final Color? color;
-  final Widget child;
+  final Widget? child;
 
   const CircleECA({
     Key? key,
     required this.raio,
     this.color,
-    required this.child,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -22,7 +22,9 @@ class CircleECA extends StatelessWidget {
             Theme.of(context).floatingActionButtonTheme.foregroundColor,
         shape: BoxShape.circle,
       ),
-      child: child,
+      child: Center(
+        child: child ?? Container(),
+      ),
     );
   }
 }
