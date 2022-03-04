@@ -22,6 +22,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Color? uncheckedColor;
   final FontWeight fontWeight;
   final IconPositionOfRoundedBorderButton? iconPosition;
+  final MainAxisAlignment? rowMainAxisAlignment;
+  final MainAxisSize? rowMainAxisSize;
 
   BuildContext? _context;
 
@@ -47,6 +49,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.fontWeight = FontWeight.bold,
     this.iconPosition,
     this.textBottomPadding = 0,
+    this.rowMainAxisAlignment,
+    this.rowMainAxisSize,
   })  : assert(
           (icon == null && image == null) ||
               (icon != null && image != null ||
@@ -124,14 +128,23 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer = Row(
         // ignore: prefer_const_literals_to_create_immutables
         children: [],
+        // crossAxisAlignment: CrossAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
+        // mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
       );
       _sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
 
-    if (icon != null) {
+    if (icon != null && text != null) {
+      _rowOrColumnContainer.children.add(icon ?? Container());
+      // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
+    }
+
+//TODO Avaliar como fica o botão
+    if (icon != null && text == null) {
+      // _rowOrColumnContainer.children.add(icon ?? Container());
       _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
@@ -139,7 +152,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer.children.add(Expanded(child: image ?? Container()));
     }
 
-    if (icon != null && text != null && image != null) {
+    if (text != null && (icon != null || image != null)) {
       _rowOrColumnContainer.children.add(_sizedBox);
     }
 
@@ -149,7 +162,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           padding: EdgeInsets.only(bottom: textBottomPadding),
           child: TextECA(
             text: text!,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
+            // textAlign: TextAlign.center,
             fontSize: fontSize,
             fontWeight: fontWeight,
             color: checked != null && !checked!
