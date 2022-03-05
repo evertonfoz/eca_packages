@@ -117,14 +117,16 @@ class StatusAndNavigationBarVisibilityAndColor {
         overlays: _getStatusAndSystemNavigationVisibleState());
   }
 
+// TODO Avaliar este problema na Home do XBusiness que não exibe a status bar
   _registerStatusBarAndNavigationBarColor() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: _getStatusBarColor(),
+      statusBarIconBrightness: Brightness.light,
       systemNavigationBarDividerColor:
           (Platform.isAndroid) ? _getSystemNavigationBarColor() : null,
       systemNavigationBarColor:
           (Platform.isAndroid) ? _getSystemNavigationBarColor() : null,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      // systemNavigationBarIconBrightness: Brightness.dark,
     ));
   }
 
