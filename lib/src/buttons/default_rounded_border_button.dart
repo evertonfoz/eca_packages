@@ -24,6 +24,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final IconPositionOfRoundedBorderButton? iconPosition;
   final MainAxisAlignment? rowMainAxisAlignment;
   final MainAxisSize? rowMainAxisSize;
+  final TextAlign textAlign;
 
   BuildContext? _context;
 
@@ -51,6 +52,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.textBottomPadding = 0,
     this.rowMainAxisAlignment,
     this.rowMainAxisSize,
+    this.textAlign = TextAlign.start,
   })  : assert(
           (icon == null && image == null) ||
               (icon != null && image != null ||
@@ -162,7 +164,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           padding: EdgeInsets.only(bottom: textBottomPadding),
           child: TextECA(
             text: text!,
-            textAlign: TextAlign.start,
+            textAlign: textAlign, //TextAlign.start,
             // textAlign: TextAlign.center,
             fontSize: fontSize,
             fontWeight: fontWeight,
