@@ -4,6 +4,7 @@ class DefaultTextButton extends StatelessWidget {
   final String text;
   final Color? foregroundColor;
   final VoidCallback onPressed;
+  final VoidCallback? onLongPress;
   final Color? backgroundColor;
   final Color? primaryColor;
   final double? fontSize;
@@ -16,6 +17,7 @@ class DefaultTextButton extends StatelessWidget {
     this.primaryColor,
     required this.onPressed,
     this.fontSize,
+    this.onLongPress,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class DefaultTextButton extends StatelessWidget {
     return TextButton(
       style: _buildTextButtonStyleFrom(),
       onPressed: onPressed,
+      onLongPress: onLongPress,
       child: Text(
         text,
         style: TextStyle(
