@@ -13,7 +13,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Icon? icon;
   final double height;
   final double width;
-  final double fontSize;
+  final double? fontSize;
   final Color? fontColor;
   final Color? borderColor;
   final Color? invertedFontColor;
@@ -40,7 +40,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     this.image,
     this.height = 32,
     this.width = 111,
-    this.fontSize = 20,
+    this.fontSize,
     this.fontColor,
     this.invertedFontColor,
     this.borderColor,
@@ -166,7 +166,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
             text: text!,
             textAlign: textAlign, //TextAlign.start,
             // textAlign: TextAlign.center,
-            fontSize: fontSize,
+            fontSize: fontSize ?? 20,
             fontWeight: fontWeight,
             color: checked != null && !checked!
                 ? invertedFontColor ?? fontColor

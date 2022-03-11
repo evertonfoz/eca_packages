@@ -9,6 +9,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   final Color? foregroundColor;
   final MaterialColor? backgroundColor;
   final bool withNotJumpButton;
+  final double radius;
+  final double? fontSize;
 
   const WelcomePageNavigationButtons({
     Key? key,
@@ -19,6 +21,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.withNotJumpButton = true,
+    this.radius = 15,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -48,6 +52,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     return Expanded(
       flex: 3,
       child: DefaultTextButton(
+        fontSize: fontSize,
         text: "Pular",
         onPressed: onJumpButtonPressed,
       ),
@@ -58,6 +63,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     return Expanded(
       flex: withNotJumpButton ? 1 : 2,
       child: DefaultRoundedBorderButton(
+        fontSize: fontSize,
         backgroundColor: backgroundColor,
         borderColor: backgroundColor,
         fontColor: foregroundColor,
@@ -71,7 +77,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
             : null,
         height: 70,
         onPressed: onNextPagePressed,
-        radius: 15,
+        radius: radius,
         width: 200,
       ),
     );

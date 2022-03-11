@@ -6,7 +6,7 @@ class DefaultTextButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color? backgroundColor;
   final Color? primaryColor;
-  final double fontSize;
+  final double? fontSize;
 
   const DefaultTextButton({
     Key? key,
@@ -15,7 +15,7 @@ class DefaultTextButton extends StatelessWidget {
     this.backgroundColor,
     this.primaryColor,
     required this.onPressed,
-    this.fontSize = 18,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class DefaultTextButton extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: fontSize,
+          fontSize: fontSize ?? 18,
           // color: foregroundColor,
           fontWeight: FontWeight.bold,
         ),
