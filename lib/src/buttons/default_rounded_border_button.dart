@@ -154,11 +154,11 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer.children.add(Expanded(child: image ?? Container()));
     }
 
-    if (text != null && (icon != null || image != null)) {
+    if ((text != null && text != '') && (icon != null || image != null)) {
       _rowOrColumnContainer.children.add(_sizedBox);
     }
 
-    if (text != null) {
+    if (text != null && text != '') {
       _rowOrColumnContainer.children.add(
         Padding(
           padding: EdgeInsets.only(bottom: textBottomPadding),

@@ -72,13 +72,13 @@ class WelcomePageNavigationButtons extends StatelessWidget {
             ? Icon(
                 Icons.arrow_forward,
                 color: foregroundColor,
-                size: 36,
+                size: 32,
               )
             : null,
         height: 70,
         onPressed: onNextPagePressed,
         radius: radius,
-        width: 200,
+        // width: 200,
       ),
     );
   }
