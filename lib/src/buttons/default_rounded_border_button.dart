@@ -101,7 +101,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           ? uncheckedColor ?? Colors.transparent
           : checkedColor ?? borderColor ?? Colors.transparent;
     }
-    return backgroundColor;
+    return backgroundColor ??
+        Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
   }
 
   _buttonBorderColor() {
@@ -179,41 +180,47 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _definingBorderSide() {
-    return MaterialStateProperty.resolveWith<BorderSide?>(
-        (Set<MaterialState> states) {
-      Color? _borderColor = borderColor ?? _buttonBorderColor();
+    if (borderColor != null) {
+      return MaterialStateProperty.resolveWith<BorderSide?>(
+          (Set<MaterialState> states) {
+        Color? _borderColor = borderColor ?? _buttonBorderColor();
 
-      if (states.contains(MaterialState.disabled)) {
-        _borderColor = Colors.grey.shade200;
-      }
+        if (states.contains(MaterialState.disabled)) {
+          _borderColor = Colors.grey.shade200;
+        }
 
-      return BorderSide(
-        width: 1,
-        color: _borderColor ?? Colors.transparent,
-      );
-    });
+        return BorderSide(
+          width: 1,
+          color: _borderColor ?? Colors.transparent,
+        );
+      });
+    }
   }
 
   _definingForegroundColor() {
-    return MaterialStateProperty.resolveWith<Color?>(
-      (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
-          return Colors.grey.shade200;
-        }
-        return _buttonForegroundColor();
-      },
-    );
+    if (fontColor != null) {
+      return MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return Colors.grey.shade200;
+          }
+          return _buttonForegroundColor();
+        },
+      );
+    }
   }
 
   _definingBackgroundColor() {
-    return MaterialStateProperty.resolveWith<Color?>(
-      (Set<MaterialState> states) {
-        if (states.contains(MaterialState.disabled)) {
-          return Colors.grey.shade200;
-        }
-        return _buttonBackgroundColor();
-      },
-    );
+    if (backgroundColor != null) {
+      return MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+          if (states.contains(MaterialState.disabled)) {
+            return Colors.grey.shade200;
+          }
+          return _buttonBackgroundColor();
+        },
+      );
+    }
   }
 
   _definingOverlayColor() {
