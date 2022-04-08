@@ -1,6 +1,5 @@
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WelcomePageNavigationButtons extends StatelessWidget {
   final int currentPageNumber;
@@ -12,6 +11,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   final bool withNotJumpButton;
   final double radius;
   final double? fontSize;
+  final String jumpButtonText;
 
   const WelcomePageNavigationButtons({
     Key? key,
@@ -19,6 +19,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     required this.lastPageNumber,
     required this.onJumpButtonPressed,
     required this.onNextPagePressed,
+    required this.jumpButtonText,
     this.backgroundColor,
     this.foregroundColor,
     this.withNotJumpButton = true,
@@ -54,7 +55,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
       flex: 3,
       child: DefaultTextButton(
         fontSize: fontSize,
-        text: AppLocalizations.of(context)!.botao_pular,
+        text: jumpButtonText,
         onPressed: onJumpButtonPressed,
       ),
     );
