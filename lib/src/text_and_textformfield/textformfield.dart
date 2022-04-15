@@ -30,6 +30,7 @@ class TextFormFieldECA extends StatefulWidget {
   final Color? errorSuffixColor;
   final bool isObservable;
   final TextAlign? textFieldTextAlign;
+  final double? fontSize;
 
   const TextFormFieldECA({
     Key? key,
@@ -60,6 +61,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.errorSuffixColor,
     this.isObservable = false,
     this.textFieldTextAlign,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -98,6 +100,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     }
 
     return TextFormField(
+      style: TextStyle(
+          fontSize: widget.fontSize ??
+              Theme.of(context).textTheme.caption?.fontSize ??
+              12),
       autofocus: widget.autofocus,
       enabled: widget.enabled,
       minLines: 1,

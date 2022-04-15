@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class TextECA extends StatelessWidget {
   late String text;
   final TextAlign? textAlign;
-  final double fontSize;
+  final double? fontSize;
   final FontWeight fontWeight;
   final Color? color;
   final bool requiredOrientation;
@@ -16,7 +16,7 @@ class TextECA extends StatelessWidget {
     Key? key,
     required this.text,
     this.textAlign,
-    this.fontSize = 14,
+    this.fontSize,
     this.fontWeight = FontWeight.normal,
     this.color,
     this.requiredOrientation = false,
@@ -53,7 +53,8 @@ class TextECA extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       text: TextSpan(
         style: TextStyle(
-          fontSize: fontSize,
+          fontSize:
+              fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 14,
           color: color ?? Theme.of(context).textTheme.caption?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
