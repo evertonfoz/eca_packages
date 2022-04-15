@@ -122,7 +122,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer = Column(
         // ignore: prefer_const_literals_to_create_immutables
         children: [],
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
       );
@@ -152,7 +152,12 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     }
 
     if (image != null) {
-      _rowOrColumnContainer.children.add(Expanded(child: image ?? Container()));
+      if (iconPosition == IconPositionOfRoundedBorderButton.top) {
+        _rowOrColumnContainer.children.add(Center(child: image ?? Container()));
+      } else {
+        _rowOrColumnContainer.children
+            .add(Expanded(child: image ?? Container()));
+      }
     }
 
     if ((text != null && text != '') && (icon != null || image != null)) {
@@ -165,8 +170,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           padding: EdgeInsets.only(bottom: textBottomPadding),
           child: TextECA(
             text: text!,
-            textAlign: textAlign, //TextAlign.start,
-            // textAlign: TextAlign.center,
+            textAlign: textAlign,
             fontSize: fontSize ?? 20,
             fontWeight: fontWeight,
             color: checked != null && !checked!
