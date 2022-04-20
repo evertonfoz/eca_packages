@@ -13,6 +13,7 @@ class DropDown<T> extends StatelessWidget {
   String Function(T?)? itemAsString;
   final Color? fillColor;
   final Color? selectedColorItem;
+  final bool enabled;
 
   DropDown({
     Key? key,
@@ -25,11 +26,13 @@ class DropDown<T> extends StatelessWidget {
     required this.itemAsString,
     this.fillColor,
     this.selectedColorItem,
+    this.enabled = true,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<T>(
+      enabled: enabled,
       dropdownSearchDecoration: InputDecoration(
         fillColor: fillColor,
         filled: true,

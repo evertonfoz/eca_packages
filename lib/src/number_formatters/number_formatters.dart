@@ -5,7 +5,9 @@ numberFormated(double valor) {
     '###,###,##0.00',
     Intl.defaultLocale,
   );
-  return formatadorValor.format(
-    valor,
-  );
+  return formatadorValor
+      .format(
+        valor,
+      )
+      .trim();
 }
