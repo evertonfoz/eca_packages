@@ -22,6 +22,7 @@ class TextFormFieldECA extends StatefulWidget {
   final String? valueToTextController;
   final int maxLines;
   final String? hintText;
+  final Color? hintTextColor;
   final bool showSuffixIcon;
   final bool? enabled;
   final bool autofocus;
@@ -31,6 +32,7 @@ class TextFormFieldECA extends StatefulWidget {
   final bool isObservable;
   final TextAlign? textFieldTextAlign;
   final double? fontSize;
+  final Color? fontColor;
 
   const TextFormFieldECA({
     Key? key,
@@ -62,6 +64,8 @@ class TextFormFieldECA extends StatefulWidget {
     this.isObservable = false,
     this.textFieldTextAlign,
     this.fontSize,
+    this.hintTextColor,
+    this.fontColor,
   }) : super(key: key);
 
   @override
@@ -101,9 +105,11 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
 
     return TextFormField(
       style: TextStyle(
-          fontSize: widget.fontSize ??
-              Theme.of(context).textTheme.caption?.fontSize ??
-              12),
+        fontSize: widget.fontSize ??
+            Theme.of(context).textTheme.caption?.fontSize ??
+            12,
+        color: widget.fontColor ?? Theme.of(context).textTheme.caption?.color,
+      ),
       autofocus: widget.autofocus,
       enabled: widget.enabled,
       minLines: 1,
@@ -156,7 +162,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         ),
         // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
         hintText: widget.hintText ?? '',
-        hintStyle: const TextStyle(fontSize: 14),
+        hintStyle: TextStyle(fontSize: 14, color: widget.hintTextColor),
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
