@@ -14,7 +14,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
   final VoidCallback onBottomButtonPressed;
   final double? radius;
   final double percentToWidth;
-
+  /// Um unico botão criado para o retorno de dois botoes
   const WelcomePageAccessButtons({
     Key? key,
     this.topButtonTextColor,
@@ -50,6 +50,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
             onPressed: onTopButtonPressed,
             radius: radius ?? 5,
             fontColor: topButtonTextColor,
+            
           ),
           const SizedBox(height: 20),
           DefaultRoundedBorderButton(
