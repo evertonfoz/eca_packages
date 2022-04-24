@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:status_bar_control/status_bar_control.dart';
 
+//TODO Retirar esta classe do pacote e substituir pela função implementada
+//TODO ao final
 class StatusAndNavigationBarVisibilityAndColor {
   late bool _isStatusBarVisible;
   late bool _lastStatusBarVisible;
@@ -154,4 +157,14 @@ class StatusAndNavigationBarVisibilityAndColor {
     return _overlays;
   }
 // #endregion
+}
+
+//TODO Criado essa função para nas aplicações apenas reutilizarmos
+/// Função que faz uso do pacote [status_bar_control] para alterar a visibilidade
+/// da StatusBar e a cor do NavigationBar
+hideStatusBarAndSetColorToNavigationBar(
+    {required Color navigationBarColor}) async {
+  await StatusBarControl.setHidden(true, animation: StatusBarAnimation.SLIDE);
+  await StatusBarControl.setNavigationBarColor(navigationBarColor,
+      animated: true);
 }
