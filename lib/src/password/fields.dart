@@ -16,10 +16,6 @@ const String kPasswordMatchError = 'Confirmação deve ser igual a nova senha';
 // #endregion
 
 // #region Validation functions
-bool isNotEmptyValidator(String value) {
-  return value.isNotEmpty;
-}
-
 bool isAValidPasswordValidatorWithSymbols(String password) {
   if (password.length < 8) return false;
   if (!password.contains(RegExp(r"[a-z]"))) return false;
@@ -35,11 +31,6 @@ bool isAValidPasswordValidatorOnlyLettersAndNumbers(String password) {
   if (!password.contains(RegExp(r"[0-9]"))) return false;
   return true;
 }
-
-bool isMatchValidator({required String value, required String otherValue}) {
-  if (value != otherValue) return false;
-  return true;
-}
 // #endregion
 
 // ignore: must_be_immutable
@@ -48,6 +39,7 @@ class NewPasswordFieldsECA extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final String passwordInvalidError;
   final Function(String) invalidPasswordFunction;
+  final Function(bool)? registerPasswordCallback;
 
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _confirmedFocusNode = FocusNode();
@@ -58,6 +50,7 @@ class NewPasswordFieldsECA extends StatelessWidget {
     required this.formKey,
     this.passwordInvalidError = kPasswordInvalidError,
     this.invalidPasswordFunction = isAValidPasswordValidatorWithSymbols,
+    this.registerPasswordCallback,
   }) : super(key: key);
 
   @override
@@ -94,8 +87,12 @@ class NewPasswordFieldsECA extends StatelessWidget {
           (_password) => isNotEmptyValidator(_password ?? ''),
           (_password) => invalidPasswordFunction(_password ?? ''),
         ],
-        registerValueInStoreForm: (value) => newPasswordStore
-            .registerNewPassword(value, invalidPasswordFunction),
+        registerValueInStoreForm: (value) {
+          newPasswordStore.registerNewPassword(value, invalidPasswordFunction);
+          if (registerPasswordCallback != null) {
+            registerPasswordCallback!(newPasswordStore.formIsValid);
+          }
+        },
         aditionalSufixIcons: const [
           FontAwesomeIcons.eye,
           FontAwesomeIcons.eyeSlash,
@@ -128,7 +125,12 @@ class NewPasswordFieldsECA extends StatelessWidget {
               value: _confirmedPassword ?? '',
               otherValue: newPasswordStore.newPassword),
         ],
-        registerValueInStoreForm: newPasswordStore.registerConfirmedPassword,
+        registerValueInStoreForm: (value) {
+          newPasswordStore.registerConfirmedPassword(value);
+          if (registerPasswordCallback != null) {
+            registerPasswordCallback!(newPasswordStore.formIsValid);
+          }
+        },
         aditionalSufixIcons: const [
           FontAwesomeIcons.eye,
           FontAwesomeIcons.eyeSlash,

@@ -1,3 +1,15 @@
+bool isNotEmptyValidator(String value) {
+  return value.isNotEmpty;
+}
+
+bool isAValidEmailValidator(String value) {
+  if (!isNotEmptyValidator(value)) return false;
+
+  String pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_-]+\.[a-zA-Z-]+";
+  RegExp regex = RegExp(pattern);
+  return (regex.hasMatch(value));
+}
+
 bool isGreaterThenValue({
   required String value,
   required dynamic min,
@@ -7,6 +19,11 @@ bool isGreaterThenValue({
     return (convertCommaToPointValue(value: value) > min);
   }
   return false;
+}
+
+bool isMatchValidator({required String value, required String otherValue}) {
+  if (value != otherValue) return false;
+  return true;
 }
 
 convertCommaToPointValue({required String value}) {
