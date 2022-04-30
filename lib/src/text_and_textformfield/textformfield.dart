@@ -172,7 +172,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
   }
 
   Widget? _buildSufixIcon(BuildContext context) {
-    if ((!widget.showSuffixIcon)) {
+    if (!widget.showSuffixIcon) {
       return null;
     } else if (widget.suffixIcon == null && hasError == null) {
       return null;
