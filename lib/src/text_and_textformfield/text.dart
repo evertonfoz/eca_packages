@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 /// **Está pegando uma fonte diferente da utilizada no Theme**
-/// 
+///
 // ignore: must_be_immutable
 class TextECA extends StatelessWidget {
   late String text;
@@ -10,6 +11,7 @@ class TextECA extends StatelessWidget {
   final Color? color;
   final bool requiredOrientation;
   final bool italic;
+  final bool underline;
   late TextOverflow? textOverflow;
   final int? maxLines;
 
@@ -22,6 +24,7 @@ class TextECA extends StatelessWidget {
     this.color,
     this.requiredOrientation = false,
     this.italic = false,
+    this.underline = false,
     this.textOverflow,
     this.maxLines,
   }) : super(key: key);
@@ -59,6 +62,8 @@ class TextECA extends StatelessWidget {
           color: color ?? Theme.of(context).textTheme.caption?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
+          decoration:
+              underline ? TextDecoration.underline : TextDecoration.none,
         ),
         children: _generateTextSpanChildren(),
       ),
