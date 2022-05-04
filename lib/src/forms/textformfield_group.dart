@@ -28,11 +28,11 @@ class FormFieldGroup extends StatelessWidget {
   final TextAlign? textFieldTextAlign;
   final bool enabled;
 
-    /// [FormFieldGroup] tem como objetivo a criação do campo para inserção de dados
-    /// nome de titulo que aparecerá, 
-    /// validação do que ocorre dentro do textfild,
-    /// e mensagens de erro.
-    /// Cores e outros tipos de formatação vem por padrão
+  /// [FormFieldGroup] tem como objetivo a criação do campo para inserção de dados
+  /// nome de titulo que aparecerá,
+  /// validação do que ocorre dentro do textfild,
+  /// e mensagens de erro.
+  /// Cores e outros tipos de formatação vem por padrão
 
   const FormFieldGroup({
     Key? key,

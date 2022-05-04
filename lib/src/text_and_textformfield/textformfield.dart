@@ -97,6 +97,9 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize =
+        widget.fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 12;
+
     if (widget.isObservable &&
         widget.valueToTextController != null &&
         widget.valueToTextController != _controller.text) {
@@ -104,10 +107,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     }
 
     return TextFormField(
+      scrollPadding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
-        fontSize: widget.fontSize ??
-            Theme.of(context).textTheme.caption?.fontSize ??
-            12,
+        fontSize: fontSize,
         color: widget.fontColor ?? Theme.of(context).textTheme.caption?.color,
       ),
       autofocus: widget.autofocus,
