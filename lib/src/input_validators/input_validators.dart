@@ -48,3 +48,14 @@ convertCommaToPointValue({required String value}) {
   }
   return value;
 }
+
+bool isAValidCellPhoneValidator(String cellPhone) {
+  return removeSpecialCaracteres(value: cellPhone, regExp: r'[\+\- ()]')
+          .length ==
+      11;
+}
+
+String removeSpecialCaracteres(
+    {required String value, required String regExp}) {
+  return value.replaceAll(RegExp(regExp), '');
+}
