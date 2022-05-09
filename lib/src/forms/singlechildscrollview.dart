@@ -6,6 +6,9 @@ class FormPagesSingleChildScrollView extends StatelessWidget {
   final Widget child;
   final double horizontalPadding;
 
+  ///[FormPagesSingleChildScrollView] usado para dar espaçamento horizontal e
+  /// vertical, e também atribuir um [SingleChildScrollView] ao form de forma 
+  /// padronizada.
   const FormPagesSingleChildScrollView({
     Key? key,
     required this.child,

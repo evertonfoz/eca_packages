@@ -17,6 +17,8 @@ class FormPageHeader extends StatelessWidget {
   final FontWeight fontWeight;
   final TextAlign textAlign;
 
+
+  ///[FormPageHeader] utilizado para a criar um título para uma página.
   const FormPageHeader(
       {Key? key,
       required this.text,

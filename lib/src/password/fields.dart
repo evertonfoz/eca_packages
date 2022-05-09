@@ -44,6 +44,9 @@ class NewPasswordFieldsECA extends StatelessWidget {
   final FocusNode _passwordFocusNode = FocusNode();
   final FocusNode _confirmedFocusNode = FocusNode();
 
+  ///[NewPasswordFieldsECA] widget usado para a criação de dois textFields com
+  /// o adicional de títulos para cada um para sua indentificação. Também possuí
+  /// validação dos campos.
   NewPasswordFieldsECA({
     Key? key,
     required this.newPasswordStore,
@@ -71,6 +74,8 @@ class NewPasswordFieldsECA extends StatelessWidget {
     );
   }
 
+  ///[_newPassoword()] método para a criação do textfild juntamente com um 
+  ///título para a inserção de uma nova senha. 
   _newPassword() {
     return Observer(builder: (_) {
       return FormFieldGroup(
@@ -106,6 +111,8 @@ class NewPasswordFieldsECA extends StatelessWidget {
     });
   }
 
+  ///[_confirmedPassoword()] método para a criação do textfild juntamente com um 
+  ///título para a confirmação da senha inserida anteriormente. 
   _confirmedPassword() {
     return Observer(builder: (_) {
       return FormFieldGroup(

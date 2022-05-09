@@ -6,6 +6,7 @@ class FormPagesBodyPadding extends StatelessWidget {
   final double? vertical;
   final double? horizontal;
 
+  ///[FormPagesBodyPadding] usado para padronizar o espaçamento do body.
   const FormPagesBodyPadding({
     Key? key,
     required this.child,

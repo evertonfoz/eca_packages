@@ -11,6 +11,8 @@ class CheckBoxECA extends StatefulWidget {
   final bool? checked;
   final double textFontSize;
 
+  ///[CheckBoxECA] widget para adicionar um checkbox personalizado permitindo
+  ///adicionar um widget ao lado dele, como por exemplo, um texto.
   const CheckBoxECA({
     Key? key,
     required this.onChanged,
