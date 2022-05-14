@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 
 showModalBottomSheetToPickAPhoto({
   required BuildContext context,
-  required String title,
-  required Color titleColor,
-  required Color cameraIconColor,
-  required Color galleryIconColor,
-  required String cameraButtonText,
-  required String galleryButtonText,
-  required Color? backgroundButtonColor,
-  required Color textButtonColor,
-  required String backButtonText,
+  String title = 'Selecione uma opção',
+  Color? titleColor,
+  Color? cameraIconColor,
+  Color? galleryIconColor,
+  String cameraButtonText = 'Tirar uma foto',
+  String galleryButtonText = 'Escolher da galeira',
+  Color? backgroundButtonColor,
+  Color? textButtonColor,
+  String backButtonText = 'Voltar',
+  Color? primaryColor,
 }) async {
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -20,8 +21,8 @@ showModalBottomSheetToPickAPhoto({
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.only(
+              color: primaryColor ?? Theme.of(context).primaryColor,
+              borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(25.0),
                   topRight: Radius.circular(25.0))),
           child: Column(
@@ -31,7 +32,8 @@ showModalBottomSheetToPickAPhoto({
               TextECA(
                 text: title,
                 fontSize: 30,
-                color: titleColor,
+                color:
+                    titleColor ?? Theme.of(context).textTheme.headline1?.color,
                 fontWeight: FontWeight.bold,
               ),
               ImagePickerECA(
