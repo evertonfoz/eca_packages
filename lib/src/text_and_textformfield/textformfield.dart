@@ -33,6 +33,7 @@ class TextFormFieldECA extends StatefulWidget {
   final TextAlign? textFieldTextAlign;
   final double? fontSize;
   final Color? fontColor;
+  final double? bottomContentPadding;
 
   const TextFormFieldECA({
     Key? key,
@@ -66,6 +67,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.fontSize,
     this.hintTextColor,
     this.fontColor,
+    this.bottomContentPadding,
   }) : super(key: key);
 
   @override
@@ -159,7 +161,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorMaxLines: widget.errorMaxLines,
         contentPadding: EdgeInsets.only(
           top: 10.0,
-          bottom: 10.0,
+          bottom: widget.bottomContentPadding ?? 10.0,
           left: 10.0,
           right: !hasSufixIcons ? 10.0 : 0,
         ),
