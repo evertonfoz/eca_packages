@@ -2,7 +2,7 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 
 showModalBottomSheetToPickAPhoto({
-  required BuildContext context,
+  required final BuildContext context,
   String title = 'Selecione uma opção',
   Color? titleColor,
   Color? cameraIconColor,
@@ -13,6 +13,7 @@ showModalBottomSheetToPickAPhoto({
   Color? textButtonColor,
   String backButtonText = 'Voltar',
   Color? primaryColor,
+  required final Function(String?) onPickedNewAvatar,
 }) async {
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -44,8 +45,7 @@ showModalBottomSheetToPickAPhoto({
                 cameraFloatActionButtonColor: cameraIconColor,
                 heightImageContainer: MediaQuery.of(context).size.height * 0.35,
                 onPickedNewAvatar: (value) {
-                  // registerStore
-                  //     .registerAvatar(value);
+                  onPickedNewAvatar(value);
                 },
                 cameraPicker: RoundedContainerECA(
                   height: 50,
