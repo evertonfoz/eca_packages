@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+
 /// Criação de uma classe que recebe uma imagem **obrigatoriamente**,
 /// com o seu padrão de tamanho definido, para que todas as imagens deste mesmo programa
-/// possueam o mesmo tamanho 
+/// possueam o mesmo tamanho
 class WelcomePageBackgroundImage extends StatelessWidget {
   final String imageURL;
 

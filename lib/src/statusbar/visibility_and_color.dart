@@ -164,7 +164,23 @@ class StatusAndNavigationBarVisibilityAndColor {
 /// da StatusBar e a cor do NavigationBar
 hideStatusBarAndSetColorToNavigationBar(
     {required Color navigationBarColor}) async {
+  await StatusBarControl.setFullscreen(true);
   await StatusBarControl.setHidden(true, animation: StatusBarAnimation.SLIDE);
+  await StatusBarControl.setNavigationBarColor(navigationBarColor,
+      animated: true);
+}
+
+showStatusBarAndSetColorToNavigationBar(
+    {required Color navigationBarColor}) async {
+  await StatusBarControl.setHidden(
+    false,
+    animation: StatusBarAnimation.SLIDE,
+  );
+  await StatusBarControl.setFullscreen(false);
+  await StatusBarControl.setColor(
+    navigationBarColor,
+  );
+  await StatusBarControl.setStyle(StatusBarStyle.DARK_CONTENT);
   await StatusBarControl.setNavigationBarColor(navigationBarColor,
       animated: true);
 }
