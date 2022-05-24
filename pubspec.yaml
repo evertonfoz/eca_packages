@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   animated_text_kit: ^4.2.1
-  back_button_interceptor: ^5.0.2
+  back_button_interceptor: ^6.0.0
   badges: ^2.0.2
   blur: ^3.0.0
   dropdown_search: ^4.0.1
@@ -19,7 +19,7 @@ dependencies:
   flutter_markdown: ^0.6.6
   flutter_mobx: ^2.0.3+2
   font_awesome_flutter: ^9.2.0
-  getwidget: ^2.0.4
+  getwidget: ^2.0.5
   image_picker: ^0.8.4+4
   intl: ^0.17.0
   mobx: ^2.0.6+1
