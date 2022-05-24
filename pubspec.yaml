@@ -1,7 +1,6 @@
 name: eca_packages
 description: A new Flutter package project.
 version: 0.0.1+2
-homepage:
 publish_to: none
 
 environment:
@@ -13,7 +12,7 @@ dependencies:
   back_button_interceptor: ^5.0.2
   badges: ^2.0.2
   blur: ^3.0.0
-  dropdown_search: ^2.0.1
+  dropdown_search: ^4.0.1
   flash: ^2.0.3+1
   flutter:
     sdk: flutter

@@ -1,3 +1,5 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 import 'package:string_to_hex/string_to_hex.dart';
