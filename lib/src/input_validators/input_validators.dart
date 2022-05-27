@@ -12,7 +12,7 @@ bool isAValidEmailValidator(String value) {
   RegExp regex = RegExp(pattern);
   return (regex.hasMatch(value));
 }
-
+//String pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_-]+\.[c][o][m]$";
 bool isGreaterThenValue({
   required String value,
   required dynamic min,
