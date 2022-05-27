@@ -92,3 +92,72 @@ showModalBottomSheetToPickAPhoto({
         );
       });
 }
+
+showModalBottomSheetToSimpleInformation({
+  required final BuildContext context,
+  String title = 'Informação',
+  required String information,
+  Color? titleColor,
+  Color? backgroundButtonColor,
+  Color? textButtonColor,
+  String backButtonText = 'OK',
+  Color? primaryColor,
+}) async {
+  await showModalBottomSheet(
+      // backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Container(
+          decoration: BoxDecoration(
+            color: primaryColor ?? Theme.of(context).primaryColor,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(25.0),
+              topRight: Radius.circular(25.0),
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 30),
+              TextECA(
+                text: title,
+                fontSize: 30,
+                color:
+                    titleColor ?? Theme.of(context).textTheme.headline1?.color,
+                fontWeight: FontWeight.bold,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: TextECA(
+                  text: information,
+                  fontSize: 20,
+                  color: titleColor ??
+                      Theme.of(context).textTheme.headline1?.color,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 30, bottom: 28.0),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                        width: MediaQuery.of(context).size.width * 0.75,
+                        height: 56),
+                    child: DefaultRoundedBorderButton(
+                      radius: 10,
+                      backgroundColor: backgroundButtonColor,
+                      fontColor: textButtonColor ??
+                          Theme.of(context).textTheme.headline2?.color,
+                      text: backButtonText,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      });
+}
