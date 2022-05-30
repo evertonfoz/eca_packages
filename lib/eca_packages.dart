@@ -50,3 +50,4 @@ export 'src/device/android_navigation_back_button/android_navigation_back_button
 export 'src/initial_name_avatar/initial_name_avatar.dart';
 export 'src/dialogs/show_modal_bottom_sheet.dart';
 export 'src/radio/radio.dart';
+export 'src/shimmer/shimmer.dart';

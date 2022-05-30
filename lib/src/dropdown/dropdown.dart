@@ -43,9 +43,9 @@ class DropDown<T> extends StatelessWidget {
         contentPadding: const EdgeInsets.only(left: 10, top: 4),
       ),
       popupProps: PopupProps.menu(
-        showSelectedItems: true,
-        itemBuilder: _customPopupItemBuilder,
-      ),
+          showSelectedItems: true,
+          itemBuilder: _customPopupItemBuilder,
+          fit: FlexFit.loose),
       onChanged: onChanged,
       selectedItem: selectedItem,
       items: items,

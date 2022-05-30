@@ -1,4 +1,5 @@
 import 'package:blur/blur.dart';
+import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 
 class AbsorbPointerPageWidget extends StatelessWidget {
@@ -6,6 +7,7 @@ class AbsorbPointerPageWidget extends StatelessWidget {
   final Widget child;
   final double? opacity;
   final bool blur;
+  final bool useSchimmer;
 
   const AbsorbPointerPageWidget({
     Key? key,
@@ -13,23 +15,34 @@ class AbsorbPointerPageWidget extends StatelessWidget {
     required this.child,
     this.opacity,
     this.blur = true,
+    this.useSchimmer = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (isInProcessing) {
-      var absorbPointer = AbsorbPointer(
-        child: Opacity(
-          opacity: opacity ?? 0.9,
-          child: child,
-        ),
-      );
+    return _buildAbsorbPointerChild();
+  }
 
-      if (blur) {
-        return Blur(blur: 1, child: absorbPointer);
-      }
-      return absorbPointer;
+  _buildAbsorbPointerChild() {
+    if (useSchimmer && isInProcessing) {
+      return ShimmerECA(
+        child: child,
+        isInProcessing: isInProcessing,
+      );
+    } else if (!isInProcessing) {
+      return child;
     }
-    return child;
+
+    var absorbPointer = AbsorbPointer(
+      child: Opacity(
+        opacity: opacity ?? 0.9,
+        child: child,
+      ),
+    );
+
+    if (blur) {
+      return Blur(blur: 1, child: absorbPointer);
+    }
+    return absorbPointer;
   }
 }
