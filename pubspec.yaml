@@ -19,7 +19,7 @@ dependencies:
   flutter_markdown: ^0.6.6
   flutter_mobx: ^2.0.3+2
   font_awesome_flutter: ^10.1.0
-  getwidget: ^2.0.5
+  getwidget: ^2.1.0
   image_picker: ^0.8.4+4
   intl: ^0.17.0
   mobx: ^2.0.6+1
