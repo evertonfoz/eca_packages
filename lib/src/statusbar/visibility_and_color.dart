@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:status_bar_control/status_bar_control.dart';
 
-//TODO Retirar esta classe do pacote e substituir pela função implementada
-//TODO ao final
+//TODO Retirar esta classe do pacote e substituir pela função implementada ao final - Prof. Everton
 class StatusAndNavigationBarVisibilityAndColor {
   late bool _isStatusBarVisible;
   late bool _lastStatusBarVisible;
@@ -120,7 +119,7 @@ class StatusAndNavigationBarVisibilityAndColor {
         overlays: _getStatusAndSystemNavigationVisibleState());
   }
 
-// TODO Avaliar este problema na Home do XBusiness que não exibe a status bar
+// TODO Avaliar este problema na Home do XBusiness que não exibe a status bar - Prof. Everton
   _registerStatusBarAndNavigationBarColor() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: _getStatusBarColor(),
@@ -158,8 +157,6 @@ class StatusAndNavigationBarVisibilityAndColor {
   }
 // #endregion
 }
-
-//TODO Criado essa função para nas aplicações apenas reutilizarmos
 /// Função que faz uso do pacote [status_bar_control] para alterar a visibilidade
 /// da StatusBar e a cor do NavigationBar
 hideStatusBarAndSetColorToNavigationBar(

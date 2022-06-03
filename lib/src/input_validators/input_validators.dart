@@ -8,7 +8,7 @@ bool isNotEmptyValidator(String value) {
 bool isAValidEmailValidator(String value) {
   if (!isNotEmptyValidator(value)) return false;
 
-  String pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_-]+\.[c][o][m]$";
+  String pattern = r"^[a-zA-Z0-9_.-]+@gmail\.com|[a-zA-Z0-9_.-]+@alunos\.utfpr\.edu\.br|[a-zA-Z0-9_.-]+@hotmail\.com|[a-zA-Z0-9_.-]+@outlook\.com|[a-zA-Z0-9_.-]+@com\.br";
   RegExp regex = RegExp(pattern);
   return (regex.hasMatch(value));
 }

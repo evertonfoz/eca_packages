@@ -191,7 +191,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       if (!hasError!) {
         sufixIcons.add(
           FaIcon(
-            FontAwesomeIcons.solidCheckCircle,
+            FontAwesomeIcons.check,
             color: Theme.of(context).iconTheme.color,
           ),
         );

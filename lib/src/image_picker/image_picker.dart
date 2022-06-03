@@ -10,7 +10,7 @@ const double kMaxWidthOfImage = 600;
 const double kMaxHeightOfImage = 1024;
 const int kImageQuality = 80;
 
-// TODO Refatorar após a inclusão de receber widgets para as capturas
+// TODO Refatorar após a inclusão de receber widgets para as capturas - Prof. Everton
 
 class ImagePickerECA extends StatefulWidget {
   final bool showFabButtonsInColumn;
