@@ -104,7 +104,7 @@ showModalBottomSheetToSimpleInformation({
   Color? primaryColor,
 }) async {
   await showModalBottomSheet(
-      // backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
       context: context,
       builder: (context) {
         return Container(
