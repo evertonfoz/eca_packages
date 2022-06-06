@@ -19,6 +19,7 @@ void showBottomSnackBar({
   Function? onHide,
   Color? progressIndicatorBackgroundColor,
   Color? progressIndicatorValueColor,
+  String? yesButtonText,
 }) {
   assert(
       (title != null || content != null) &&
@@ -28,13 +29,12 @@ void showBottomSnackBar({
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
-  // final AnimationController _animationController = AnimationController(
-  //     duration: Duration(milliseconds: 100), vsync: Scaffold.of(context));
   showFlash(
     persistent: durationSeconds == null,
     context: context,
-    duration:
-        durationSeconds == null ? null : Duration(seconds: durationSeconds),
+    duration: durationSeconds == null || onYesPressed != null
+        ? null
+        : Duration(seconds: durationSeconds),
     builder: (_, controller) {
       return Flash(
         barrierDismissible: false,
@@ -94,39 +94,39 @@ void showBottomSnackBar({
               size: 40,
             ),
             primaryAction: primaryAction,
-            // TextButton(
-            //   onPressed: () => controller.dismiss(),
-            //   child: Text('DISMISS'),
-            // ),
             actions: onYesPressed == null && onNoPressed == null
                 ? null
                 : <Widget>[
-                    TextButton(
-                        style: ButtonStyle(
-                          textStyle: MaterialStateProperty.all<TextStyle>(
-                            const TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (onYesPressed != null) {
-                            onYesPressed();
-                          }
-                          controller.dismiss();
-                        },
-                        child: const Text('SIM')),
-                    TextButton(
-                        style: ButtonStyle(
-                          textStyle: MaterialStateProperty.all<TextStyle>(
-                            const TextStyle(fontSize: 20),
-                          ),
-                        ),
-                        onPressed: () {
-                          if (onNoPressed != null) {
-                            onNoPressed();
-                          }
-                          controller.dismiss();
-                        },
-                        child: const Text('NÃO')),
+                    Visibility(
+                        visible: onYesPressed != null,
+                        child: TextButton(
+                            style: ButtonStyle(
+                              textStyle: MaterialStateProperty.all<TextStyle>(
+                                const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (onYesPressed != null) {
+                                onYesPressed();
+                              }
+                              controller.dismiss();
+                            },
+                            child: Text(yesButtonText ?? 'OK'))),
+                    Visibility(
+                        visible: onNoPressed != null,
+                        child: TextButton(
+                            style: ButtonStyle(
+                              textStyle: MaterialStateProperty.all<TextStyle>(
+                                const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            onPressed: () {
+                              if (onNoPressed != null) {
+                                onNoPressed();
+                              }
+                              controller.dismiss();
+                            },
+                            child: const Text('NÃO'))),
                   ],
           ),
         ),
