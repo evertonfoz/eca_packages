@@ -12,6 +12,7 @@ bool isAValidEmailValidator(String value) {
   RegExp regex = RegExp(pattern);
   return (regex.hasMatch(value));
 }
+
 //String pattern = r"^[a-zA-Z0-9_.-]+@[a-zA-Z0-9_-]+\.[c][o][m]$";
 bool isGreaterThenValue({
   required String value,
@@ -58,4 +59,12 @@ bool isAValidCellPhoneValidator(String cellPhone) {
 String removeSpecialCaracteres(
     {required String value, required String regExp}) {
   return value.replaceAll(RegExp(regExp), '');
+}
+
+bool isAIP4Address(String value) {
+  final RegExp ipExp = RegExp(
+      r"^(?!0)(?!.*\.$)((1?\d?\d|25[0-5]|2[0-4]\d)(\.|$)){4}$",
+      caseSensitive: false,
+      multiLine: false);
+  return ipExp.hasMatch(value);
 }

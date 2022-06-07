@@ -102,10 +102,13 @@ showModalBottomSheetToSimpleInformation({
   Color? textButtonColor,
   String backButtonText = 'OK',
   Color? primaryColor,
+  double? maxWidth,
 }) async {
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
+      constraints: BoxConstraints(
+          maxWidth: maxWidth ?? MediaQuery.of(context).size.width),
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
