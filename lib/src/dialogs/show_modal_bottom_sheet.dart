@@ -108,7 +108,8 @@ showModalBottomSheetToSimpleInformation({
       backgroundColor: Colors.transparent,
       context: context,
       constraints: BoxConstraints(
-          maxWidth: maxWidth ?? MediaQuery.of(context).size.width),
+        maxWidth: maxWidth ?? MediaQuery.of(context).size.width,
+      ),
       builder: (context) {
         return Container(
           decoration: BoxDecoration(
@@ -118,48 +119,52 @@ showModalBottomSheetToSimpleInformation({
               topRight: Radius.circular(25.0),
             ),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 30),
-              TextECA(
-                text: title,
-                fontSize: 30,
-                color:
-                    titleColor ?? Theme.of(context).textTheme.headline1?.color,
-                fontWeight: FontWeight.bold,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: TextECA(
-                  text: information,
-                  fontSize: 20,
+          child: Padding(
+            padding: EdgeInsets.all(maxWidth != null ? 10 : 0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(height: 30),
+                TextECA(
+                  text: title,
+                  fontSize: 30,
                   color: titleColor ??
                       Theme.of(context).textTheme.headline1?.color,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 28.0),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.tightFor(
-                        width: MediaQuery.of(context).size.width * 0.75,
-                        height: 56),
-                    child: DefaultRoundedBorderButton(
-                      radius: 10,
-                      backgroundColor: backgroundButtonColor,
-                      fontColor: textButtonColor ??
-                          Theme.of(context).textTheme.headline2?.color,
-                      text: backButtonText,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: TextECA(
+                    text: information,
+                    fontSize: 20,
+                    color: titleColor ??
+                        Theme.of(context).textTheme.headline1?.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        top: 30, bottom: 28.0, left: 8, right: 8),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.tightFor(
+                          width: MediaQuery.of(context).size.width * 0.75,
+                          height: 56),
+                      child: DefaultRoundedBorderButton(
+                        radius: 10,
+                        backgroundColor: backgroundButtonColor,
+                        fontColor: textButtonColor ??
+                            Theme.of(context).textTheme.headline2?.color,
+                        text: backButtonText,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       });
