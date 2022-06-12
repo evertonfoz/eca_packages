@@ -6,7 +6,7 @@ part of 'mobx_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$NewPasswordStore on _NewPasswordStore, Store {
   Computed<bool>? _$formIsValidComputed;
@@ -46,7 +46,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
               name: '_NewPasswordStore.confirmedPassword'))
       .value;
 
-  final _$_newPasswordAtom = Atom(name: '_NewPasswordStore._newPassword');
+  late final _$_newPasswordAtom =
+      Atom(name: '_NewPasswordStore._newPassword', context: context);
 
   @override
   String get _newPassword {
@@ -61,8 +62,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_confirmedNewPasswordAtom =
-      Atom(name: '_NewPasswordStore._confirmedNewPassword');
+  late final _$_confirmedNewPasswordAtom =
+      Atom(name: '_NewPasswordStore._confirmedNewPassword', context: context);
 
   @override
   String get _confirmedNewPassword {
@@ -78,8 +79,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_newPasswordIsValidAtom =
-      Atom(name: '_NewPasswordStore._newPasswordIsValid');
+  late final _$_newPasswordIsValidAtom =
+      Atom(name: '_NewPasswordStore._newPasswordIsValid', context: context);
 
   @override
   bool get _newPasswordIsValid {
@@ -94,8 +95,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_confirmedPasswordIsValidAtom =
-      Atom(name: '_NewPasswordStore._confirmedPasswordIsValid');
+  late final _$_confirmedPasswordIsValidAtom = Atom(
+      name: '_NewPasswordStore._confirmedPasswordIsValid', context: context);
 
   @override
   bool get _confirmedPasswordIsValid {
@@ -111,8 +112,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_obscureNewPasswordTextAtom =
-      Atom(name: '_NewPasswordStore._obscureNewPasswordText');
+  late final _$_obscureNewPasswordTextAtom =
+      Atom(name: '_NewPasswordStore._obscureNewPasswordText', context: context);
 
   @override
   bool get _obscureNewPasswordText {
@@ -128,8 +129,9 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_obscureConfirmedPasswordTextAtom =
-      Atom(name: '_NewPasswordStore._obscureConfirmedPasswordText');
+  late final _$_obscureConfirmedPasswordTextAtom = Atom(
+      name: '_NewPasswordStore._obscureConfirmedPasswordText',
+      context: context);
 
   @override
   bool get _obscureConfirmedPasswordText {
@@ -145,8 +147,8 @@ mixin _$NewPasswordStore on _NewPasswordStore, Store {
     });
   }
 
-  final _$_NewPasswordStoreActionController =
-      ActionController(name: '_NewPasswordStore');
+  late final _$_NewPasswordStoreActionController =
+      ActionController(name: '_NewPasswordStore', context: context);
 
   @override
   dynamic registerObscureNewPasswordText({required bool value}) {
