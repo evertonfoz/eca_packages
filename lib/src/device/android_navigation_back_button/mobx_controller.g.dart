@@ -6,7 +6,7 @@ part of 'mobx_controller.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AndroidNavigationBackButtonStore
     on _AndroidNavigationBackButtonStore, Store {
@@ -25,8 +25,9 @@ mixin _$AndroidNavigationBackButtonStore
           name: '_AndroidNavigationBackButtonStore.actualRouteName'))
       .value;
 
-  final _$_backButtonWasPressedAtom =
-      Atom(name: '_AndroidNavigationBackButtonStore._backButtonWasPressed');
+  late final _$_backButtonWasPressedAtom = Atom(
+      name: '_AndroidNavigationBackButtonStore._backButtonWasPressed',
+      context: context);
 
   @override
   bool get _backButtonWasPressed {
@@ -42,8 +43,9 @@ mixin _$AndroidNavigationBackButtonStore
     });
   }
 
-  final _$_actualRouteNameAtom =
-      Atom(name: '_AndroidNavigationBackButtonStore._actualRouteName');
+  late final _$_actualRouteNameAtom = Atom(
+      name: '_AndroidNavigationBackButtonStore._actualRouteName',
+      context: context);
 
   @override
   String? get _actualRouteName {
@@ -58,8 +60,9 @@ mixin _$AndroidNavigationBackButtonStore
     });
   }
 
-  final _$_AndroidNavigationBackButtonStoreActionController =
-      ActionController(name: '_AndroidNavigationBackButtonStore');
+  late final _$_AndroidNavigationBackButtonStoreActionController =
+      ActionController(
+          name: '_AndroidNavigationBackButtonStore', context: context);
 
   @override
   dynamic registerBackButtonWasPressed({required bool value}) {
