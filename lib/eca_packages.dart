@@ -52,3 +52,5 @@ export 'src/dialogs/show_modal_bottom_sheet.dart';
 export 'src/radio/radio.dart';
 export 'src/shimmer/shimmer.dart';
 export 'src/utils/env_manager.dart';
+export 'src/device/device_name.dart';
+export 'src/rest_services/generate_multipart_file.dart';

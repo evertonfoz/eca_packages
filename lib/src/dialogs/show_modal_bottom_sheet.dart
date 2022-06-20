@@ -38,6 +38,7 @@ showModalBottomSheetToPickAPhoto({
                 fontWeight: FontWeight.bold,
               ),
               ImagePickerECA(
+                imageQuality: 40,
                 doPopAfterPicker: true,
                 showFabButtonsInColumn: true,
                 showImageAfterPick: false,
