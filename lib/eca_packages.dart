@@ -54,3 +54,4 @@ export 'src/shimmer/shimmer.dart';
 export 'src/utils/env_manager.dart';
 export 'src/device/device_name.dart';
 export 'src/rest_services/generate_multipart_file.dart';
+export 'src/indicators/processing/mobx_stores/in_processing_store.dart';
