@@ -5,6 +5,10 @@ bool isNotEmptyValidator(String value) {
   return value.isNotEmpty;
 }
 
+bool isMinLengthValidator(String value, int minLength) {
+  return value.trim().length >= minLength;
+}
+
 bool isAValidEmailValidator(String value) {
   if (!isNotEmptyValidator(value)) return false;
 

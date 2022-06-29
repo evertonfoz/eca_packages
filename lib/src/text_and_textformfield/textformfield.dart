@@ -107,7 +107,6 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         widget.valueToTextController != _controller.text) {
       _controller.text = widget.valueToTextController!;
     }
-
     return TextFormField(
       scrollPadding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
