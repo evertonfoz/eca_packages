@@ -29,6 +29,8 @@ void showBottomSnackBar({
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
   final RoundedRectangleBorder _borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
+
+  // FocusScope.of(context).unfocus();
   showFlash(
     persistent: durationSeconds == null,
     context: context,

@@ -27,19 +27,13 @@ class FormFieldGroup extends StatelessWidget {
   final Function(bool)? registerStatusInStoreForm;
   final TextAlign? textFieldTextAlign;
   final bool enabled;
-
-  /// [FormFieldGroup] tem como objetivo a criação do campo para inserção de dados
-  /// nome de titulo que aparecerá,
-  /// validação do que ocorre dentro do textfild,
-  /// e mensagens de erro.
-  /// Cores e outros tipos de formatação vem por padrão
+  final bool isObservable;
 
   const FormFieldGroup({
     Key? key,
     required this.textTitle,
     this.fontWeight = FontWeight.w600,
     this.requiredOrientation = false,
-    // this.enableControllers = true,
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
     required this.valueToTextController,
@@ -60,6 +54,7 @@ class FormFieldGroup extends StatelessWidget {
     this.registerStatusInStoreForm,
     this.textFieldTextAlign,
     this.enabled = true,
+    this.isObservable = false,
   }) : super(key: key);
 
   @override
@@ -74,6 +69,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          isObservable: isObservable,
           enabled: enabled,
           textFieldTextAlign: textFieldTextAlign,
           textEditingController: textEditingController,
