@@ -7,6 +7,7 @@ enum IconPositionOfRoundedBorderButton { left, top }
 class DefaultRoundedBorderButton extends StatelessWidget {
   final String? text;
   final Color? backgroundColor;
+  final Color? hoveredColor;
   final bool? checked;
   final VoidCallback? onPressed;
   final Image? image;
@@ -34,6 +35,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
     Key? key,
     this.text,
     this.backgroundColor,
+    this.hoveredColor,
     this.checked,
     this.onPressed,
     this.icon,
@@ -101,7 +103,20 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           ? uncheckedColor ?? Colors.transparent
           : checkedColor ?? borderColor ?? Colors.transparent;
     }
+    print(text);
+    MaterialStateProperty<Color?>? teste =
+        Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
     return backgroundColor ??
+        Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
+  }
+
+  _buttonHoveredColor() {
+    if (checked != null) {
+      return !checked!
+          ? uncheckedColor ?? Colors.transparent
+          : checkedColor ?? borderColor ?? Colors.transparent;
+    }
+    return hoveredColor ??
         Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
   }
 
@@ -216,6 +231,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         (Set<MaterialState> states) {
           if (states.contains(MaterialState.disabled)) {
             return Colors.grey.shade200;
+          } else if (states.contains(MaterialState.hovered)) {
+            return _buttonHoveredColor();
           }
           return _buttonBackgroundColor();
         },
