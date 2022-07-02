@@ -103,9 +103,6 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           ? uncheckedColor ?? Colors.transparent
           : checkedColor ?? borderColor ?? Colors.transparent;
     }
-    print(text);
-    MaterialStateProperty<Color?>? teste =
-        Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
     return backgroundColor ??
         Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
   }
@@ -116,8 +113,13 @@ class DefaultRoundedBorderButton extends StatelessWidget {
           ? uncheckedColor ?? Colors.transparent
           : checkedColor ?? borderColor ?? Colors.transparent;
     }
-    return hoveredColor ??
-        Theme.of(_context!).elevatedButtonTheme.style!.backgroundColor;
+    if (hoveredColor != null) {
+      return hoveredColor;
+    } else if (backgroundColor != null) {
+      return (backgroundColor as MaterialColor).shade900;
+    } else {
+      return null;
+    }
   }
 
   _buttonBorderColor() {
