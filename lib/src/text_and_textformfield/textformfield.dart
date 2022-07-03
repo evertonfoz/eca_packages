@@ -176,9 +176,9 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
   }
 
   Widget? _buildSufixIcon(BuildContext context) {
-    if (widget.showSuffixIcon) {
+    if (!widget.showSuffixIcon) {
       return null;
-    } else if (widget.suffixIcon == null && hasError == null) {
+    } else if (widget.suffixIcon != null && hasError == null) {
       return null;
     }
 
@@ -187,25 +187,23 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     if (widget.suffixIcon != null) {
       sufixIcons.add(widget.suffixIcon!);
     } else {
-      if (!hasError!) {
+      if (hasError != null && !hasError!) {
         sufixIcons.add(
           FaIcon(
             FontAwesomeIcons.solidCheckCircle,
             color: Theme.of(context).iconTheme.color,
           ),
         );
-        _addAditionalSufixIcon(sufixIcons,
-            widget.checkedSuffixColor ?? Theme.of(context).iconTheme.color);
       }
-      if (hasError! && _controller.text.isNotEmpty) {
+      if (hasError != null && hasError! && _controller.text.isNotEmpty) {
         sufixIcons.add(const Icon(
           Icons.error,
           color: Colors.red,
         ));
-        _addAditionalSufixIcon(sufixIcons,
-            widget.errorSuffixColor ?? Theme.of(context).iconTheme.color);
       }
     }
+    _addAditionalSufixIcon(sufixIcons,
+        widget.errorSuffixColor ?? Theme.of(context).iconTheme.color);
 
     hasSufixIcons = sufixIcons.isNotEmpty;
     return Padding(
