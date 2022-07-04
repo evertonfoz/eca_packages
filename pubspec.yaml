@@ -19,6 +19,7 @@ dependencies:
     sdk: flutter
   flutter_markdown: ^0.6.6
   flutter_mobx: ^2.0.6+1
+  flutter_modular: ^5.0.2
   font_awesome_flutter: ^10.1.0
   getwidget: ^3.0.1
   http_parser: ^4.0.1

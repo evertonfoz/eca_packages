@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../eca_packages.dart';
 
@@ -74,78 +75,84 @@ class NewPasswordFieldsECA extends StatelessWidget {
     );
   }
 
-  ///[_newPassoword()] método para a criação do textfild juntamente com um 
-  ///título para a inserção de uma nova senha. 
   _newPassword() {
     return Observer(builder: (_) {
-      return FormFieldGroup(
-        obscureText: newPasswordStore.obscureNewPasswordText,
-        textTitle: 'Nova senha',
-        focusNode: _passwordFocusNode,
-        requiredOrientation: true,
-        valueToTextController: newPasswordStore.newPassword,
-        errorMessages: [
-          kNewPasswordNullError,
-          passwordInvalidError,
-        ],
-        validationFunctions: [
-          (_password) => isNotEmptyValidator(_password ?? ''),
-          (_password) => invalidPasswordFunction(_password ?? ''),
-        ],
-        registerValueInStoreForm: (value) {
-          newPasswordStore.registerNewPassword(value, invalidPasswordFunction);
-          if (registerPasswordCallback != null) {
-            registerPasswordCallback!(newPasswordStore.formIsValid);
-          }
-        },
-        aditionalSufixIcons: const [
-          FontAwesomeIcons.eye,
-          FontAwesomeIcons.eyeSlash,
-        ],
-        onPressAditionalSufixIcon: () =>
-            newPasswordStore.registerObscureNewPasswordText(
-                value: !newPasswordStore.obscureNewPasswordText),
-        errorMaxLines: 2,
-        nextFocus: _confirmedFocusNode,
+      return ShimmerECA(
+        isInProcessing: Modular.get<InProcessingStore>().isInProcessing,
+        child: FormFieldGroup(
+          obscureText: newPasswordStore.obscureNewPasswordText,
+          textTitle: 'Nova senha',
+          focusNode: _passwordFocusNode,
+          requiredOrientation: true,
+          valueToTextController: newPasswordStore.newPassword,
+          errorMessages: [
+            kNewPasswordNullError,
+            passwordInvalidError,
+          ],
+          validationFunctions: [
+            (_password) => isNotEmptyValidator(_password ?? ''),
+            (_password) => invalidPasswordFunction(_password ?? ''),
+          ],
+          registerValueInStoreForm: (value) {
+            newPasswordStore.registerNewPassword(
+                value, invalidPasswordFunction);
+            if (registerPasswordCallback != null) {
+              registerPasswordCallback!(newPasswordStore.formIsValid);
+            }
+          },
+          aditionalSufixIcons: const [
+            FontAwesomeIcons.eye,
+            FontAwesomeIcons.eyeSlash,
+          ],
+          onPressAditionalSufixIcon: () =>
+              newPasswordStore.registerObscureNewPasswordText(
+                  value: !newPasswordStore.obscureNewPasswordText),
+          errorMaxLines: 2,
+          nextFocus: _confirmedFocusNode,
+        ),
       );
     });
   }
 
-  ///[_confirmedPassoword()] método para a criação do textfild juntamente com um 
-  ///título para a confirmação da senha inserida anteriormente. 
+  ///[_confirmedPassoword()] método para a criação do textfild juntamente com um
+  ///título para a confirmação da senha inserida anteriormente.
   _confirmedPassword() {
     return Observer(builder: (_) {
-      return FormFieldGroup(
-        textInputAction: TextInputAction.done,
-        textTitle: 'Confimar senha',
-        obscureText: newPasswordStore.obscureConfirmedPasswordText,
-        focusNode: _confirmedFocusNode,
-        requiredOrientation: true,
-        valueToTextController: newPasswordStore.confirmedPassword,
-        errorMessages: const [
-          kConfirmedPasswordNullError,
-          kPasswordMatchError,
-        ],
-        validationFunctions: [
-          (_confirmedPassword) => isNotEmptyValidator(_confirmedPassword ?? ''),
-          (_confirmedPassword) => isMatchValidator(
-              value: _confirmedPassword ?? '',
-              otherValue: newPasswordStore.newPassword),
-        ],
-        registerValueInStoreForm: (value) {
-          newPasswordStore.registerConfirmedPassword(value);
-          if (registerPasswordCallback != null) {
-            registerPasswordCallback!(newPasswordStore.formIsValid);
-          }
-        },
-        aditionalSufixIcons: const [
-          FontAwesomeIcons.eye,
-          FontAwesomeIcons.eyeSlash,
-        ],
-        onPressAditionalSufixIcon: () =>
-            newPasswordStore.registerObscureConfirmedPasswordText(
-                value: !newPasswordStore.obscureConfirmedPasswordText),
-        errorMaxLines: 2,
+      return ShimmerECA(
+        isInProcessing: Modular.get<InProcessingStore>().isInProcessing,
+        child: FormFieldGroup(
+          textInputAction: TextInputAction.done,
+          textTitle: 'Confimar senha',
+          obscureText: newPasswordStore.obscureConfirmedPasswordText,
+          focusNode: _confirmedFocusNode,
+          requiredOrientation: true,
+          valueToTextController: newPasswordStore.confirmedPassword,
+          errorMessages: const [
+            kConfirmedPasswordNullError,
+            kPasswordMatchError,
+          ],
+          validationFunctions: [
+            (_confirmedPassword) =>
+                isNotEmptyValidator(_confirmedPassword ?? ''),
+            (_confirmedPassword) => isMatchValidator(
+                value: _confirmedPassword ?? '',
+                otherValue: newPasswordStore.newPassword),
+          ],
+          registerValueInStoreForm: (value) {
+            newPasswordStore.registerConfirmedPassword(value);
+            if (registerPasswordCallback != null) {
+              registerPasswordCallback!(newPasswordStore.formIsValid);
+            }
+          },
+          aditionalSufixIcons: const [
+            FontAwesomeIcons.eye,
+            FontAwesomeIcons.eyeSlash,
+          ],
+          onPressAditionalSufixIcon: () =>
+              newPasswordStore.registerObscureConfirmedPasswordText(
+                  value: !newPasswordStore.obscureConfirmedPasswordText),
+          errorMaxLines: 2,
+        ),
       );
     });
   }
