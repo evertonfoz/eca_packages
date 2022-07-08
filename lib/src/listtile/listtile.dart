@@ -9,6 +9,7 @@ class ListTileECA extends StatelessWidget {
   final VoidCallback? onTap;
   final bool useCard;
   final bool emphasisColor;
+  final double verticalPadding;
 
   const ListTileECA({
     Key? key,
@@ -19,7 +20,8 @@ class ListTileECA extends StatelessWidget {
     this.tileHeight,
     this.onTap,
     this.useCard = true,
-    required this.emphasisColor,
+    this.emphasisColor = false,
+    this.verticalPadding = 8,
   }) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class ListTileECA extends StatelessWidget {
       return Card(
         color: emphasisColor ? Colors.white : Colors.grey.shade200,
         elevation: 10,
+        borderOnForeground: true,
         child: _buildListTile(),
       );
     }
@@ -36,7 +39,7 @@ class ListTileECA extends StatelessWidget {
 
   _buildListTile() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: SizedBox(
         height: tileHeight,
         child: Row(
