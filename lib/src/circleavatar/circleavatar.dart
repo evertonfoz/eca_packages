@@ -56,6 +56,7 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
+//TODO Utilizar cached image
     return FadeInImage.memoryNetwork(
       key: UniqueKey(),
       fit: boxFit ?? BoxFit.fill,
