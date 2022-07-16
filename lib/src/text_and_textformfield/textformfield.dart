@@ -88,6 +88,11 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           text: widget.valueToTextController ?? '',
         );
     _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _controller.selectAll();
+      }
+    });
 
     _controller.addListener(() {
       if (_controller.text.isEmpty) {
@@ -108,6 +113,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       _controller.text = widget.valueToTextController!;
     }
     return TextFormField(
+      // onTap: _controller.selectAll,
       scrollPadding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
@@ -228,5 +234,12 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         ),
       ));
     }
+  }
+}
+
+extension TextEditingControllerExt on TextEditingController {
+  void selectAll() {
+    if (text.isEmpty) return;
+    selection = TextSelection(baseOffset: 0, extentOffset: text.length);
   }
 }
