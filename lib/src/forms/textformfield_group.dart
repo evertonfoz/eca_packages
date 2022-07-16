@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 class FormFieldGroup extends StatelessWidget {
   final Function(String?)? onSaved;
+  final bool autoFocus;
   final String textTitle;
   final FontWeight fontWeight;
   final bool requiredOrientation;
@@ -55,6 +56,7 @@ class FormFieldGroup extends StatelessWidget {
     this.textFieldTextAlign,
     this.enabled = true,
     this.isObservable = false,
+    this.autoFocus = false,
   }) : super(key: key);
 
   @override
@@ -69,6 +71,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          requiredField: requiredOrientation,
           isObservable: isObservable,
           enabled: enabled,
           textFieldTextAlign: textFieldTextAlign,
@@ -90,6 +93,7 @@ class FormFieldGroup extends StatelessWidget {
           nextFocus: nextFocus,
           onSaved: onSaved,
           registerStatusInStoreForm: registerStatusInStoreForm,
+          autofocus: autoFocus,
         ),
         const SizedBox(height: 10),
       ],
