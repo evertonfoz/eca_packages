@@ -34,6 +34,7 @@ class TextFormFieldECA extends StatefulWidget {
   final double? fontSize;
   final Color? fontColor;
   final double? bottomContentPadding;
+  final bool requiredField;
 
   const TextFormFieldECA({
     Key? key,
@@ -56,7 +57,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.valueToTextController,
     this.maxLines = 1,
     this.hintText,
-    this.showSuffixIcon = true,
+    this.showSuffixIcon = false,
     this.enabled = true,
     this.autofocus = false,
     this.suffixIcon,
@@ -68,6 +69,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.hintTextColor,
     this.fontColor,
     this.bottomContentPadding,
+    this.requiredField = false,
   }) : super(key: key);
 
   @override
@@ -88,6 +90,11 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           text: widget.valueToTextController ?? '',
         );
     _focusNode = widget.focusNode ?? FocusNode();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _controller.selectAll();
+      }
+    });
 
     _controller.addListener(() {
       if (_controller.text.isEmpty) {
@@ -176,7 +183,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
   }
 
   Widget? _buildSufixIcon(BuildContext context) {
-    if (!widget.showSuffixIcon) {
+    if (!widget.showSuffixIcon && !widget.requiredField) {
       return null;
     } else if (widget.suffixIcon != null && hasError == null) {
       return null;
@@ -195,16 +202,18 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           ),
         );
       }
-      if (hasError != null && hasError! && _controller.text.isNotEmpty) {
+      // if (hasError != null && hasError! && _controller.text.isNotEmpty) {
+      if (hasError != null && hasError!) {
         sufixIcons.add(const Icon(
           Icons.error,
           color: Colors.red,
         ));
       }
     }
-    _addAditionalSufixIcon(sufixIcons,
+    _addAdditionalSufixIcon(sufixIcons,
         widget.errorSuffixColor ?? Theme.of(context).iconTheme.color);
 
+    // return Container();
     hasSufixIcons = sufixIcons.isNotEmpty;
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
@@ -215,7 +224,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     );
   }
 
-  void _addAditionalSufixIcon(List<Widget> sufixIcons, Color? color) {
+  void _addAdditionalSufixIcon(List<Widget> sufixIcons, Color? color) {
     if (widget.aditionalSufixIcons != null) {
       sufixIcons.add(const SizedBox(width: 8));
       sufixIcons.add(InkWell(
@@ -228,5 +237,12 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         ),
       ));
     }
+  }
+}
+
+extension TextEditingControllerExt on TextEditingController {
+  void selectAll() {
+    if (text.isEmpty) return;
+    selection = TextSelection(baseOffset: 0, extentOffset: text.length);
   }
 }

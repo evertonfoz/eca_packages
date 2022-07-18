@@ -55,3 +55,4 @@ export 'src/utils/env_manager.dart';
 export 'src/device/device_name.dart';
 export 'src/rest_services/generate_multipart_file.dart';
 export 'src/indicators/processing/mobx_stores/in_processing_store.dart';
+export 'src/image_carousel_slider/carousel_slider.dart';

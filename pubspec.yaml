@@ -12,6 +12,7 @@ dependencies:
   back_button_interceptor: ^6.0.0
   badges: ^2.0.2
   blur: ^3.0.0
+  carousel_slider: ^4.1.1
   device_info_plus: ^3.2.4
   dropdown_search: ^4.0.1
   flash: ^2.0.3+1
