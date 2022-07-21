@@ -14,14 +14,14 @@ numberFormated(double valor) {
 
 numberInStringWithDecimalCommaStringWithDecimalPoint(String? value) {
   String newValue = value ?? '0';
-  var indexOfDecimalBegin = value!.indexOf(',');
+  var indexOfDecimalBegin = newValue.indexOf(',');
   if (indexOfDecimalBegin != -1) {
-    var intValue = value
+    var intValue = newValue
         .substring(0, indexOfDecimalBegin)
         .replaceAll('.', ',')
         .trim()
         .replaceAll(',', '');
-    newValue = '$intValue.${value.substring(indexOfDecimalBegin + 1)}';
+    newValue = '$intValue.${newValue.substring(indexOfDecimalBegin + 1)}';
   }
   return newValue;
 }
