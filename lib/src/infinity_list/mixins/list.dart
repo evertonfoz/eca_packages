@@ -59,7 +59,8 @@ mixin ListPreferencesMixin<Model> {
 
   Widget firstPageErrorIndicatorBuilder(
       {required BuildContext context,
-      required PagingController<int, Model> pagingController}) {
+      required PagingController<int, Model> pagingController,
+      String? assetImageURL}) {
     late final String errorMessage;
     errorMessage = 'Erro inesperado ${pagingController.error?.message}';
 
@@ -69,7 +70,8 @@ mixin ListPreferencesMixin<Model> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/error_on_load.png', scale: 1.5),
+          Image.asset(assetImageURL ?? 'assets/error_on_load.png', scale: 1.5),
+          const SizedBox(height: 50),
           TextECA(
             text: errorMessage,
             fontSize: 18,
