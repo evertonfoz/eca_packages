@@ -7,8 +7,8 @@ import 'failure_on_fetch.dart';
 List<T> fetchListFold<T>({
   required Either<Failure, List<T>> dataToFold,
   required BuildContext context,
-  required VoidCallback animateToCurrentPage,
-  required VoidCallback onTapToBack,
+  required VoidCallback? animateToCurrentPage,
+  required VoidCallback? onTapToBack,
   required Color onHideNavigationBarColor,
   required Color onShowNavigationBarColor,
 }) {
