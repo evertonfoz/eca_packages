@@ -10,6 +10,7 @@ class ListTileECA extends StatelessWidget {
   final bool useCard;
   final bool emphasisColor;
   final double verticalPadding;
+  final Widget? tileBottom;
 
   const ListTileECA({
     Key? key,
@@ -22,6 +23,7 @@ class ListTileECA extends StatelessWidget {
     this.useCard = true,
     this.emphasisColor = false,
     this.verticalPadding = 8,
+    this.tileBottom,
   }) : super(key: key);
 
   @override
@@ -42,23 +44,29 @@ class ListTileECA extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: SizedBox(
         height: tileHeight,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
           children: [
-            leading ?? Container(),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  title ?? Container(),
-                  subtitle ?? Container(),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                leading ?? Container(),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      title ?? Container(),
+                      subtitle ?? Container(),
+                    ],
+                  ),
+                ),
+                SizedBox(height: tileHeight, child: trailing ?? Container()),
+              ],
             ),
-            trailing ?? Container(),
+            tileBottom ?? Container(),
           ],
         ),
       ),
