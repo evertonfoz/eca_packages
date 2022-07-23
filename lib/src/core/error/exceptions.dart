@@ -14,3 +14,15 @@ class NotUniqueDataException implements Exception {
 }
 
 class TimeOutException implements Exception {}
+
+class DomainValidationException implements Exception {
+  final String? errorMessage;
+
+  DomainValidationException({this.errorMessage});
+}
+
+class RemoveConstraintException implements Exception {
+  final String? errorMessage;
+
+  RemoveConstraintException({this.errorMessage});
+}
