@@ -5,7 +5,11 @@ bool isNotEmptyValidator(String value) {
   return value.isNotEmpty;
 }
 
-bool isMinLengthValidator(String value, int minLength) {
+bool isMinLengthValidator(String value, int minLength,
+    {bool acceptEmpty = false}) {
+  if (acceptEmpty && value.isEmpty) {
+    return true;
+  }
   return value.trim().length >= minLength;
 }
 

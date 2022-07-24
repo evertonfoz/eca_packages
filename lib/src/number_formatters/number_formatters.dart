@@ -11,3 +11,17 @@ numberFormated(double valor) {
       )
       .trim();
 }
+
+numberInStringWithDecimalCommaStringWithDecimalPoint(String? value) {
+  String newValue = value ?? '0';
+  var indexOfDecimalBegin = newValue.indexOf(',');
+  if (indexOfDecimalBegin != -1) {
+    var intValue = newValue
+        .substring(0, indexOfDecimalBegin)
+        .replaceAll('.', ',')
+        .trim()
+        .replaceAll(',', '');
+    newValue = '$intValue.${newValue.substring(indexOfDecimalBegin + 1)}';
+  }
+  return newValue;
+}

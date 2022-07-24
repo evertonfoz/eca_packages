@@ -9,6 +9,8 @@ class ListTileECA extends StatelessWidget {
   final VoidCallback? onTap;
   final bool useCard;
   final bool emphasisColor;
+  final double verticalPadding;
+  final Widget? tileBottom;
 
   const ListTileECA({
     Key? key,
@@ -19,7 +21,9 @@ class ListTileECA extends StatelessWidget {
     this.tileHeight,
     this.onTap,
     this.useCard = true,
-    required this.emphasisColor,
+    this.emphasisColor = false,
+    this.verticalPadding = 8,
+    this.tileBottom,
   }) : super(key: key);
 
   @override
@@ -28,6 +32,7 @@ class ListTileECA extends StatelessWidget {
       return Card(
         color: emphasisColor ? Colors.white : Colors.grey.shade200,
         elevation: 10,
+        borderOnForeground: true,
         child: _buildListTile(),
       );
     }
@@ -36,26 +41,32 @@ class ListTileECA extends StatelessWidget {
 
   _buildListTile() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: SizedBox(
         height: tileHeight,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
           children: [
-            leading ?? Container(),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  title ?? Container(),
-                  subtitle ?? Container(),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                leading ?? Container(),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      title ?? Container(),
+                      subtitle ?? Container(),
+                    ],
+                  ),
+                ),
+                SizedBox(height: tileHeight, child: trailing ?? Container()),
+              ],
             ),
-            trailing ?? Container(),
+            tileBottom ?? Container(),
           ],
         ),
       ),
