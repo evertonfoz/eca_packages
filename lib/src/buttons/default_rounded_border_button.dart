@@ -142,12 +142,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
       );
-      if (icon != null) {
-        _sizedBox = SizedBox(height: 20);
-      } else if (image != null) {
-        _sizedBox = SizedBox(height: 0);
-      }
-      // _sizedBox = SizedBox(height: icon != null || image != null ? 20 : 0);
+      _sizedBox = SizedBox(height: icon != null ? 20 : 0);
     } else {
       _rowOrColumnContainer = Row(
         children: [],
@@ -155,7 +150,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
       );
-      _sizedBox = SizedBox(width: (icon != null && text != null) ? 20 : 0);
+      _sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
 
     if (icon != null && text != null) {
