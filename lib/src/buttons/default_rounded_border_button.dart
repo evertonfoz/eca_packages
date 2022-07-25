@@ -137,19 +137,21 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
     if (iconPosition == IconPositionOfRoundedBorderButton.top) {
       _rowOrColumnContainer = Column(
+        // ignore: prefer_const_literals_to_create_immutables
         children: [],
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
       );
       if (icon != null) {
-        _sizedBox = SizedBox(height: 20);
+        _sizedBox = const SizedBox(height: 20);
       } else if (image != null) {
-        _sizedBox = SizedBox(height: 0);
+        _sizedBox = const SizedBox(height: 0);
       }
       // _sizedBox = SizedBox(height: icon != null || image != null ? 20 : 0);
     } else {
       _rowOrColumnContainer = Row(
+        // ignore: prefer_const_literals_to_create_immutables
         children: [],
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,

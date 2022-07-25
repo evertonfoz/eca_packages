@@ -15,7 +15,7 @@ dependencies:
   carousel_slider: ^4.1.1
   dartz: ^0.10.1
   device_info_plus: ^3.2.4
-  dropdown_search: ^4.0.1
+  dropdown_search: ^5.0.2
   equatable: ^2.0.3
   flash: ^2.0.3+1
   flutter:
