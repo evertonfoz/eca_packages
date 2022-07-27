@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -56,14 +58,13 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-//TODO Utilizar cached image
-    return FadeInImage.memoryNetwork(
+    return Image(
       key: UniqueKey(),
-      fit: boxFit ?? BoxFit.fill,
-      width: width ?? 210,
-      placeholder: kTransparentImage,
-      image: imageURL,
-      height: height ?? 210,
+      image: CachedNetworkImageProvider(
+        imageURL,
+        maxWidth: (width ?? 210).toInt(),
+        maxHeight: (height ?? 210).toInt(),
+      ),
     ).image;
   }
 }
