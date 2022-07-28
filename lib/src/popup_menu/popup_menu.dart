@@ -23,14 +23,14 @@ popupCreateMenuECA({
         .add(popupMenuItemECA(context: context, item: items[i]));
 
     // Não é o último e nem é para ter separador duplo
-    if ((i != (items.length) - 2) && (!items[i].doubleSeparatorBefore)) {
-      for (int j = 0; j < itemTimesSeparator; j++) {
-        _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
-      }
-    }
+    // if ((i != (items.length) - 2) && (!items[i].doubleSeparatorBefore)) {
+    //   for (int j = 0; j < itemTimesSeparator; j++) {
+    //     _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
+    //   }
+    // }
 
     // É para ter separador duplo
-    else if (!items[i].doubleSeparatorBefore) {
+    if (items[i].doubleSeparatorBefore) {
       for (int k = 0; k < titleTimesSeparator; k++) {
         _itemsPopupMenuEntry.add(popupMenuSeparatorECA(height: 2));
       }

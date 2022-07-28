@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class DropDown<T> extends StatelessWidget {
   final String hintText;
+  final String? searchHintText;
   // final double maxHeight;
   final T? selectedItem;
   List<T> items;
@@ -16,42 +17,58 @@ class DropDown<T> extends StatelessWidget {
   final Color? fillColor;
   final Color? selectedColorItem;
   final bool enabled;
+  final bool showSearchBox;
+  bool Function(T, String)? filterFn;
 
-  DropDown({
-    Key? key,
-    required this.hintText,
-    // this.maxHeight = 300,
-    this.selectedItem,
-    required this.items,
-    required this.compareFn,
-    required this.onChanged,
-    required this.itemAsString,
-    this.fillColor,
-    this.selectedColorItem,
-    this.enabled = true,
-  }) : super(key: key);
+  DropDown(
+      {Key? key,
+      required this.hintText,
+      // this.maxHeight = 300,
+      this.selectedItem,
+      required this.items,
+      required this.compareFn,
+      required this.onChanged,
+      required this.itemAsString,
+      this.fillColor,
+      this.selectedColorItem,
+      this.enabled = true,
+      this.showSearchBox = false,
+      this.searchHintText,
+      this.filterFn})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<T>(
       enabled: enabled,
-      dropdownSearchDecoration: InputDecoration(
-        fillColor: fillColor,
-        filled: true,
-        hintText: hintText,
-        labelStyle: TextStyle(color: Colors.indigo),
-        contentPadding: const EdgeInsets.only(left: 10, top: 4),
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        dropdownSearchDecoration: InputDecoration(
+          // labelText: "Modal mode",
+          hintText: hintText,
+          // filled: false,
+          // isDense: false,
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+        ),
       ),
       popupProps: PopupProps.menu(
-          showSelectedItems: true,
-          itemBuilder: _customPopupItemBuilder,
-          fit: FlexFit.loose),
+        showSelectedItems: true,
+        itemBuilder: _customPopupItemBuilder,
+        fit: FlexFit.loose,
+        showSearchBox: showSearchBox,
+        searchFieldProps: TextFieldProps(
+          decoration: InputDecoration(
+            hintText: searchHintText ?? '',
+            filled: true,
+          ),
+        ),
+      ),
       onChanged: onChanged,
       selectedItem: selectedItem,
       items: items,
       compareFn: compareFn,
       itemAsString: itemAsString,
       dropdownBuilder: _customDropDown,
+      filterFn: filterFn,
     );
   }
 
