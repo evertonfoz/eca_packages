@@ -89,10 +89,22 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
 
   _buildText() {
     if (widget.text != null) {
-      return TextECA(
-          text: widget.text!,
-          fontSize: widget.textFontSize,
-          textAlign: TextAlign.start);
+      return InkWell(
+        onTap: () {
+          final bool value = _checked;
+          setState(() {
+            _checked = !_checked;
+          });
+
+          if (widget.onChanged != null) {
+            widget.onChanged!(_checked);
+          }
+        },
+        child: TextECA(
+            text: widget.text!,
+            fontSize: widget.textFontSize,
+            textAlign: TextAlign.start),
+      );
     }
     return widget.widget;
   }

@@ -14,6 +14,8 @@ abstract class _MainAppStore with Store {
 
   bool errorWhenTryConnectToServerOccurs = false;
 
+  bool runOnReleaseMode = false;
+
   @computed
   String get actualModule => _actualModule;
 

@@ -46,7 +46,8 @@ mixin ListPreferencesMixin<Model> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/no_data.png', scale: 1.5),
+          Image.asset('assets/no_data.png',
+              scale: 1.5), //TODO Trazer para pacote
           TextECA(
             text: 'Ainda não temos $text para você',
             fontSize: 18,

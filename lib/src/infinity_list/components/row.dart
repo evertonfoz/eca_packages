@@ -1,4 +1,3 @@
-import 'package:eca_packages/src/infinity_list/constants/constants.dart';
 import 'package:eca_packages/src/infinity_list/enums/sort_method.dart';
 import 'package:eca_packages/src/infinity_list/mobx_stores/list_preferences.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +12,8 @@ class ListRow extends StatelessWidget {
   final Function? onOrderTap;
   final bool isAHeader;
   final bool isHovered;
+  final Color headerTableFormBackgroundColor;
+  final Color headerTableFormTextColor;
 
   ListRow({
     super.key,
@@ -20,6 +21,8 @@ class ListRow extends StatelessWidget {
     this.onOrderTap,
     this.isAHeader = false,
     this.isHovered = false,
+    required this.headerTableFormBackgroundColor,
+    required this.headerTableFormTextColor,
   });
 
   final ListPreferencesStore listPreferences =
@@ -32,9 +35,11 @@ class ListRow extends StatelessWidget {
         isAHeader: isAHeader,
         isHovered: isHovered,
         // backgroundColor: kHeaderTableFormBackgroundColor,
-        textColor: isAHeader ? kHeaderTableFormTextColor : Colors.black,
+        textColor: isAHeader ? headerTableFormTextColor : Colors.black,
         timesOfHeightSeparator: 3,
         texts: _buildTexts(),
+        headerTableFormBackgroundColor: headerTableFormBackgroundColor,
+        headerTableFormTextColor: headerTableFormTextColor,
       );
     });
   }

@@ -5,12 +5,19 @@ bool isNotEmptyValidator(String value) {
   return value.isNotEmpty;
 }
 
-bool isMinLengthValidator(String value, int minLength,
-    {bool acceptEmpty = false}) {
+bool isMinMaxLengthValidator(String value, int minLength,
+    {int? maxLength, bool acceptEmpty = false}) {
   if (acceptEmpty && value.isEmpty) {
     return true;
   }
-  return value.trim().length >= minLength;
+  bool result = true;
+  if (value.trim().length < minLength) {
+    result = false;
+  }
+  if (result && maxLength != null && value.trim().length > maxLength) {
+    result = false;
+  }
+  return result;
 }
 
 bool isAValidEmailValidator(String value) {

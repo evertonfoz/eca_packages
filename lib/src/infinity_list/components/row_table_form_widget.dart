@@ -2,8 +2,6 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:eca_packages/src/infinity_list/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'models/column_row_table_form_model.dart';
-
 class RowTableFormWidget extends StatelessWidget {
   final bool isAHeader;
   final Color backgroundColor;
@@ -11,6 +9,8 @@ class RowTableFormWidget extends StatelessWidget {
   final List<ColumnRowTableFormModel> texts;
   final int timesOfHeightSeparator;
   final bool isHovered;
+  final Color headerTableFormBackgroundColor;
+  final Color headerTableFormTextColor;
 
   const RowTableFormWidget({
     Key? key,
@@ -20,6 +20,8 @@ class RowTableFormWidget extends StatelessWidget {
     required this.texts,
     this.timesOfHeightSeparator = 1,
     this.isHovered = false,
+    required this.headerTableFormBackgroundColor,
+    required this.headerTableFormTextColor,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class RowTableFormWidget extends StatelessWidget {
   _buildHeader() {
     return RoundedContainerECA(
       backgroundColor:
-          isAHeader ? kHeaderTableFormBackgroundColor : backgroundColor,
+          isAHeader ? headerTableFormBackgroundColor : backgroundColor,
       height: (kHeaderTableFormHeightSeparator * timesOfHeightSeparator),
       edgeInsets: const EdgeInsets.all(4),
       child: Row(children: _build()),
@@ -76,10 +78,9 @@ class RowTableFormWidget extends StatelessWidget {
 
   _buildColorToTextToRow() {
     if (isAHeader || isHovered) {
-      return Colors.white;
+      return headerTableFormTextColor;
     }
     return textColor;
-    // isHovered ? Colors.white : textColor,
   }
 
   _buildFontWeightToTextToRow() {
@@ -89,8 +90,6 @@ class RowTableFormWidget extends StatelessWidget {
       return FontWeight.bold;
     }
     return FontWeight.normal;
-
-    // isHovered ? FontWeight.bold : FontWeight.normal
   }
 
   _buildRowContent(ColumnRowTableFormModel row) {
@@ -111,28 +110,6 @@ class RowTableFormWidget extends StatelessWidget {
         child: _textToRow(row),
       );
     }
-
-    //  Row(
-    //   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //   // mainAxisSize: MainAxisSize.min,
-    //   children: [
-    //     TextECA(
-    //       text: row.title,
-    //       fontSize:
-    //           isAHeader ? kHeaderTableFormFontSize : kRowTableFormFontSize,
-    //       textAlign: row.textAlign,
-    //       color: textColor,
-    //     ),
-    //     isAHeader && row.isTheSelectedOrderBy
-    //         ? Icon(
-    //             Icons.arrow_drop_down,
-    //             color: textColor,
-    //           )
-    //         : Container(
-    //             color: Colors.amber,
-    //           ),
-    //   ],
-    // ),
   }
 
   _buildIconToOrderAtHeader({required ColumnRowTableFormModel row}) {
