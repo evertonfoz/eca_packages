@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const IconData kIconBell = FontAwesomeIcons.bell;
 const IconData kIconProfile = FontAwesomeIcons.user;
 const IconData kIconCalendar = FontAwesomeIcons.calendar;
-const IconData kIconAbout = FontAwesomeIcons.infoCircle;
+const IconData kIconAbout = FontAwesomeIcons.circleInfo;
 const IconData kIconExit = FontAwesomeIcons.doorOpen;
 const IconData kIconArrowBack = FontAwesomeIcons.arrowLeft;
 

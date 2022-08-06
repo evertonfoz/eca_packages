@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 enum TypeOfImageToAvatar { kAsset, kWeb, kFile }
 

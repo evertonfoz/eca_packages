@@ -9,12 +9,15 @@ part 'main_app_store.g.dart';
 class MainAppStore = _MainAppStore with _$MainAppStore;
 
 abstract class _MainAppStore with Store {
+  final bool runOnReleaseMode;
+
+  // ignore: unused_element
+  _MainAppStore({this.runOnReleaseMode = false});
+
   @observable
   String _actualModule = 'main';
 
   bool errorWhenTryConnectToServerOccurs = false;
-
-  bool runOnReleaseMode = false;
 
   @computed
   String get actualModule => _actualModule;

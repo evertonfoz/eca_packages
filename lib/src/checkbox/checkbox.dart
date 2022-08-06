@@ -91,7 +91,6 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
     if (widget.text != null) {
       return InkWell(
         onTap: () {
-          final bool value = _checked;
           setState(() {
             _checked = !_checked;
           });
