@@ -17,8 +17,8 @@ class EnvManager {
 
   static Future<String> getUrlToServer<T>(
       {required String serverUrl, String? serverPort}) async {
-    if (!Modular.get<MainAppStore>().runOnReleaseMode) {
-      return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort!)}';
+    if (serverPort != null && !Modular.get<MainAppStore>().runOnReleaseMode) {
+      return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort)}';
     } else {
       return await _get<String>(key: serverUrl);
     }
@@ -40,7 +40,6 @@ class EnvManager {
         return await rootBundle.loadString('assets/prod.env');
       } else {
         return await rootBundle.loadString('assets/dev.env');
-        ;
       }
     } on Exception catch (e) {
       throw Exception('File "assets/dev.env" not found');

@@ -1,5 +1,4 @@
 import 'package:eca_packages/eca_packages.dart';
-import 'package:eca_packages/src/infinity_list/components/on_hover.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -39,15 +38,18 @@ mixin ListPreferencesMixin<Model> {
   }
 
   Widget noItemsFoundIndicatorBuilder(
-      {required BuildContext context, required String text}) {
+      {required BuildContext context,
+      required String text,
+      required String urlNoData,
+      double scale = 1.5}) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/no_data.png',
-              scale: 1.5), //TODO Trazer para pacote
+          Image.asset(urlNoData, //'assets/no_data.png',
+              scale: scale),
           TextECA(
             text: 'Ainda não temos $text para você',
             fontSize: 18,
@@ -62,6 +64,7 @@ mixin ListPreferencesMixin<Model> {
       {required BuildContext context,
       required PagingController<int, Model> pagingController,
       String? assetImageURL}) {
+    //TODO required
     late final String errorMessage;
     errorMessage = 'Erro inesperado ${pagingController.error?.message}';
 
@@ -91,7 +94,7 @@ mixin ListPreferencesMixin<Model> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/no_data.png', scale: 1.5),
+          Image.asset('assets/no_data.png', scale: 1.5), //TODO required
           TextECA(
             text: 'Ainda não temos $text para você',
             fontSize: 18,

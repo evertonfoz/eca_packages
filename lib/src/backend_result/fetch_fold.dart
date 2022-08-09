@@ -2,8 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'failure_on_fetch.dart';
-
 List<T> fetchListFold<T>({
   required Either<Failure, List<T>> dataToFold,
   required BuildContext context,
