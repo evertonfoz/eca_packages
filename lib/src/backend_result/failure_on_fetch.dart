@@ -2,7 +2,6 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-//TODO Tirar do Signup e Login e colocar de maneira geral
 failureOnFetch({
   required Failure failure,
   required BuildContext context,
