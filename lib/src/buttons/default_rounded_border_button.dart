@@ -148,7 +148,6 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       } else if (image != null) {
         _sizedBox = const SizedBox(height: 0);
       }
-      // _sizedBox = SizedBox(height: icon != null || image != null ? 20 : 0);
     } else {
       _rowOrColumnContainer = Row(
         // ignore: prefer_const_literals_to_create_immutables
@@ -162,16 +161,9 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
     if (icon != null && text != null) {
       _rowOrColumnContainer.children.add(icon ?? Container());
-      // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
-    // if (image != null && text != null) {
-    //   _rowOrColumnContainer.children.add(image ?? Container());
-    //   // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
-    // }
-//TODO Avaliar como fica o botão
     if (icon != null && image != null && text == null) {
-      // _rowOrColumnContainer.children.add(icon ?? Container());
       _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 

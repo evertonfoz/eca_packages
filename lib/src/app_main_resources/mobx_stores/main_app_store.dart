@@ -22,7 +22,6 @@ abstract class _MainAppStore with Store {
   @computed
   String get actualModule => _actualModule;
 
-//TODO Verificar tela preta ao trocar o launch pela splash
   @action
   registerActualModule(String value) {
     _actualModule = value;
