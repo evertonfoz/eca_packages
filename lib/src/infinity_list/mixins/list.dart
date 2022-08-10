@@ -89,14 +89,15 @@ mixin ListPreferencesMixin<Model> {
   Widget newPageErrorIndicatorBuilder(
       {required BuildContext context,
       required String text,
-      required String assetImageURL}) {
+      required String assetImageURL,
+      double scale = 1.5}) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(assetImageURL, scale: 1.5), //TODO required
+          Image.asset(assetImageURL, scale: scale),
           TextECA(
             text: 'Ainda não temos $text para você',
             fontSize: 18,
