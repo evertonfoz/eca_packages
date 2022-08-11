@@ -10,18 +10,20 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
   final Color backgroundColor;
   final Color textButtonColor;
   final Color hoverColor;
+  final Function? onOkButtonPressed;
 
-  const AlertDialogWithATextFieldWidget(
-      {Key? key,
-      required this.title,
-      required this.content,
-      this.okButtonText = 'OK',
-      this.cancelButtonText = 'Cancelar',
-      required this.buttonsColor,
-      this.backgroundColor = Colors.white,
-      this.textButtonColor = Colors.white,
-      this.hoverColor = Colors.blue})
-      : super(key: key);
+  const AlertDialogWithATextFieldWidget({
+    Key? key,
+    required this.title,
+    required this.content,
+    this.okButtonText = 'OK',
+    this.cancelButtonText = 'Cancelar',
+    required this.buttonsColor,
+    this.backgroundColor = Colors.white,
+    this.textButtonColor = Colors.white,
+    this.hoverColor = Colors.blue,
+    this.onOkButtonPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
               fontColor: textButtonColor,
               fontWeight: FontWeight.normal,
               radius: 10,
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pop(),
               text: cancelButtonText,
               textBottomPadding: 6,
               height: 42,
@@ -49,13 +51,21 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
               fontColor: textButtonColor,
               fontWeight: FontWeight.normal,
               radius: 10,
-              onPressed: () {},
+              onPressed: () async {
+                bool result = true;
+                if (onOkButtonPressed != null) {
+                  result = await onOkButtonPressed!();
+                }
+                if (result) {
+                  Navigator.of(context).pop();
+                }
+              },
               text: okButtonText,
               textBottomPadding: 6,
               height: 42,
               backgroundColor: buttonsColor.shade900,
               hoveredColor: hoverColor,
-            ),
+            )
           ]),
     );
   }
