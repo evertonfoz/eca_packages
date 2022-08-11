@@ -49,6 +49,7 @@ export 'src/device/platform_version.dart';
 export 'src/device/android_navigation_back_button/android_navigation_back_button.dart';
 export 'src/initial_name_avatar/initial_name_avatar.dart';
 export 'src/dialogs/show_modal_bottom_sheet.dart';
+export 'src/dialogs/alert_dialog_with_a_textfield.dart';
 export 'src/radio/radio.dart';
 export 'src/shimmer/shimmer.dart';
 export 'src/utils/env_manager.dart';
