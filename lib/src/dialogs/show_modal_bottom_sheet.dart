@@ -97,13 +97,15 @@ showModalBottomSheetToPickAPhoto({
 showModalBottomSheetToSimpleInformation({
   required final BuildContext context,
   String title = 'Informação',
-  required String information,
+  String? information,
   Color? titleColor,
   Color? backgroundButtonColor,
   Color? textButtonColor,
   String backButtonText = 'OK',
   Color? primaryColor,
   double? maxWidth,
+  Widget? imageBetweenTitleAndInformation,
+  bool? doublePopOnBackButtonPressed,
 }) async {
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -133,16 +135,22 @@ showModalBottomSheetToSimpleInformation({
                       Theme.of(context).textTheme.headline1?.color,
                   fontWeight: FontWeight.bold,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: TextECA(
-                    text: information,
-                    fontSize: 20,
-                    color: titleColor ??
-                        Theme.of(context).textTheme.headline1?.color,
-                    fontWeight: FontWeight.bold,
+                if (imageBetweenTitleAndInformation != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 32.0),
+                    child: imageBetweenTitleAndInformation,
                   ),
-                ),
+                if (information != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: TextECA(
+                      text: information,
+                      fontSize: 20,
+                      color: titleColor ??
+                          Theme.of(context).textTheme.headline1?.color,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.only(
@@ -159,6 +167,10 @@ showModalBottomSheetToSimpleInformation({
                         text: backButtonText,
                         onPressed: () {
                           Navigator.of(context).pop();
+                          if (doublePopOnBackButtonPressed != null &&
+                              doublePopOnBackButtonPressed) {
+                            Navigator.of(context).pop();
+                          }
                         },
                       ),
                     ),
