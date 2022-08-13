@@ -1,15 +1,19 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class CarouselSliderImages extends StatefulWidget {
   final Color borderColor;
   final String imageField;
+  final MaterialColor loadingColor;
 
   const CarouselSliderImages({
     Key? key,
     required this.photos,
     required this.borderColor,
     required this.imageField,
+    required this.loadingColor,
   }) : super(key: key);
 
   final List<dynamic> photos;
@@ -46,9 +50,23 @@ class _CarouselSliderImagesState extends State<CarouselSliderImages> {
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(color: widget.borderColor),
-                    child: Image.network(
-                      //TODO Trocar pelo cached images
-                      i[widget.imageField], fit: BoxFit.cover, //i['url_image']
+                    child: CachedNetworkImage(
+                      // width: 100,
+                      // height: 100,
+                      fit: BoxFit.cover,
+                      imageUrl: i[widget.imageField],
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              IndicatorProcessingCircularTextAndGif(
+                        loadingColor: widget.loadingColor,
+                        texts: const [
+                          'aguarde',
+                          'recuperando',
+                          'imagem'
+                        ], //['${downloadProgress.downloaded}'],
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                 );
