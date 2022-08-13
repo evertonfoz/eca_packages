@@ -137,33 +137,34 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 
     if (iconPosition == IconPositionOfRoundedBorderButton.top) {
       _rowOrColumnContainer = Column(
-        // ignore: prefer_const_literals_to_create_immutables
         children: [],
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
       );
-      if (icon != null) {
-        _sizedBox = const SizedBox(height: 20);
-      } else if (image != null) {
-        _sizedBox = const SizedBox(height: 0);
-      }
+      _sizedBox = SizedBox(height: icon != null ? 20 : 0);
     } else {
       _rowOrColumnContainer = Row(
-        // ignore: prefer_const_literals_to_create_immutables
         children: [],
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
       );
-      _sizedBox = SizedBox(width: (icon != null && text != null) ? 20 : 0);
+      _sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
 
     if (icon != null && text != null) {
       _rowOrColumnContainer.children.add(icon ?? Container());
+      // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
+    // if (image != null && text != null) {
+    //   _rowOrColumnContainer.children.add(image ?? Container());
+    //   // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
+    // }
+//TODO Avaliar como fica o botão
     if (icon != null && image != null && text == null) {
+      // _rowOrColumnContainer.children.add(icon ?? Container());
       _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
