@@ -10,8 +10,6 @@ const double kMaxWidthOfImage = 600;
 const double kMaxHeightOfImage = 1024;
 const int kImageQuality = 80;
 
-// TODO Refatorar após a inclusão de receber widgets para as capturas
-
 class ImagePickerECA extends StatefulWidget {
   final bool showFabButtonsInColumn;
   final VoidCallback? onCancelPress;
@@ -162,7 +160,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
                                 texts: const [
                                   'aguarde',
                                   'recuperando',
-                                  'posts'
+                                  'images'
                                 ],
                               ),
                             );
