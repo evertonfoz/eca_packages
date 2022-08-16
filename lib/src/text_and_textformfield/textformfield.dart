@@ -197,7 +197,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       if (hasError != null && !hasError!) {
         sufixIcons.add(
           FaIcon(
-            FontAwesomeIcons.solidCircleCheck,
+            FontAwesomeIcons.solidCircle,
             color: Theme.of(context).iconTheme.color,
           ),
         );
@@ -232,7 +232,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
             ? null
             : widget.onPressAditionalSufixIcon!(),
         child: FaIcon(
-          widget.aditionalSufixIcons![widget.obscureText ? 0 : 1],
+          widget.aditionalSufixIcons![widget.obscureText ? 1 : 0],
           color: color,
         ),
       ));
