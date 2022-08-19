@@ -48,6 +48,23 @@ bool isGreaterThenValue({
   return false;
 }
 
+bool isLessThenValue({
+  required String value,
+  required dynamic max,
+}) {
+  if (value.isEmpty) return false;
+  if (max.runtimeType == double) {
+    return (convertCommaToPointValue(value: value) < max);
+  } else if (max.runtimeType == DateTime) {
+    try {
+      return (convertDDMMYYYYToDateTime(value).isBefore(max));
+    } catch (e) {
+      return false;
+    }
+  }
+  return false;
+}
+
 bool isHourGreaterThenValue(
     {required String first,
     required String last,
@@ -93,22 +110,6 @@ bool isAValidHour(String value) {
     return false;
   }
 }
-
-// bool isAValidHour(String value) {
-//   initializeDateFormatting();
-//   if (value.length < 5) {
-//     return false;
-//   }
-//   var strDate = '2022-05-20 $value';
-//   try {
-//     final dateFormat = DateFormat('h:mm a');
-
-//     dateFormat.format(DateTime.parse(strDate));
-//     return true;
-//   } on Exception catch (exception) {
-//     return false;
-//   }
-// }
 
 convertCommaToPointValue({required String value}) {
   if (value.runtimeType == String) {
