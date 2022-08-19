@@ -13,7 +13,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   final Image? image;
   final Icon? icon;
   final double height;
-  final double width;
+  final double? width;
   final double? fontSize;
   final Color? fontColor;
   final Color? borderColor;
