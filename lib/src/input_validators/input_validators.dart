@@ -72,11 +72,32 @@ bool isHourGreaterThenValue(
   if (!isAValidHour(first) || !isAValidHour(last)) {
     return false;
   }
-  return (convertDDMMYYYYHHMMToDateTime('20/05/2022 $last').isAfter(
-    convertDDMMYYYYHHMMToDateTime('20/05/2022 $first').add(
-      Duration(minutes: minutesToAddAfterFirst - 1),
-    ),
-  ));
+
+  final firstTime = (convertStringToTimeOfDay(first).hour) +
+      (convertStringToTimeOfDay(first).minute / 60);
+  final lastTime = (convertStringToTimeOfDay(last).hour) +
+      ((convertStringToTimeOfDay(last).minute + (minutesToAddAfterFirst - 1)) /
+          60);
+
+  return lastTime > firstTime;
+  // return (convertDDMMYYYYHHMMToDateTime('20/05/2022 $last').isAfter(
+  //   convertDDMMYYYYHHMMToDateTime('20/05/2022 $first').add(
+  //     Duration(minutes: minutesToAddAfterFirst - 1),
+  //   ),
+  // ));
+}
+
+bool isHourLessThenValue({required String first, required String last}) {
+  if (!isAValidHour(first) || !isAValidHour(last)) {
+    return false;
+  }
+
+  final firstTime = (convertStringToTimeOfDay(first).hour) +
+      (convertStringToTimeOfDay(first).minute / 60);
+  final lastTime = (convertStringToTimeOfDay(last).hour) +
+      (convertStringToTimeOfDay(last).minute / 60);
+
+  return firstTime < lastTime;
 }
 
 bool isMatchValidator({required String value, required String otherValue}) {
