@@ -48,6 +48,28 @@ bool isGreaterThenValue({
   return false;
 }
 
+bool isGreaterAndEqualThenValue({
+  required String value,
+  required dynamic min,
+}) {
+  if (value.isEmpty) return false;
+  if (min.runtimeType == double) {
+    return isGreaterThenValue(value: value, min: ++min);
+  } else if (min.runtimeType == DateTime) {
+    try {
+      return isGreaterThenValue(
+        value: value,
+        min: convertDDMMYYYYToDateTime(value).add(
+          Duration(days: 1),
+        ),
+      );
+    } catch (e) {
+      return false;
+    }
+  }
+  return false;
+}
+
 bool isLessThenValue({
   required String value,
   required dynamic max,

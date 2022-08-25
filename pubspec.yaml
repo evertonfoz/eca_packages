@@ -17,7 +17,7 @@ dependencies:
   dartz: ^0.10.1
   device_info_plus: ^3.2.4
   dropdown_search: ^5.0.2
-  equatable: ^2.0.3
+  equatable: ^2.0.5
   flash: ^2.0.3+1
   flutter:
     sdk: flutter
@@ -47,3 +47,5 @@ dev_dependencies:
   mobx_codegen: ^2.0.7
 
 flutter:
+  assets:
+    - assets/images/profile/
