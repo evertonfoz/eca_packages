@@ -1,8 +1,7 @@
 import 'package:eca_packages/eca_packages.dart';
-import 'package:eca_packages/src/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-buildCircleAvatar({
+Widget buildCircleAvatar({
   String? avatar,
   required double radius,
   Color borderColor = Colors.black,
