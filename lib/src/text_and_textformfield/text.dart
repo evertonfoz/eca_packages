@@ -14,6 +14,8 @@ class TextECA extends StatelessWidget {
   final bool underline;
   late TextOverflow? textOverflow;
   final int? maxLines;
+  final double? letterSpacing;
+  final List<Shadow>? shadows;
 
   TextECA({
     Key? key,
@@ -27,6 +29,8 @@ class TextECA extends StatelessWidget {
     this.underline = false,
     this.textOverflow,
     this.maxLines,
+    this.letterSpacing,
+    this.shadows,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -57,13 +61,12 @@ class TextECA extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       text: TextSpan(
         style: TextStyle(
+          shadows: shadows,
           fontSize:
               fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 14,
           color: color ?? Theme.of(context).textTheme.caption?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
-          decoration:
-              underline ? TextDecoration.underline : TextDecoration.none,
         ),
         children: _generateTextSpanChildren(),
       ),
