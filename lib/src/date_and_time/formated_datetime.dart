@@ -24,7 +24,7 @@ DateTime convertDDMMYYYYHHMMToDateTime(String dateTime) {
 }
 
 String convertDateTimeToLongFormat(DateTime dateTime) {
-  return DateFormat.yMMMMEEEEd().format(DateTime.now());
+  return DateFormat.yMMMMEEEEd('pt_BR').format(DateTime.now());
 }
 
 TimeOfDay convertStringToTimeOfDay(String time) {

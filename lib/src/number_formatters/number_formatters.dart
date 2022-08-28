@@ -12,6 +12,15 @@ numberFormated(double valor) {
       .trim();
 }
 
+currencyFormated(double valor) {
+  final formatadorValor = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
+  return formatadorValor
+      .format(
+        valor,
+      )
+      .trim();
+}
+
 numberInStringWithDecimalCommaStringWithDecimalPoint(String? value) {
   String newValue = value ?? '0';
   var indexOfDecimalBegin = newValue.indexOf(',');
