@@ -29,6 +29,9 @@ class FormFieldGroup extends StatelessWidget {
   final TextAlign? textFieldTextAlign;
   final bool enabled;
   final bool isObservable;
+  final double responsiveScaleToVerticalSeparator;
+  final double responsiveScaleToTextFontSize;
+  final double? heightToTextFormField;
 
   const FormFieldGroup({
     Key? key,
@@ -57,45 +60,53 @@ class FormFieldGroup extends StatelessWidget {
     this.enabled = true,
     this.isObservable = false,
     this.autoFocus = false,
+    this.responsiveScaleToVerticalSeparator = 1,
+    this.responsiveScaleToTextFontSize = 1,
+    this.heightToTextFormField,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         TextECA(
           text: textTitle,
           fontWeight: fontWeight,
           requiredOrientation: requiredOrientation,
+          responsiveScaleToTextFontSize: responsiveScaleToTextFontSize,
         ),
-        const SizedBox(height: 10),
-        TextFormFieldECA(
-          requiredField: requiredOrientation,
-          isObservable: isObservable,
-          enabled: enabled,
-          textFieldTextAlign: textFieldTextAlign,
-          textEditingController: textEditingController,
-          prefixText: prefixText,
-          maxLines: maxLines ?? 1,
-          textInputFormatters: textInputFormatters,
-          focusNode: focusNode,
-          obscureText: obscureText,
-          textInputAction: textInputAction,
-          textInputType: textInputType,
-          valueToTextController: valueToTextController,
-          errorMessages: errorMessages,
-          validationFunctions: validationFunctions,
-          registerValueInStoreForm: registerValueInStoreForm,
-          onPressAditionalSufixIcon: onPressAditionalSufixIcon,
-          aditionalSufixIcons: aditionalSufixIcons,
-          errorMaxLines: errorMaxLines,
-          nextFocus: nextFocus,
-          onSaved: onSaved,
-          registerStatusInStoreForm: registerStatusInStoreForm,
-          autofocus: autoFocus,
+        SizedBox(height: 10 * responsiveScaleToVerticalSeparator),
+        SizedBox(
+          height: heightToTextFormField,
+          child: TextFormFieldECA(
+            requiredField: requiredOrientation,
+            isObservable: isObservable,
+            enabled: enabled,
+            textFieldTextAlign: textFieldTextAlign,
+            textEditingController: textEditingController,
+            prefixText: prefixText,
+            maxLines: maxLines ?? 1,
+            textInputFormatters: textInputFormatters,
+            focusNode: focusNode,
+            obscureText: obscureText,
+            textInputAction: textInputAction,
+            textInputType: textInputType,
+            valueToTextController: valueToTextController,
+            errorMessages: errorMessages,
+            validationFunctions: validationFunctions,
+            registerValueInStoreForm: registerValueInStoreForm,
+            onPressAditionalSufixIcon: onPressAditionalSufixIcon,
+            aditionalSufixIcons: aditionalSufixIcons,
+            errorMaxLines: errorMaxLines,
+            nextFocus: nextFocus,
+            onSaved: onSaved,
+            registerStatusInStoreForm: registerStatusInStoreForm,
+            autofocus: autoFocus,
+          ),
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10 * responsiveScaleToVerticalSeparator),
       ],
     );
   }

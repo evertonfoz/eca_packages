@@ -16,6 +16,7 @@ class TextECA extends StatelessWidget {
   final int? maxLines;
   final double? letterSpacing;
   final List<Shadow>? shadows;
+  final double responsiveScaleToTextFontSize;
 
   TextECA({
     Key? key,
@@ -31,6 +32,7 @@ class TextECA extends StatelessWidget {
     this.maxLines,
     this.letterSpacing,
     this.shadows,
+    this.responsiveScaleToTextFontSize = 1,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -62,8 +64,10 @@ class TextECA extends StatelessWidget {
       text: TextSpan(
         style: TextStyle(
           shadows: shadows,
-          fontSize:
-              fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 14,
+          fontSize: (fontSize ??
+                  Theme.of(context).textTheme.caption?.fontSize ??
+                  14) *
+              responsiveScaleToTextFontSize,
           color: color ?? Theme.of(context).textTheme.caption?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
