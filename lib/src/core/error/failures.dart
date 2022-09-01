@@ -17,7 +17,10 @@ class ServerFailure extends Failure {
   ServerFailure({this.message});
 }
 
-class NotAuthorizedFailure extends Failure {}
+class NotAuthorizedFailure extends Failure {
+  String? message;
+  NotAuthorizedFailure({this.message});
+}
 
 class NotUniqueDataFailure extends Failure {
   final String message;

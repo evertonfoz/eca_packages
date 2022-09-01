@@ -8,8 +8,8 @@ hideNavigationBar() {
 }
 
 hideStatusBarAndSetColorToNavigationBar(
-    {required Color navigationBarColor}) async {
-  // await StatusBarControl.setFullscreen(true);
+    {required Color navigationBarColor, bool fullScreen = true}) async {
+  await StatusBarControl.setFullscreen(fullScreen);
   await StatusBarControl.setHidden(true, animation: StatusBarAnimation.SLIDE);
   await StatusBarControl.setNavigationBarColor(navigationBarColor,
       animated: true);

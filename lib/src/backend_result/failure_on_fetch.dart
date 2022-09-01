@@ -26,6 +26,11 @@ failureOnFetch({
       context: context,
       information: failure.message,
     );
+  } else if (failure is NotAuthorizedFailure) {
+    await showModalBottomSheetToSimpleInformation(
+      context: context,
+      information: failure.message,
+    );
   } else if (failure is NotFoundFailure) {
     await showModalBottomSheetToSimpleInformation(
       context: context,

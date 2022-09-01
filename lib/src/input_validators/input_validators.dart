@@ -87,6 +87,7 @@ bool isLessThenValue({
   return false;
 }
 
+//TODO Separar por categoria
 bool isHourGreaterThenValue(
     {required String first,
     required String last,

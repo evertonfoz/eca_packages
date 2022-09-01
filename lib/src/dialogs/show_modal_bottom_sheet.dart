@@ -130,7 +130,7 @@ showModalBottomSheetToSimpleInformation({
                 const SizedBox(height: 30),
                 TextECA(
                   text: title,
-                  fontSize: 30,
+                  fontSize: 50,
                   color: titleColor ??
                       Theme.of(context).textTheme.headline1?.color,
                   fontWeight: FontWeight.bold,
