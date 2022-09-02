@@ -35,6 +35,7 @@ class TextFormFieldECA extends StatefulWidget {
   final Color? fontColor;
   final double? bottomContentPadding;
   final bool requiredField;
+  final int? minLines;
 
   const TextFormFieldECA({
     Key? key,
@@ -70,6 +71,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.fontColor,
     this.bottomContentPadding,
     this.requiredField = false,
+    this.minLines,
   }) : super(key: key);
 
   @override
@@ -123,8 +125,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       ),
       autofocus: widget.autofocus,
       enabled: widget.enabled,
-      minLines: 1,
-      maxLines: widget.maxLines,
+      minLines: widget.minLines ?? widget.maxLines,
+      maxLines: widget.minLines != null && widget.maxLines < widget.minLines!
+          ? widget.minLines
+          : widget.maxLines,
       obscureText: widget.obscureText,
       focusNode: _focusNode,
       inputFormatters:
