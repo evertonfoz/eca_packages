@@ -17,9 +17,6 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   final double fontSize;
   final Alignment? alignment;
 
-  ///[WelcomePoliceAndTermUseAccess] widget voltato para criar o texto para do 
-  ///checkbox para aceitação dos termos de uso do aplicativo. Possibilitando
-  ///também abrir os termos de uso.
   const WelcomePoliceAndTermUseAccess({
     Key? key,
     required this.policeFileName,
