@@ -16,6 +16,7 @@ class TextECA extends StatelessWidget {
   final int? maxLines;
   final double? letterSpacing;
   final List<Shadow>? shadows;
+  final bool softwrap;
 
   TextECA({
     Key? key,
@@ -31,6 +32,7 @@ class TextECA extends StatelessWidget {
     this.maxLines,
     this.letterSpacing,
     this.shadows,
+    this.softwrap = false,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -56,6 +58,7 @@ class TextECA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
+      // softWrap: softwrap,
       maxLines: maxLines,
       overflow: textOverflow ?? TextOverflow.fade,
       textAlign: textAlign ?? TextAlign.center,
