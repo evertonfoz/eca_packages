@@ -32,6 +32,7 @@ class FormFieldGroup extends StatelessWidget {
   final int? minLines;
   final double? textFontSize;
   final double? textFieldFontSize;
+  final double? errorFontSize;
 
   const FormFieldGroup({
     Key? key,
@@ -63,6 +64,7 @@ class FormFieldGroup extends StatelessWidget {
     this.minLines,
     this.textFontSize,
     this.textFieldFontSize,
+    this.errorFontSize,
   }) : super(key: key);
 
   @override
@@ -79,6 +81,7 @@ class FormFieldGroup extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
+          errorFontSize: errorFontSize,
           minLines: minLines,
           requiredField: requiredOrientation,
           isObservable: isObservable,
