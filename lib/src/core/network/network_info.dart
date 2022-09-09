@@ -18,7 +18,7 @@ class NetworkInfoImpl implements NetworkInfo {
       Modular.get<
           http.Client>(); //TODO POG para o XBUsiness, tirar após refatoração
       final response = await Modular.get<http.Client>().get(
-        Uri.parse('http://www.google.com'),
+        Uri.parse('https://www.google.com'),
         headers: {
           'Content-Type': 'application/json',
         },
