@@ -21,6 +21,9 @@ void showBottomSnackBar({
   Color? progressIndicatorValueColor,
   String? yesButtonText,
   String? noButtonText,
+  double titleFontSize = 30,
+  double contentFontSize = 20,
+  double buttonFontSize = 20,
 }) {
   assert(
       (title != null || content != null) &&
@@ -72,7 +75,7 @@ void showBottomSnackBar({
               visible: title != null,
               child: TextECA(
                 text: title ?? '',
-                fontSize: 30,
+                fontSize: titleFontSize,
                 color: textColor ??
                     Theme.of(context).snackBarTheme.actionTextColor,
                 fontWeight: FontWeight.bold,
@@ -83,7 +86,7 @@ void showBottomSnackBar({
               visible: content != null,
               child: TextECA(
                 text: content ?? '',
-                fontSize: 20,
+                fontSize: contentFontSize,
                 color: textColor ??
                     Theme.of(context).snackBarTheme.actionTextColor,
                 textAlign: textAlign ?? TextAlign.left,
@@ -105,7 +108,7 @@ void showBottomSnackBar({
                         child: TextButton(
                             style: ButtonStyle(
                               textStyle: MaterialStateProperty.all<TextStyle>(
-                                const TextStyle(fontSize: 20),
+                                TextStyle(fontSize: buttonFontSize),
                               ),
                             ),
                             onPressed: () {
@@ -120,7 +123,7 @@ void showBottomSnackBar({
                         child: TextButton(
                             style: ButtonStyle(
                               textStyle: MaterialStateProperty.all<TextStyle>(
-                                const TextStyle(fontSize: 20),
+                                TextStyle(fontSize: buttonFontSize),
                               ),
                             ),
                             onPressed: () {
