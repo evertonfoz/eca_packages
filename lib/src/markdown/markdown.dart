@@ -12,7 +12,8 @@ class MarkdownShowFile extends StatefulWidget {
   final Color? appBarIconAndTextColor;
   final Color? appBarBackgroundColor;
   final Color? statusBarColor;
-  final Function()? onBack; //TODO
+  final Function()? onBack;
+  final Widget? actionsAppBarWidget;
 
   const MarkdownShowFile({
     Key? key,
@@ -24,6 +25,7 @@ class MarkdownShowFile extends StatefulWidget {
     this.statusBarColor,
     this.appBarBackgroundColor,
     this.onBack,
+    this.actionsAppBarWidget,
   }) : super(key: key);
 
   @override
@@ -85,6 +87,11 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
             color: widget.appBarIconAndTextColor ??
                 Theme.of(context).appBarTheme.foregroundColor,
           ),
+          actions: widget.actionsAppBarWidget != null
+              ? [
+                  widget.actionsAppBarWidget!,
+                ]
+              : null,
         ),
         body: displayMarkdown(getFile()));
   }

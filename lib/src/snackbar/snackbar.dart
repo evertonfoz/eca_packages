@@ -20,6 +20,7 @@ void showBottomSnackBar({
   Color? progressIndicatorBackgroundColor,
   Color? progressIndicatorValueColor,
   String? yesButtonText,
+  String? noButtonText,
 }) {
   assert(
       (title != null || content != null) &&
@@ -128,7 +129,7 @@ void showBottomSnackBar({
                               }
                               controller.dismiss();
                             },
-                            child: const Text('NÃO'))),
+                            child: Text(noButtonText ?? 'NÃO'))),
                   ],
           ),
         ),
