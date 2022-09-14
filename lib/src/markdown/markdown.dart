@@ -14,6 +14,7 @@ class MarkdownShowFile extends StatefulWidget {
   final Color? statusBarColor;
   final Function()? onBack;
   final Widget? actionsAppBarWidget;
+  final double textScaleFactor;
 
   const MarkdownShowFile({
     Key? key,
@@ -26,6 +27,7 @@ class MarkdownShowFile extends StatefulWidget {
     this.appBarBackgroundColor,
     this.onBack,
     this.actionsAppBarWidget,
+    this.textScaleFactor = 1,
   }) : super(key: key);
 
   @override
@@ -69,9 +71,7 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
           backgroundColor: widget.appBarBackgroundColor ??
               Theme.of(context).appBarTheme.backgroundColor,
           leading: InkWell(
-            onTap: widget.onBack == null
-                ? () => Navigator.of(context).pop()
-                : widget.onBack,
+            onTap: widget.onBack ?? () => Navigator.of(context).pop(),
             child: AppBarContainer(
               child: Icon(
                 Icons.arrow_back,
@@ -103,6 +103,8 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
         if (snapshot.hasData) {
           return Markdown(
             data: snapshot.data!,
+            styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context))
+                .copyWith(textScaleFactor: widget.textScaleFactor),
           );
         }
         return const Center(
