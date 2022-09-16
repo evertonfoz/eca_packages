@@ -56,13 +56,17 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    return Image(
-      key: UniqueKey(),
-      image: CachedNetworkImageProvider(
-        imageURL,
-        maxWidth: (width ?? 210).toInt(),
-        maxHeight: (height ?? 210).toInt(),
-      ),
-    ).image;
+    return Image.network(
+            'https://danco-contigo.sfo3.digitaloceanspaces.com/personal_dancer/avatar/everton_utfpr_edu_br.jpg')
+        .image;
+    //TODO não funcionou na página de teste do DC
+    // return Image(
+    //   key: UniqueKey(),
+    //   image: CachedNetworkImageProvider(
+    //     'https://danco-contigo.sfo3.digitaloceanspaces.com/personal_dancer/avatar/everton_utfpr_edu_br.jpg',
+    //     maxWidth: (width ?? 210).toInt(),
+    //     maxHeight: (height ?? 210).toInt(),
+    //   ),
+    // ).image;
   }
 }
