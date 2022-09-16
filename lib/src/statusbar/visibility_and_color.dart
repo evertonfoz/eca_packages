@@ -25,10 +25,14 @@ showStatusBarAndSetColorToNavigationBar({
   Color? statusBarColor,
   bool darkContent = true,
 }) async {
-  await StatusBarControl.setHidden(
-    false,
-    animation: StatusBarAnimation.SLIDE,
-  );
+  try {
+    await StatusBarControl.setHidden(
+      false,
+      animation: StatusBarAnimation.SLIDE,
+    );
+  } catch (e) {
+    print(e.toString());
+  }
   await StatusBarControl.setFullscreen(false);
   if (navigationBarColor != null || statusBarColor != null) {
     await StatusBarControl.setColor(
