@@ -9,10 +9,14 @@ hideNavigationBar() {
 
 hideStatusBarAndSetColorToNavigationBar(
     {required Color navigationBarColor, bool fullScreen = true}) async {
-  await StatusBarControl.setFullscreen(fullScreen);
-  await StatusBarControl.setHidden(true, animation: StatusBarAnimation.SLIDE);
-  await StatusBarControl.setNavigationBarColor(navigationBarColor,
-      animated: true);
+  try {
+    await StatusBarControl.setFullscreen(fullScreen);
+    await StatusBarControl.setHidden(true, animation: StatusBarAnimation.SLIDE);
+    await StatusBarControl.setNavigationBarColor(navigationBarColor,
+        animated: true);
+  } catch (e) {
+    print('Erro ${e.toString()}');
+  }
 }
 
 //TODO Registrar cores anteriores e manter no bind

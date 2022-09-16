@@ -64,23 +64,25 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   _generateNextButton() {
     return Expanded(
       flex: withNotJumpButton ? 1 : 2,
-      child: DefaultRoundedBorderButton(
-        fontSize: fontSize,
-        backgroundColor: backgroundColor,
-        borderColor: backgroundColor,
-        fontColor: foregroundColor,
-        text: withNotJumpButton ? 'Próximo' : '',
-        icon: !withNotJumpButton
-            ? Icon(
-                Icons.arrow_forward,
-                color: foregroundColor,
-                size: 32,
-              )
-            : null,
-        height: 70,
-        onPressed: onNextPagePressed,
-        radius: radius,
-        // width: 200,
+      child: FittedBox(
+        child: DefaultRoundedBorderButton(
+          fontSize: fontSize,
+          backgroundColor: backgroundColor,
+          borderColor: backgroundColor,
+          fontColor: foregroundColor,
+          text: withNotJumpButton ? 'Próximo' : '',
+          icon: !withNotJumpButton
+              ? Icon(
+                  Icons.arrow_forward,
+                  color: foregroundColor,
+                  size: 32,
+                )
+              : null,
+          height: 70,
+          onPressed: onNextPagePressed,
+          radius: radius,
+          // width: 200,
+        ),
       ),
     );
   }

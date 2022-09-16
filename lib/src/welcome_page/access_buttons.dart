@@ -2,6 +2,7 @@ import 'package:eca_packages/src/buttons/default_rounded_border_button.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePageAccessButtons extends StatelessWidget {
+  final Color? hoveredColor;
   final Color? topButtonTextColor;
   final Color? topButtonBorderColor;
   final Color? topButtonBackgroundColor;
@@ -14,6 +15,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
   final VoidCallback onBottomButtonPressed;
   final double? radius;
   final double percentToWidth;
+
   /// Um unico botão criado para o retorno de dois botoes
   const WelcomePageAccessButtons({
     Key? key,
@@ -29,6 +31,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
     required this.bottomButtonCaption,
     this.radius,
     this.percentToWidth = 1,
+    this.hoveredColor,
   }) : super(key: key);
 
   @override
@@ -39,6 +42,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           DefaultRoundedBorderButton(
+            hoveredColor: hoveredColor,
             backgroundColor: topButtonBackgroundColor,
             // fontColor: topButtonTextColor,
             fontSize: 20,
@@ -50,10 +54,10 @@ class WelcomePageAccessButtons extends StatelessWidget {
             onPressed: onTopButtonPressed,
             radius: radius ?? 5,
             fontColor: topButtonTextColor,
-            
           ),
           const SizedBox(height: 20),
           DefaultRoundedBorderButton(
+            hoveredColor: hoveredColor,
             backgroundColor: bottomButtonBackgroundColor,
             borderColor: bottomButtonBorderColor,
             fontColor: bottomButtonTextColor,

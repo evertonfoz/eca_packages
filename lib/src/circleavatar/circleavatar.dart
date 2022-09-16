@@ -56,9 +56,7 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    return Image.network(
-            'https://danco-contigo.sfo3.digitaloceanspaces.com/personal_dancer/avatar/everton_utfpr_edu_br.jpg')
-        .image;
+    return Image.network(imageURL).image;
     //TODO não funcionou na página de teste do DC
     // return Image(
     //   key: UniqueKey(),
