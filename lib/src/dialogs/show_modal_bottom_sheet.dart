@@ -13,6 +13,7 @@ showModalBottomSheetToPickAPhoto({
   Color? textButtonColor,
   String backButtonText = 'Voltar',
   Color? primaryColor,
+  int? imageQuality,
   required final Function(String?) onPickedNewAvatar,
 }) async {
   await showModalBottomSheet(
@@ -38,7 +39,7 @@ showModalBottomSheetToPickAPhoto({
                 fontWeight: FontWeight.bold,
               ),
               ImagePickerECA(
-                imageQuality: 40,
+                imageQuality: imageQuality,
                 doPopAfterPicker: true,
                 showFabButtonsInColumn: true,
                 showImageAfterPick: false,

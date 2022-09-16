@@ -24,7 +24,7 @@ class ImagePickerECA extends StatefulWidget {
   final double maxWidthOfImage;
   final double maxHeightOfImage;
   final double heightImageContainer;
-  final int imageQuality;
+  final int? imageQuality;
   final bool showImageAfterPick;
   final Widget? galleryPicker;
   final Widget? cameraPicker;
