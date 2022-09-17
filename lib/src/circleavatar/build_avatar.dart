@@ -6,6 +6,7 @@ Widget buildCircleAvatar({
   required double radius,
   Color borderColor = Colors.black,
   String noProfileImage = kNoProfileImage,
+  bool useCachedImage = true,
 }) {
   TypeOfImageToAvatar typeOfImageToAvatar;
   if (avatar != null && (avatar.startsWith('assets') || avatar == '')) {
@@ -21,6 +22,7 @@ Widget buildCircleAvatar({
     radius: radius,
     boxFit: BoxFit.fitHeight,
     borderColor: borderColor,
+    useCachedImage: useCachedImage,
     // backgroundColor: kBrandColor,
   );
 }

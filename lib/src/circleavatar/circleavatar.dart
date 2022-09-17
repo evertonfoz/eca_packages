@@ -14,6 +14,7 @@ class CircleAvatarECA extends StatelessWidget {
   final BoxFit? boxFit;
   final double? width;
   final double? height;
+  final bool useCachedImage;
 
   const CircleAvatarECA({
     Key? key,
@@ -25,6 +26,7 @@ class CircleAvatarECA extends StatelessWidget {
     this.boxFit,
     this.width,
     this.height,
+    this.useCachedImage = true,
   }) : super(key: key);
 
   @override
@@ -56,15 +58,17 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    return Image.network(imageURL).image;
+    if (!useCachedImage) {
+      return Image.network(imageURL).image;
+    }
     //TODO não funcionou na página de teste do DC
-    // return Image(
-    //   key: UniqueKey(),
-    //   image: CachedNetworkImageProvider(
-    //     'https://danco-contigo.sfo3.digitaloceanspaces.com/personal_dancer/avatar/everton_utfpr_edu_br.jpg',
-    //     maxWidth: (width ?? 210).toInt(),
-    //     maxHeight: (height ?? 210).toInt(),
-    //   ),
-    // ).image;
+    return Image(
+      key: UniqueKey(),
+      image: CachedNetworkImageProvider(
+        imageURL,
+        maxWidth: (width ?? 210).toInt(),
+        maxHeight: (height ?? 210).toInt(),
+      ),
+    ).image;
   }
 }
