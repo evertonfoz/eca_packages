@@ -8,7 +8,7 @@ class RadioECA<T> extends StatelessWidget {
   final dynamic groupValue;
   final bool enabled;
   final double scale;
-  final double fontSize;
+  final double? fontSize;
   final Color? activeColor;
   final double spaceBetweenRadionAndText;
 

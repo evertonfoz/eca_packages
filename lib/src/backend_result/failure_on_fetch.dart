@@ -11,7 +11,7 @@ failureOnFetch({
   required Color onHideNavigationBarColor,
   required Color onShowNavigationBarColor,
 }) async {
-  Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
+  // Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
   await hideStatusBarAndSetColorToNavigationBar(
       navigationBarColor: onHideNavigationBarColor);
   await Future.delayed(const Duration(seconds: 1));
@@ -21,6 +21,7 @@ failureOnFetch({
       information:
           'O servidor não está respondendo. Tente novamente mais tarde.',
     );
+    Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
   } else if (failure is NotUniqueDataFailure) {
     await showModalBottomSheetToSimpleInformation(
       context: context,

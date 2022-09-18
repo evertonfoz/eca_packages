@@ -15,6 +15,10 @@ class EnvManager {
     return _envConfigurations[key.trim()]!.toType(T);
   }
 
+  static Future<String> getEnvValue<T>({required String key}) async {
+    return await _get<String>(key: key);
+  }
+
   static Future<String> getUrlToServer<T>(
       {required String serverUrl, String? serverPort}) async {
     if (serverPort != null && !Modular.get<MainAppStore>().runOnReleaseMode) {

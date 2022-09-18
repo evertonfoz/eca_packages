@@ -78,6 +78,7 @@ class FormFieldGroup extends StatelessWidget {
           fontWeight: fontWeight,
           requiredOrientation: requiredOrientation,
           fontSize: textFontSize,
+          textAlign: TextAlign.start,
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(
