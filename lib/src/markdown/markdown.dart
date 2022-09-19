@@ -15,6 +15,7 @@ class MarkdownShowFile extends StatefulWidget {
   final Function()? onBack;
   final Widget? actionsAppBarWidget;
   final double textScaleFactor;
+  final bool backToPreviousPageLeading;
 
   const MarkdownShowFile({
     Key? key,
@@ -28,6 +29,7 @@ class MarkdownShowFile extends StatefulWidget {
     this.onBack,
     this.actionsAppBarWidget,
     this.textScaleFactor = 1,
+    this.backToPreviousPageLeading = true,
   }) : super(key: key);
 
   @override
@@ -70,17 +72,19 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
         appBar: AppBar(
           backgroundColor: widget.appBarBackgroundColor ??
               Theme.of(context).appBarTheme.backgroundColor,
-          leading: InkWell(
-            onTap: widget.onBack ?? () => Navigator.of(context).pop(),
-            child: AppBarContainer(
-              child: Icon(
-                Icons.arrow_back,
-                color: widget.appBarIconAndTextColor ??
-                    Theme.of(context).appBarTheme.iconTheme?.color,
-                size: 30,
-              ),
-            ),
-          ),
+          leading: !widget.backToPreviousPageLeading
+              ? null
+              : InkWell(
+                  onTap: widget.onBack ?? () => Navigator.of(context).pop(),
+                  child: AppBarContainer(
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: widget.appBarIconAndTextColor ??
+                          Theme.of(context).appBarTheme.iconTheme?.color,
+                      size: 30,
+                    ),
+                  ),
+                ),
           title: TextECA(
             text: widget.fileTitle,
             fontSize: 25,
