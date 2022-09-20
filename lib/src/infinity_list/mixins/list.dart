@@ -19,7 +19,9 @@ mixin ListPreferencesMixin<Model> {
   }
 
   Widget newPageProgressIndicatorBuilder(
-      {required String text, required MaterialColor loadingColor}) {
+      //TODO Mesma coisa que o de baixo
+      {required String text,
+      required MaterialColor loadingColor}) {
     return IndicatorProcessingCircularTextAndGif(
       loadingColor: loadingColor,
       texts: ['aguarde', 'recuperando', text],
@@ -41,22 +43,27 @@ mixin ListPreferencesMixin<Model> {
       {required BuildContext context,
       required String text,
       required String urlNoData,
-      double scale = 1.5}) {
+      double scale = 1.5,
+      bool isLoading = false,
+      MaterialColor? loadingColor}) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(urlNoData, //'assets/no_data.png',
-              scale: scale),
-          TextECA(
-            text: 'Ainda não temos $text para você',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
-        ],
-      ),
+      child: isLoading
+          ? firstPageProgressIndicatorBuilder(
+              loadingColor: loadingColor!, text: text)
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(urlNoData, //'assets/no_data.png',
+                    scale: scale),
+                TextECA(
+                  text: 'Nada: Ainda não temos $text para você',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ],
+            ),
     );
   }
 
@@ -99,7 +106,7 @@ mixin ListPreferencesMixin<Model> {
         children: [
           Image.asset(assetImageURL, scale: scale),
           TextECA(
-            text: 'Ainda não temos $text para você',
+            text: 'Erro: Ainda não temos $text para você',
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
