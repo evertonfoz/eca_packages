@@ -29,6 +29,7 @@ class ImagePickerECA extends StatefulWidget {
   final Widget? galleryPicker;
   final Widget? cameraPicker;
   final bool doPopAfterPicker;
+  final bool pickAVideo;
 
   const ImagePickerECA({
     Key? key,
@@ -50,6 +51,7 @@ class ImagePickerECA extends StatefulWidget {
     this.galleryPicker,
     this.cameraPicker,
     this.doPopAfterPicker = false,
+    this.pickAVideo = false,
   }) : super(key: key);
 
   @override
@@ -203,12 +205,20 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
 
   void _onImageButtonPressed(ImageSource source) async {
     try {
-      final pickedFile = await _picker.pickImage(
-        source: source,
-        maxWidth: widget.maxHeightOfImage,
-        maxHeight: widget.maxHeightOfImage,
-        imageQuality: widget.imageQuality,
-      );
+      final XFile? pickedFile;
+      if (!widget.pickAVideo) {
+        pickedFile = await _picker.pickImage(
+          source: source,
+          maxWidth: widget.maxHeightOfImage,
+          maxHeight: widget.maxHeightOfImage,
+          imageQuality: widget.imageQuality,
+        );
+      } else {
+        pickedFile = await _picker.pickVideo(
+          source: source,
+          maxDuration: const Duration(seconds: 30),
+        );
+      }
       setState(() {
         _imageFile = pickedFile;
       });

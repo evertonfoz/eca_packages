@@ -10,9 +10,10 @@ class MainAppStore = _MainAppStore with _$MainAppStore;
 
 abstract class _MainAppStore with Store {
   bool runOnReleaseMode;
+  bool isInTest;
 
   // ignore: unused_element
-  _MainAppStore({this.runOnReleaseMode = false});
+  _MainAppStore({this.runOnReleaseMode = false, this.isInTest = false});
 
   @observable
   String _actualModule = 'main';

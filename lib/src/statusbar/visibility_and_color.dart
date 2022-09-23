@@ -5,6 +5,13 @@ import 'package:status_bar_control/status_bar_control.dart';
 //TODO Tentar refatorar e reutilizar
 hideNavigationBar() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+  //     overlays: [SystemUiOverlay.top]);
+}
+
+showStatusBar() {
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+      overlays: [SystemUiOverlay.top]);
 }
 
 hideStatusBarAndSetColorToNavigationBar(

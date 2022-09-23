@@ -14,8 +14,13 @@ showModalBottomSheetToPickAPhoto({
   String backButtonText = 'Voltar',
   Color? primaryColor,
   int? imageQuality,
+  double fontSizeButtonSource = 20,
+  IconData firstButtonIcon = Icons.camera_alt_outlined,
+  IconData secondButtonIcon = Icons.landscape_outlined,
   required final Function(String?) onPickedNewAvatar,
+  bool pickAVideo = false,
 }) async {
+  FocusScope.of(context).unfocus();
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
       // isScrollControlled: true,
@@ -39,6 +44,7 @@ showModalBottomSheetToPickAPhoto({
                 fontWeight: FontWeight.bold,
               ),
               ImagePickerECA(
+                pickAVideo: pickAVideo,
                 imageQuality: imageQuality,
                 doPopAfterPicker: true,
                 showFabButtonsInColumn: true,
@@ -54,9 +60,12 @@ showModalBottomSheetToPickAPhoto({
                   borderColor: Colors.transparent,
                   backgroundColor: Colors.grey.shade100,
                   child: Row(children: [
-                    const Icon(Icons.camera_alt_outlined, size: 30),
+                    Icon(firstButtonIcon, size: 30),
                     const SizedBox(width: 10),
-                    TextECA(text: cameraButtonText),
+                    TextECA(
+                      text: cameraButtonText,
+                      fontSize: fontSizeButtonSource,
+                    ),
                   ]),
                 ),
                 galleryPicker: RoundedContainerECA(
@@ -64,9 +73,12 @@ showModalBottomSheetToPickAPhoto({
                   borderColor: Colors.transparent,
                   backgroundColor: Colors.grey.shade100,
                   child: Row(children: [
-                    const Icon(Icons.landscape_outlined, size: 30),
+                    Icon(secondButtonIcon, size: 30),
                     const SizedBox(width: 10),
-                    TextECA(text: galleryButtonText),
+                    TextECA(
+                      text: galleryButtonText,
+                      fontSize: fontSizeButtonSource,
+                    ),
                   ]),
                 ),
               ),

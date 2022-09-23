@@ -24,6 +24,7 @@ void showBottomSnackBar({
   double titleFontSize = 30,
   double contentFontSize = 20,
   double buttonFontSize = 20,
+  IconData iconIndicator = Icons.info_outline,
 }) {
   assert(
       (title != null || content != null) &&
