@@ -22,7 +22,7 @@ Widget buildCircleAvatar({
     radius: radius,
     boxFit: BoxFit.fitHeight,
     borderColor: borderColor,
-    useCachedImage: useCachedImage,
+    // useCachedImage: useCachedImage,
     // backgroundColor: kBrandColor,
   );
 }

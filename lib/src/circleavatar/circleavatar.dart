@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 enum TypeOfImageToAvatar { kAsset, kWeb, kFile }
 
@@ -14,7 +16,7 @@ class CircleAvatarECA extends StatelessWidget {
   final BoxFit? boxFit;
   final double? width;
   final double? height;
-  final bool useCachedImage;
+  // final bool useCachedImage;
 
   const CircleAvatarECA({
     Key? key,
@@ -26,7 +28,7 @@ class CircleAvatarECA extends StatelessWidget {
     this.boxFit,
     this.width,
     this.height,
-    this.useCachedImage = true,
+    // this.useCachedImage = true,
   }) : super(key: key);
 
   @override
@@ -58,17 +60,24 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    if (!useCachedImage) {
-      return Image.network(imageURL).image;
-    }
-    //TODO não funcionou na página de teste do DC
-    return Image(
-      key: UniqueKey(),
-      image: CachedNetworkImageProvider(
-        imageURL,
-        maxWidth: (width ?? 210).toInt(),
-        maxHeight: (height ?? 210).toInt(),
-      ),
+    return FadeInImage.memoryNetwork(
+      image: imageURL,
+      placeholder: kTransparentImage,
+      width: width ?? 210,
+      height: height,
     ).image;
+    // if (!useCachedImage) {
+    //   return Image.network(imageURL).image;
+    // }
+    // //TODO não funcionou na página de teste do DC
+
+    // return Image(
+    //   key: UniqueKey(),
+    //   image: CachedNetworkImageProvider(
+    //     cacheKey: imageURL,
+    //     maxWidth: (width ?? 210).toInt(),
+    //     maxHeight: (height ?? 210).toInt(),
+    //   ),
+    // ).image;
   }
 }
