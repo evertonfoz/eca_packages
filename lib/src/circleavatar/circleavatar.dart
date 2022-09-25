@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eca_packages/eca_packages.dart';
@@ -16,9 +17,10 @@ class CircleAvatarECA extends StatelessWidget {
   final BoxFit? boxFit;
   final double? width;
   final double? height;
+  dynamic? placeHolderImage;
   // final bool useCachedImage;
 
-  const CircleAvatarECA({
+  CircleAvatarECA({
     Key? key,
     this.radius = 32,
     this.borderColor = Colors.white38,
@@ -28,6 +30,8 @@ class CircleAvatarECA extends StatelessWidget {
     this.boxFit,
     this.width,
     this.height,
+    this.placeHolderImage,
+
     // this.useCachedImage = true,
   }) : super(key: key);
 
@@ -38,6 +42,14 @@ class CircleAvatarECA extends StatelessWidget {
       backgroundColor: borderColor,
       child: CircleAvatar(
           radius: radius * 0.95,
+          backgroundImage: placeHolderImage == null
+              ? placeHolderImage
+              : Image.asset(
+                  placeHolderImage,
+                  fit: boxFit ?? BoxFit.fill,
+                  width: width ?? 210,
+                  height: height ?? 210,
+                ).image,
           backgroundColor: backgroundColor,
           foregroundImage: _buildAvatarImage()),
     );
@@ -60,24 +72,13 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    return FadeInImage.memoryNetwork(
+    return FadeInImage.assetNetwork(
       image: imageURL,
-      placeholder: kTransparentImage,
+      placeholder: placeHolderImage,
       width: width ?? 210,
-      height: height,
+      // placeholderCacheHeight: 200,
+      height: height ?? 210,
+      fit: boxFit,
     ).image;
-    // if (!useCachedImage) {
-    //   return Image.network(imageURL).image;
-    // }
-    // //TODO não funcionou na página de teste do DC
-
-    // return Image(
-    //   key: UniqueKey(),
-    //   image: CachedNetworkImageProvider(
-    //     cacheKey: imageURL,
-    //     maxWidth: (width ?? 210).toInt(),
-    //     maxHeight: (height ?? 210).toInt(),
-    //   ),
-    // ).image;
   }
 }

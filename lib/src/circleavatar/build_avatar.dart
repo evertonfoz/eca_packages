@@ -1,12 +1,15 @@
+import 'dart:typed_data';
+
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 Widget buildCircleAvatar({
   String? avatar,
   required double radius,
   Color borderColor = Colors.black,
   String noProfileImage = kNoProfileImage,
-  bool useCachedImage = true,
+  dynamic? placeHolderImage,
 }) {
   TypeOfImageToAvatar typeOfImageToAvatar;
   if (avatar != null && (avatar.startsWith('assets') || avatar == '')) {
