@@ -1,5 +1,6 @@
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 failureOnFetch({
@@ -16,11 +17,19 @@ failureOnFetch({
       navigationBarColor: onHideNavigationBarColor);
   await Future.delayed(const Duration(seconds: 1));
   if (failure is TimeOutFailure || failure is ServerFailure) {
-    await showModalBottomSheetToSimpleInformation(
+    showBottomSnackBar(
+      title: 'Informação',
       context: context,
-      information:
-          'O servidor não está respondendo. Tente novamente mais tarde.',
+      content: 'O servidor não está respondendo. Tente novamente mais tarde.',
+      iconIndicator: Icons.error_outline,
+      durationSeconds: 3,
     );
+
+    // await showModalBottomSheetToSimpleInformation(
+    //   context: context,
+    //   information:
+    //       'O servidor não está respondendo. Tente novamente mais tarde.',
+    // );
     Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
   } else if (failure is NotUniqueDataFailure) {
     await showModalBottomSheetToSimpleInformation(
