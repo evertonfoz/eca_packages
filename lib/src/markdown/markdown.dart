@@ -81,7 +81,7 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
                       Icons.arrow_back,
                       color: widget.appBarIconAndTextColor ??
                           Theme.of(context).appBarTheme.iconTheme?.color,
-                      size: 30,
+                      size: 60,
                     ),
                   ),
                 ),
@@ -91,6 +91,7 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
             color: widget.appBarIconAndTextColor ??
                 Theme.of(context).appBarTheme.foregroundColor,
           ),
+          centerTitle: false,
           actions: widget.actionsAppBarWidget != null
               ? [
                   widget.actionsAppBarWidget!,
