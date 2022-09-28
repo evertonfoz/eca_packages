@@ -3,10 +3,10 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/datasources/states.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 
-class StateRepository {
-  final StateDataSource dataSource;
+class StateGetlAllRepository {
+  final StateGetAllDataSource dataSource;
 
-  StateRepository({
+  StateGetlAllRepository({
     required this.dataSource,
   });
 

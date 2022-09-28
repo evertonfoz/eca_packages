@@ -1,5 +1,4 @@
 import 'package:eca_packages/eca_packages.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

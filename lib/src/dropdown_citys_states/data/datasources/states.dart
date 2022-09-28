@@ -1,6 +1,6 @@
 import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 
-class StateDataSource {
+class StateGetAllDataSource {
   //TODO, realizar um sort, independente da ordem estar correta
   Future<List<StateModel>> getAll() async {
     return Future.value(const [

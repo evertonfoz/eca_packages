@@ -8,33 +8,54 @@ part of 'mobx_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$MobxController on _MobxControllerBase, Store {
-  Computed<StateModel?>? _$stateSelectedComputed;
+mixin _$StateAndCityController on _StateAndCityControllerBase, Store {
+  Computed<ObservableList<StateModel>>? _$statesComputed;
 
   @override
-  StateModel? get stateSelected => (_$stateSelectedComputed ??=
-          Computed<StateModel?>(() => super.stateSelected,
-              name: '_MobxControllerBase.stateSelected'))
+  ObservableList<StateModel> get states => (_$statesComputed ??=
+          Computed<ObservableList<StateModel>>(() => super.states,
+              name: '_StateAndCityControllerBase.states'))
       .value;
-
-  late final _$statesAtom =
-      Atom(name: '_MobxControllerBase.states', context: context);
+  Computed<StateModel>? _$stateSelectedComputed;
 
   @override
-  List<StateModel>? get states {
-    _$statesAtom.reportRead();
-    return super.states;
+  StateModel get stateSelected => (_$stateSelectedComputed ??=
+          Computed<StateModel>(() => super.stateSelected,
+              name: '_StateAndCityControllerBase.stateSelected'))
+      .value;
+  Computed<ObservableList<CityModel>>? _$citiesComputed;
+
+  @override
+  ObservableList<CityModel> get cities => (_$citiesComputed ??=
+          Computed<ObservableList<CityModel>>(() => super.cities,
+              name: '_StateAndCityControllerBase.cities'))
+      .value;
+  Computed<CityModel>? _$citySelectedComputed;
+
+  @override
+  CityModel get citySelected =>
+      (_$citySelectedComputed ??= Computed<CityModel>(() => super.citySelected,
+              name: '_StateAndCityControllerBase.citySelected'))
+          .value;
+
+  late final _$_statesAtom =
+      Atom(name: '_StateAndCityControllerBase._states', context: context);
+
+  @override
+  ObservableList<StateModel>? get _states {
+    _$_statesAtom.reportRead();
+    return super._states;
   }
 
   @override
-  set states(List<StateModel>? value) {
-    _$statesAtom.reportWrite(value, super.states, () {
-      super.states = value;
+  set _states(ObservableList<StateModel>? value) {
+    _$_statesAtom.reportWrite(value, super._states, () {
+      super._states = value;
     });
   }
 
-  late final _$_stateSelectedAtom =
-      Atom(name: '_MobxControllerBase._stateSelected', context: context);
+  late final _$_stateSelectedAtom = Atom(
+      name: '_StateAndCityControllerBase._stateSelected', context: context);
 
   @override
   StateModel? get _stateSelected {
@@ -49,79 +70,78 @@ mixin _$MobxController on _MobxControllerBase, Store {
     });
   }
 
-  late final _$citiesAtom =
-      Atom(name: '_MobxControllerBase.cities', context: context);
+  late final _$_citiesAtom =
+      Atom(name: '_StateAndCityControllerBase._cities', context: context);
 
   @override
-  List<CityModel>? get cities {
-    _$citiesAtom.reportRead();
-    return super.cities;
+  ObservableList<CityModel>? get _cities {
+    _$_citiesAtom.reportRead();
+    return super._cities;
   }
 
   @override
-  set cities(List<CityModel>? value) {
-    _$citiesAtom.reportWrite(value, super.cities, () {
-      super.cities = value;
+  set _cities(ObservableList<CityModel>? value) {
+    _$_citiesAtom.reportWrite(value, super._cities, () {
+      super._cities = value;
     });
   }
 
-  late final _$citySelectedAtom =
-      Atom(name: '_MobxControllerBase.citySelected', context: context);
+  late final _$_citySelectedAtom =
+      Atom(name: '_StateAndCityControllerBase._citySelected', context: context);
 
   @override
-  CityModel? get citySelected {
-    _$citySelectedAtom.reportRead();
-    return super.citySelected;
+  CityModel? get _citySelected {
+    _$_citySelectedAtom.reportRead();
+    return super._citySelected;
   }
 
   @override
-  set citySelected(CityModel? value) {
-    _$citySelectedAtom.reportWrite(value, super.citySelected, () {
-      super.citySelected = value;
+  set _citySelected(CityModel? value) {
+    _$_citySelectedAtom.reportWrite(value, super._citySelected, () {
+      super._citySelected = value;
     });
   }
 
-  late final _$findCitiesAsyncAction =
-      AsyncAction('_MobxControllerBase.findCities', context: context);
+  late final _$getStatesAsyncAction =
+      AsyncAction('_StateAndCityControllerBase.getStates', context: context);
 
   @override
-  Future<void> findCities() {
-    return _$findCitiesAsyncAction.run(() => super.findCities());
+  Future<void> getStates() {
+    return _$getStatesAsyncAction.run(() => super.getStates());
   }
 
-  late final _$_MobxControllerBaseActionController =
-      ActionController(name: '_MobxControllerBase', context: context);
+  late final _$getCitiesBySelectedStateAsyncAction = AsyncAction(
+      '_StateAndCityControllerBase.getCitiesBySelectedState',
+      context: context);
 
   @override
-  void selectState(StateModel stateSelected) {
-    final _$actionInfo = _$_MobxControllerBaseActionController.startAction(
-        name: '_MobxControllerBase.selectState');
+  Future<void> getCitiesBySelectedState() {
+    return _$getCitiesBySelectedStateAsyncAction
+        .run(() => super.getCitiesBySelectedState());
+  }
+
+  late final _$_StateAndCityControllerBaseActionController =
+      ActionController(name: '_StateAndCityControllerBase', context: context);
+
+  @override
+  void registerState(StateModel? stateSelected) {
+    final _$actionInfo = _$_StateAndCityControllerBaseActionController
+        .startAction(name: '_StateAndCityControllerBase.registerState');
     try {
-      return super.selectState(stateSelected);
+      return super.registerState(stateSelected);
     } finally {
-      _$_MobxControllerBaseActionController.endAction(_$actionInfo);
+      _$_StateAndCityControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void findStates() {
-    final _$actionInfo = _$_MobxControllerBaseActionController.startAction(
-        name: '_MobxControllerBase.findStates');
+  void registerCity(CityModel? value) {
+    final _$actionInfo = _$_StateAndCityControllerBaseActionController
+        .startAction(name: '_StateAndCityControllerBase.registerCity');
     try {
-      return super.findStates();
+      return super.registerCity(value);
     } finally {
-      _$_MobxControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void selectCity(CityModel? citySelected) {
-    final _$actionInfo = _$_MobxControllerBaseActionController.startAction(
-        name: '_MobxControllerBase.selectCity');
-    try {
-      return super.selectCity(citySelected);
-    } finally {
-      _$_MobxControllerBaseActionController.endAction(_$actionInfo);
+      _$_StateAndCityControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
@@ -129,9 +149,9 @@ mixin _$MobxController on _MobxControllerBase, Store {
   String toString() {
     return '''
 states: ${states},
+stateSelected: ${stateSelected},
 cities: ${cities},
-citySelected: ${citySelected},
-stateSelected: ${stateSelected}
+citySelected: ${citySelected}
     ''';
   }
 }

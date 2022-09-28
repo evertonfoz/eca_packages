@@ -4,7 +4,7 @@ import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/repositories/states.dart';
 
 class StateGetAllUseCase implements UseCase<List<StateModel>, NoParams> {
-  final StateRepository repository;
+  final StateGetlAllRepository repository;
 
   StateGetAllUseCase({required this.repository});
 
