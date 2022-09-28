@@ -60,8 +60,8 @@ class ListRow extends StatelessWidget {
           width: columnHeader.width,
           isThereAfterSeparator: columnHeader.isThereAfterSeparator,
           onOrderTap: () {
-            if (listPreferences.sortProperty != columnHeader.text) {
-              listPreferences.setSortProperty(columnHeader.text);
+            if (listPreferences.sortProperty != columnHeader.name) {
+              listPreferences.setSortProperty(columnHeader.name!);
               listPreferences.setSortOrder(SortOrderType.asc.text);
             } else {
               listPreferences.setSortOrder(
