@@ -1,5 +1,5 @@
 import 'package:eca_packages/src/dropdown_citys_states/controllers/cities.dart';
-import 'package:eca_packages/src/dropdown_citys_states/controllers/states.dart';
+import 'package:eca_packages/src/dropdown_citys_states/controllers/states_get_all.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/models/cities.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 import 'package:mobx/mobx.dart';

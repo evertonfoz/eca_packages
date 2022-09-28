@@ -14,4 +14,9 @@ class StateGetlAllRepository {
     final states = await dataSource.getAll();
     return Right(states);
   }
+
+  Future<Either<Failure, StateModel>> getByName({required String name}) async {
+    final state = await dataSource.getByName(name: name);
+    return Right(state);
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:eca_packages/eca_packages.dart';
+import 'package:eca_packages/src/dropdown_citys_states/controllers/states_get_by_name.dart';
+import 'package:eca_packages/src/dropdown_citys_states/domain/usecases/states_get_by_name.dart';
 import 'package:eca_packages/src/dropdown_citys_states/mobx_stores/mobx_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -9,10 +11,12 @@ import 'data/models/states.dart';
 
 class DropDownCitiesStates extends StatefulWidget {
   final Color? selectedColorItem;
+  final String? stateName;
 
   const DropDownCitiesStates({
     Key? key,
     this.selectedColorItem,
+    this.stateName,
   }) : super(key: key);
 
   @override
@@ -26,7 +30,16 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
   @override
   void initState() {
     super.initState();
-    _controller.getStates();
+    _controller.getStates().then((value) {
+      if (widget.stateName != null &&
+          widget.stateName!.isNotEmpty &&
+          _controller.states.isNotEmpty) {
+        var foundState = _controller.states
+            .where((element) => element.name == widget.stateName)
+            .first;
+        _controller.registerState(foundState);
+      }
+    });
     // disposers = [
     //   reaction((_) => _controller.stateSelected,
     //       (_) => _controller.getCitiesBySelectedState()),

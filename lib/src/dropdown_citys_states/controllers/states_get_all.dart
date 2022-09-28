@@ -5,7 +5,7 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/datasources/states.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/repositories/states.dart';
-import 'package:eca_packages/src/dropdown_citys_states/domain/usecases/state.dart';
+import 'package:eca_packages/src/dropdown_citys_states/domain/usecases/states_get_all.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class StatesGetAllController {
