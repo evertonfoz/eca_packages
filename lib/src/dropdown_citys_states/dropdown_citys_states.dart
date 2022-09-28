@@ -1,10 +1,7 @@
 import 'package:eca_packages/eca_packages.dart';
-import 'package:eca_packages/src/dropdown_citys_states/controllers/states_get_by_name.dart';
-import 'package:eca_packages/src/dropdown_citys_states/domain/usecases/states_get_by_name.dart';
 import 'package:eca_packages/src/dropdown_citys_states/mobx_stores/mobx_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx/mobx.dart';
 
 import 'data/models/cities.dart';
 import 'data/models/states.dart';
@@ -12,11 +9,13 @@ import 'data/models/states.dart';
 class DropDownCitiesStates extends StatefulWidget {
   final Color? selectedColorItem;
   final String? stateName;
+  final String? cityName;
 
   const DropDownCitiesStates({
     Key? key,
     this.selectedColorItem,
     this.stateName,
+    this.cityName,
   }) : super(key: key);
 
   @override
@@ -38,12 +37,18 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             .where((element) => element.name == widget.stateName)
             .first;
         _controller.registerState(foundState);
+        Future.delayed(const Duration(milliseconds: 500)).then((value) {
+          if (widget.cityName != null &&
+              widget.cityName!.isNotEmpty &&
+              _controller.cities.isNotEmpty) {
+            var foundCity = _controller.cities
+                .where((element) => element.name == widget.cityName)
+                .first;
+            _controller.registerCity(foundCity);
+          }
+        });
       }
     });
-    // disposers = [
-    //   reaction((_) => _controller.stateSelected,
-    //       (_) => _controller.getCitiesBySelectedState()),
-    // ];
   }
 
   // @override
@@ -62,7 +67,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             onChanged: (value) => _controller.registerState(value),
             itemAsString: (value) =>
                 value!.toString(), // value.modelAsString(),showSearchBox: true,
-            searchHintText: 'Digite o nome do estado',
+            searchHintText: 'Digite o nome do estado', showSearchBox: true,
             filterFn: (item, text) =>
                 item.name.toString().toLowerCase().contains(text.toLowerCase()),
           );
@@ -78,7 +83,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             onChanged: (value) => _controller.registerCity(value!),
             itemAsString: (value) =>
                 value!.toString(), // value.modelAsString(),showSearchBox: true,
-            searchHintText: 'Digite o nome da cidade',
+            searchHintText: 'Digite o nome da cidade', showSearchBox: true,
             filterFn: (item, text) =>
                 item.name.toString().toLowerCase().contains(text.toLowerCase()),
           );
