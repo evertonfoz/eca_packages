@@ -24,7 +24,7 @@ Widget buildCircleAvatar({
     imageURL: avatar == null || avatar.isEmpty ? noProfileImage : avatar,
     radius: radius,
     boxFit: BoxFit.fitHeight,
-    borderColor: borderColor,
+    borderColor: borderColor, placeHolderImage: placeHolderImage,
     // useCachedImage: useCachedImage,
     // backgroundColor: kBrandColor,
   );

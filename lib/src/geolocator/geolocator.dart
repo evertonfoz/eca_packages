@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 
 Future<Placemark> getCurrentLocation() async {
   try {
-    await _handleLocationPermission();
+    await handleLocationPermission();
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     return await _getAddressFromLatLng(position);
@@ -12,7 +12,7 @@ Future<Placemark> getCurrentLocation() async {
   }
 }
 
-Future<void> _handleLocationPermission() async {
+Future<void> handleLocationPermission() async {
   bool serviceEnabled;
   LocationPermission permission;
 
