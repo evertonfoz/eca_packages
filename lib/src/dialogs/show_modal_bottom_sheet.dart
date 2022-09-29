@@ -8,7 +8,7 @@ showModalBottomSheetToPickAPhoto({
   Color? cameraIconColor,
   Color? galleryIconColor,
   String cameraButtonText = 'Tirar uma foto',
-  String galleryButtonText = 'Escolher da galeira',
+  String galleryButtonText = 'Escolher da galeria',
   Color? backgroundButtonColor,
   Color? textButtonColor,
   String backButtonText = 'Voltar',
