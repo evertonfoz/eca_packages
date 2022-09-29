@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../eca_packages.dart';
@@ -30,6 +31,7 @@ class ImagePickerECA extends StatefulWidget {
   final Widget? cameraPicker;
   final bool doPopAfterPicker;
   final bool pickAVideo;
+  final Color? cropTitleColor;
 
   const ImagePickerECA({
     Key? key,
@@ -52,6 +54,7 @@ class ImagePickerECA extends StatefulWidget {
     this.cameraPicker,
     this.doPopAfterPicker = false,
     this.pickAVideo = false,
+    this.cropTitleColor,
   }) : super(key: key);
 
   @override
@@ -223,7 +226,33 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
         _imageFile = pickedFile;
       });
       if (widget.onPickedNewAvatar != null) {
-        widget.onPickedNewAvatar!(_imagePathFile);
+        CroppedFile? croppedFile = await ImageCropper().cropImage(
+          compressQuality: widget.imageQuality!,
+          sourcePath: pickedFile!.path,
+          aspectRatioPresets: [
+            CropAspectRatioPreset.square,
+            CropAspectRatioPreset.ratio3x2,
+            CropAspectRatioPreset.original,
+            CropAspectRatioPreset.ratio4x3,
+            CropAspectRatioPreset.ratio16x9
+          ],
+          uiSettings: [
+            AndroidUiSettings(
+                toolbarTitle: 'Cortar Imagem',
+                toolbarColor: widget.cropTitleColor ?? Colors.black,
+                toolbarWidgetColor: Colors.white,
+                initAspectRatio: CropAspectRatioPreset.original,
+                lockAspectRatio: false),
+            IOSUiSettings(
+              title: 'Cortar Imagem',
+            ),
+            WebUiSettings(
+              context: context,
+            ),
+          ],
+        );
+        widget.onPickedNewAvatar!(
+            croppedFile != null ? croppedFile.path : pickedFile.path);
         if (widget.doPopAfterPicker) {
           Navigator.of(context).pop();
         }

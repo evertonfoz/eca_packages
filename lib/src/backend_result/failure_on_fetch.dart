@@ -23,33 +23,38 @@ failureOnFetch({
       iconIndicator: Icons.error_outline,
       durationSeconds: 3,
     );
-
-    // await showModalBottomSheetToSimpleInformation(
-    //   context: context,
-    //   information:
-    //       'O servidor não está respondendo. Tente novamente mais tarde.',
-    // );
     Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
   } else if (failure is NotUniqueDataFailure) {
-    await showModalBottomSheetToSimpleInformation(
+    showBottomSnackBar(
+      title: 'Erro',
       context: context,
-      information: failure.message,
+      content: failure.message,
+      iconIndicator: Icons.error_outline,
+      durationSeconds: 3,
     );
   } else if (failure is NotAuthorizedFailure) {
-    await showModalBottomSheetToSimpleInformation(
+    showBottomSnackBar(
+      title: 'Erro',
       context: context,
-      information: failure.message,
+      content: failure.message,
+      iconIndicator: Icons.error_outline,
+      durationSeconds: 3,
     );
   } else if (failure is NotFoundFailure) {
-    await showModalBottomSheetToSimpleInformation(
+    showBottomSnackBar(
+      title: 'Erro',
       context: context,
-      information:
-          notFoundException ?? failure.message ?? 'Dados não encontrados.',
+      content: notFoundException ?? failure.message ?? 'Dados não encontrados.',
+      iconIndicator: Icons.error_outline,
+      durationSeconds: 3,
     );
   } else {
-    await showModalBottomSheetToSimpleInformation(
+    showBottomSnackBar(
+      title: 'Erro',
       context: context,
-      information: 'Erro inesperado: ${failure.toString()}',
+      content: 'Erro inesperado: ${failure.toString()}',
+      iconIndicator: Icons.error_outline,
+      durationSeconds: 3,
     );
   }
   Future.delayed(Duration.zero, () async {
