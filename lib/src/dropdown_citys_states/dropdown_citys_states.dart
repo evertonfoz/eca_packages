@@ -34,7 +34,9 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
           widget.stateName!.isNotEmpty &&
           _controller.states.isNotEmpty) {
         var foundState = _controller.states
-            .where((element) => element.name == widget.stateName)
+            .where((element) =>
+                (element.name == widget.stateName) ||
+                (element.id == widget.stateName))
             .first;
         _controller.registerState(foundState);
         Future.delayed(const Duration(milliseconds: 500)).then((value) {
