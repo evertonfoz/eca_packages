@@ -43,9 +43,10 @@ class DropDown<T> extends StatelessWidget {
       enabled: enabled,
       dropdownDecoratorProps: DropDownDecoratorProps(
         dropdownSearchDecoration: InputDecoration(
+          fillColor: fillColor ?? Colors.white,
           // labelText: "Modal mode",
           hintText: hintText,
-          // filled: false,
+          filled: true,
           // isDense: false,
           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
         ),
