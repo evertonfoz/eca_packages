@@ -225,7 +225,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       setState(() {
         _imageFile = pickedFile;
       });
-      if (widget.onPickedNewAvatar != null) {
+      if (!widget.pickAVideo && widget.onPickedNewAvatar != null) {
         CroppedFile? croppedFile = await ImageCropper().cropImage(
           compressQuality: widget.imageQuality!,
           sourcePath: pickedFile!.path,
@@ -253,9 +253,13 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
         );
         widget.onPickedNewAvatar!(
             croppedFile != null ? croppedFile.path : pickedFile.path);
-        if (widget.doPopAfterPicker) {
-          Navigator.of(context).pop();
-        }
+        // if (widget.doPopAfterPicker) {
+        //   Navigator.of(context).pop();
+        // }
+      }
+      widget.onPickedNewAvatar!(pickedFile!.path);
+      if (widget.doPopAfterPicker) {
+        Navigator.of(context).pop();
       }
     } catch (e) {
       if (kDebugMode) {

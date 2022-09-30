@@ -37,6 +37,7 @@ class TextFormFieldECA extends StatefulWidget {
   final bool requiredField;
   final int? minLines;
   final double? errorFontSize;
+  final Color? fillColor;
 
   const TextFormFieldECA({
     Key? key,
@@ -74,6 +75,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.requiredField = false,
     this.minLines,
     this.errorFontSize,
+    this.fillColor,
   }) : super(key: key);
 
   @override
@@ -167,7 +169,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       controller: _controller,
       textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
-        errorStyle: TextStyle(fontSize: widget.errorFontSize),
+        fillColor: widget.fillColor ?? Colors.white,
+        errorStyle: TextStyle(
+          fontSize: widget.errorFontSize,
+        ),
         prefixText: widget.prefixText ?? '',
         suffixIcon: _buildSufixIcon(context),
         filled: true,
