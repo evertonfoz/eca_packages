@@ -14,6 +14,7 @@ dependencies:
   blur: ^3.0.0
   cached_network_image: ^3.2.1
   carousel_slider: ^4.1.1
+  cropperx: ^1.1.1 
   dartz: ^0.10.1
   device_info_plus: ^4.1.2
   dropdown_search: ^5.0.2
@@ -25,11 +26,11 @@ dependencies:
   flutter_mobx: ^2.0.6+1
   flutter_modular: ^5.0.2
   font_awesome_flutter: ^9.0.0
-  # geocoding: ^2.0.5
-  # geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  geolocator: ^9.0.2
   getwidget: ^3.0.1
   http_parser: ^4.0.1
-  image_cropper: ^3.0.0
+  image_crop: ^0.4.1
   image_picker: ^0.8.4+4
   infinite_scroll_pagination: ^3.2.0
   intl: ^0.17.0

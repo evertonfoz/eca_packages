@@ -1,5 +1,6 @@
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
+import 'package:image_crop/image_crop.dart';
 
 showModalBottomSheetToPickAPhoto({
   required final BuildContext context,
@@ -19,6 +20,7 @@ showModalBottomSheetToPickAPhoto({
   IconData secondButtonIcon = Icons.landscape_outlined,
   required final Function(String?) onPickedNewAvatar,
   bool pickAVideo = false,
+  // GlobalKey<CropState>? imageCropKey,
 }) async {
   FocusScope.of(context).unfocus();
   await showModalBottomSheet(
@@ -44,6 +46,7 @@ showModalBottomSheetToPickAPhoto({
                 fontWeight: FontWeight.bold,
               ),
               ImagePickerECA(
+                // imageCropKey: imageCropKey,
                 pickAVideo: pickAVideo,
                 imageQuality: imageQuality,
                 doPopAfterPicker: true,

@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
+import 'package:image_crop/image_crop.dart';
+// import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../eca_packages.dart';
@@ -32,6 +33,8 @@ class ImagePickerECA extends StatefulWidget {
   final bool doPopAfterPicker;
   final bool pickAVideo;
   final Color? cropTitleColor;
+  final bool isToCircleAvatar;
+  // final GlobalKey<CropState>? imageCropKey;
 
   const ImagePickerECA({
     Key? key,
@@ -55,6 +58,8 @@ class ImagePickerECA extends StatefulWidget {
     this.doPopAfterPicker = false,
     this.pickAVideo = false,
     this.cropTitleColor,
+    this.isToCircleAvatar = false,
+    // this.imageCropKey,
   }) : super(key: key);
 
   @override
@@ -225,38 +230,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       setState(() {
         _imageFile = pickedFile;
       });
-      if (!widget.pickAVideo && widget.onPickedNewAvatar != null) {
-        CroppedFile? croppedFile = await ImageCropper().cropImage(
-          compressQuality: widget.imageQuality!,
-          sourcePath: pickedFile!.path,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio3x2,
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.ratio4x3,
-            CropAspectRatioPreset.ratio16x9
-          ],
-          uiSettings: [
-            AndroidUiSettings(
-                toolbarTitle: 'Cortar Imagem',
-                toolbarColor: widget.cropTitleColor ?? Colors.black,
-                toolbarWidgetColor: Colors.white,
-                initAspectRatio: CropAspectRatioPreset.original,
-                lockAspectRatio: false),
-            IOSUiSettings(
-              title: 'Cortar Imagem',
-            ),
-            WebUiSettings(
-              context: context,
-            ),
-          ],
-        );
-        widget.onPickedNewAvatar!(
-            croppedFile != null ? croppedFile.path : pickedFile.path);
-        // if (widget.doPopAfterPicker) {
-        //   Navigator.of(context).pop();
-        // }
-      }
+
       widget.onPickedNewAvatar!(pickedFile!.path);
       if (widget.doPopAfterPicker) {
         Navigator.of(context).pop();
