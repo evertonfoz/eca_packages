@@ -10,12 +10,16 @@ class DropDownCitiesStates extends StatefulWidget {
   final Color? selectedColorItem;
   final String? stateName;
   final String? cityName;
+  final Function(String)? updateState;
+  final Function(String)? updateCity;
 
   const DropDownCitiesStates({
     Key? key,
     this.selectedColorItem,
     this.stateName,
     this.cityName,
+    this.updateState,
+    this.updateCity,
   }) : super(key: key);
 
   @override
@@ -66,7 +70,12 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             selectedColorItem: widget.selectedColorItem ?? Colors.red,
             items: _controller.states,
             compareFn: (item, selectedItem) => item?.id == selectedItem?.id,
-            onChanged: (value) => _controller.registerState(value),
+            onChanged: (value) {
+              _controller.registerState(value);
+              if (widget.updateState != null) {
+                widget.updateState!(value!.name);
+              }
+            },
             itemAsString: (value) =>
                 value!.toString(), // value.modelAsString(),showSearchBox: true,
             searchHintText: 'Digite o nome do estado', showSearchBox: true,
@@ -82,7 +91,12 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             selectedColorItem: widget.selectedColorItem ?? Colors.red,
             items: _controller.cities,
             compareFn: (item, selectedItem) => item?.name == selectedItem?.name,
-            onChanged: (value) => _controller.registerCity(value!),
+            onChanged: (value) {
+              _controller.registerCity(value!);
+              if (widget.updateCity != null) {
+                widget.updateCity!(value.name);
+              }
+            },
             itemAsString: (value) =>
                 value!.toString(), // value.modelAsString(),showSearchBox: true,
             searchHintText: 'Digite o nome da cidade', showSearchBox: true,
