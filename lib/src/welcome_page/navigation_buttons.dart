@@ -53,10 +53,12 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   _generateJumpButton(BuildContext context) {
     return Expanded(
       flex: 3,
-      child: DefaultTextButton(
-        fontSize: fontSize,
-        text: jumpButtonText,
-        onPressed: onJumpButtonPressed,
+      child: FittedBox(
+        child: DefaultTextButton(
+          fontSize: fontSize,
+          text: jumpButtonText,
+          onPressed: onJumpButtonPressed,
+        ),
       ),
     );
   }

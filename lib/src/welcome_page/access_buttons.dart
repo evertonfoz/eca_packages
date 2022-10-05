@@ -50,12 +50,12 @@ class WelcomePageAccessButtons extends StatelessWidget {
             // checked: true,
             width: MediaQuery.of(context).size.width * percentToWidth,
             // borderColor: topButtonBorderColor,
-            height: 60,
+            height: 50,
             onPressed: onTopButtonPressed,
             radius: radius ?? 5,
             fontColor: topButtonTextColor,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           DefaultRoundedBorderButton(
             hoveredColor: hoveredColor,
             backgroundColor: bottomButtonBackgroundColor,
@@ -68,7 +68,7 @@ class WelcomePageAccessButtons extends StatelessWidget {
             text: bottomButtonCaption,
             fontSize: 20,
             width: MediaQuery.of(context).size.width * percentToWidth,
-            height: 60,
+            height: 50,
             onPressed: onBottomButtonPressed,
             radius: radius ?? 5,
           )

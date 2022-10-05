@@ -45,7 +45,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
           text: TextSpan(
             style: TextStyle(
                 color: foregroundTextColor ??
-                    Theme.of(context).textTheme.caption?.color,
+                    Theme.of(context).textTheme.bodySmall?.color,
                 fontSize: fontSize),
             children: <TextSpan>[
               const TextSpan(text: "Ao entrar, você concorda com a nossa "),
