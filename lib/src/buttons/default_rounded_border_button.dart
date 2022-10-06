@@ -73,7 +73,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   Widget build(BuildContext context) {
     _context = context;
     return SizedBox(
-      // width: width,
+      width: width,
       // height: height,
       child: ElevatedButton(
         style: ButtonStyle(
@@ -188,17 +188,19 @@ class DefaultRoundedBorderButton extends StatelessWidget {
       _rowOrColumnContainer.children.add(
         Padding(
           padding: EdgeInsets.only(bottom: textBottomPadding),
-          child: TextECA(
-            maxLines: 2,
-            // softwrap: true,
-            text: text!,
-            textAlign: textAlign,
-            fontSize: fontSize ?? 20,
-            textOverflow: TextOverflow.fade,
-            fontWeight: fontWeight,
-            color: checked != null && !checked!
-                ? invertedFontColor ?? fontColor
-                : fontColor ?? Theme.of(_context!).primaryColor,
+          child: FittedBox(
+            child: TextECA(
+              maxLines: 2,
+              // softwrap: true,
+              text: text!,
+              textAlign: textAlign,
+              fontSize: fontSize ?? 20,
+              textOverflow: TextOverflow.fade,
+              fontWeight: fontWeight,
+              color: checked != null && !checked!
+                  ? invertedFontColor ?? fontColor
+                  : fontColor ?? Theme.of(_context!).primaryColor,
+            ),
           ),
         ),
       );

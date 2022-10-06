@@ -6,6 +6,10 @@ bool isNotEmptyValidator(String value) {
   return value.isNotEmpty;
 }
 
+bool isMoreThanOneWordValidator(String value) {
+  return value.split(' ').length > 2;
+}
+
 bool isMinMaxLengthValidator(String value, int minLength,
     {int? maxLength, bool acceptEmpty = false}) {
   if (acceptEmpty && value.isEmpty) {

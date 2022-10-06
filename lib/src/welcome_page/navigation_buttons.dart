@@ -36,7 +36,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     if (!withNotJumpButton && currentPageNumber != lastPageNumber) {
       _buttons.add(_generateJumpButton(context));
       _buttons.add(
-        const Expanded(flex: 8, child: SizedBox()),
+        const Expanded(flex: 6, child: SizedBox()),
       );
       _buttons.add(_generateNextButton());
     }
@@ -66,25 +66,24 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   _generateNextButton() {
     return Expanded(
       flex: withNotJumpButton ? 1 : 2,
-      child: FittedBox(
-        child: DefaultRoundedBorderButton(
-          fontSize: fontSize,
-          backgroundColor: backgroundColor,
-          borderColor: backgroundColor,
-          fontColor: foregroundColor,
-          text: withNotJumpButton ? 'Próximo' : '',
-          icon: !withNotJumpButton
-              ? Icon(
-                  Icons.arrow_forward,
-                  color: foregroundColor,
-                  size: 32,
-                )
-              : null,
-          height: 70,
-          onPressed: onNextPagePressed,
-          radius: radius,
-          // width: 200,
-        ),
+      child: DefaultRoundedBorderButton(
+        width: 150,
+        fontSize: fontSize,
+        backgroundColor: backgroundColor,
+        borderColor: backgroundColor,
+        fontColor: foregroundColor,
+        text: withNotJumpButton ? 'Próximo' : '',
+        icon: !withNotJumpButton
+            ? Icon(
+                Icons.arrow_forward,
+                color: foregroundColor,
+                size: 32,
+              )
+            : null,
+        // height: 70,
+        onPressed: onNextPagePressed,
+        radius: radius,
+        // width: double.maxFinite,
       ),
     );
   }
