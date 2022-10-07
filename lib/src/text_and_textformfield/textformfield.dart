@@ -118,7 +118,9 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     if (widget.isObservable &&
         widget.valueToTextController != null &&
         widget.valueToTextController != _controller.text) {
-      _controller.text = widget.valueToTextController!;
+      Future.delayed(Duration(milliseconds: 500), () {
+        _controller.text = widget.valueToTextController!;
+      });
     }
     return TextFormField(
       scrollPadding: EdgeInsets.only(
