@@ -12,6 +12,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
   final double radius;
   final double? fontSize;
   final String jumpButtonText;
+  final double height;
 
   const WelcomePageNavigationButtons({
     Key? key,
@@ -25,6 +26,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     this.withNotJumpButton = true,
     this.radius = 15,
     this.fontSize,
+    this.height = 32,
   }) : super(key: key);
 
   @override
@@ -67,7 +69,8 @@ class WelcomePageNavigationButtons extends StatelessWidget {
     return Expanded(
       flex: withNotJumpButton ? 1 : 2,
       child: DefaultRoundedBorderButton(
-        width: 150,
+        height: height,
+        // width: 150,
         fontSize: fontSize,
         backgroundColor: backgroundColor,
         borderColor: backgroundColor,
