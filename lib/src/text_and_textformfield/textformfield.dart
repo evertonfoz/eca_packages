@@ -38,6 +38,7 @@ class TextFormFieldECA extends StatefulWidget {
   final int? minLines;
   final double? errorFontSize;
   final Color? fillColor;
+  final int? maxLength;
 
   const TextFormFieldECA({
     Key? key,
@@ -76,6 +77,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.minLines,
     this.errorFontSize,
     this.fillColor,
+    this.maxLength,
   }) : super(key: key);
 
   @override
@@ -118,7 +120,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     if (widget.isObservable &&
         widget.valueToTextController != null &&
         widget.valueToTextController != _controller.text) {
-      Future.delayed(Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 500), () {
         _controller.text = widget.valueToTextController!;
       });
     }
@@ -175,6 +177,13 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorStyle: TextStyle(
           fontSize: widget.errorFontSize,
         ),
+        counterStyle:
+            TextStyle(color: hasError ?? false ? Colors.red : widget.fontColor),
+        counterText: widget.maxLength != null
+            ? !(hasError ?? false)
+                ? '${_controller.text.length.toString()}/${widget.maxLength}'
+                : 'Valor mínimo/máximo atingido: ${_controller.text.length.toString()}/${widget.maxLength}'
+            : null,
         prefixText: widget.prefixText ?? '',
         suffixIcon: _buildSufixIcon(context),
         filled: true,

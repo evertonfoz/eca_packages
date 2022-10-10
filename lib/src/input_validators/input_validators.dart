@@ -19,6 +19,7 @@ bool isMinMaxLengthValidator(String value, int minLength,
   if (value.trim().length < minLength) {
     result = false;
   }
+  print(value.trim().length);
   if (result && maxLength != null && value.trim().length > maxLength) {
     result = false;
   }
