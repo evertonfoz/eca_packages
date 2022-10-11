@@ -286,8 +286,12 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
               ),
       );
     } else if (_pickImageError != null) {
-      return Text(
-        'Erro na captura da imagem: $_pickImageError',
+      if (_imagePathFile == null) {
+        return Text('');
+      }
+      return TextECA(
+        text: 'Erro na captura da imagem: $_pickImageError',
+        color: Colors.red,
         textAlign: TextAlign.center,
       );
     } else {
