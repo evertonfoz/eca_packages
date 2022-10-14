@@ -41,7 +41,7 @@ bool isGreaterThenValue({
   required dynamic min,
 }) {
   if (value.isEmpty) return false;
-  if (min.runtimeType == double) {
+  if (min.runtimeType == double || min.runtimeType == int) {
     return (convertCommaToPointValue(value: value) > min);
   } else if (min.runtimeType == DateTime) {
     try {
@@ -80,7 +80,7 @@ bool isLessThenValue({
   required dynamic max,
 }) {
   if (value.isEmpty) return false;
-  if (max.runtimeType == double) {
+  if (max.runtimeType == double || max.runtimeType == int) {
     return (convertCommaToPointValue(value: value) < max);
   } else if (max.runtimeType == DateTime) {
     try {

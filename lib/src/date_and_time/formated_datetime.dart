@@ -27,6 +27,10 @@ String convertDateTimeToLongFormat(DateTime dateTime) {
   return DateFormat.yMMMMEEEEd('pt_BR').format(dateTime);
 }
 
+String convertDateTimeToHHMMSS(DateTime dateTime) {
+  return DateFormat.Hm('pt_BR').format(dateTime);
+}
+
 TimeOfDay convertStringToTimeOfDay(String time) {
   return TimeOfDay(
     hour: int.parse(time.split(":")[0]),

@@ -174,9 +174,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
         fillColor: widget.fillColor ?? Colors.white,
-        errorStyle: TextStyle(
-          fontSize: widget.errorFontSize,
-        ),
+        errorStyle: TextStyle(fontSize: widget.errorFontSize),
         counterStyle:
             TextStyle(color: hasError ?? false ? Colors.red : widget.fontColor),
         counterText: widget.maxLength != null
