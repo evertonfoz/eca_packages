@@ -17,6 +17,7 @@ class TextECA extends StatelessWidget {
   final double? letterSpacing;
   final List<Shadow>? shadows;
   final bool softwrap;
+  final String? fontFamily;
 
   TextECA({
     Key? key,
@@ -33,6 +34,7 @@ class TextECA extends StatelessWidget {
     this.letterSpacing,
     this.shadows,
     this.softwrap = false,
+    this.fontFamily,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -42,11 +44,12 @@ class TextECA extends StatelessWidget {
     ));
     if (requiredOrientation) {
       children.add(
-        const TextSpan(
+        TextSpan(
           text: '*',
           style: TextStyle(
             color: Colors.red,
             fontWeight: FontWeight.bold,
+            fontFamily: fontFamily,
           ),
         ),
       );

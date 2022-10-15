@@ -40,6 +40,7 @@ class TextFormFieldECA extends StatefulWidget {
   final Color? fillColor;
   final int? maxLength;
   final bool? onlyLowerCase;
+  final String? fontFamily;
 
   const TextFormFieldECA({
     Key? key,
@@ -80,6 +81,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.fillColor,
     this.maxLength,
     this.onlyLowerCase = false,
+    this.fontFamily,
   }) : super(key: key);
 
   @override
@@ -134,6 +136,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       style: TextStyle(
         fontSize: fontSize,
         color: widget.fontColor ?? Theme.of(context).textTheme.caption?.color,
+        fontFamily: widget.fontFamily,
       ),
       autofocus: widget.autofocus,
       enabled: widget.enabled,
@@ -184,9 +187,14 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
         fillColor: widget.fillColor ?? Colors.white,
-        errorStyle: TextStyle(fontSize: widget.errorFontSize),
-        counterStyle:
-            TextStyle(color: hasError ?? false ? Colors.red : widget.fontColor),
+        errorStyle: TextStyle(
+          fontSize: widget.errorFontSize,
+          fontFamily: widget.fontFamily,
+        ),
+        counterStyle: TextStyle(
+          color: hasError ?? false ? Colors.red : widget.fontColor,
+          fontFamily: widget.fontFamily,
+        ),
         counterText: widget.maxLength != null
             ? !(hasError ?? false)
                 ? '${_controller.text.length.toString()}/${widget.maxLength}'
@@ -204,7 +212,11 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         ),
         // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
         hintText: widget.hintText ?? '',
-        hintStyle: TextStyle(fontSize: 14, color: widget.hintTextColor),
+        hintStyle: TextStyle(
+          fontSize: 14,
+          color: widget.hintTextColor,
+          fontFamily: widget.fontFamily,
+        ),
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
