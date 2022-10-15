@@ -39,6 +39,7 @@ class TextFormFieldECA extends StatefulWidget {
   final double? errorFontSize;
   final Color? fillColor;
   final int? maxLength;
+  final bool? onlyLowerCase;
 
   const TextFormFieldECA({
     Key? key,
@@ -78,6 +79,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.errorFontSize,
     this.fillColor,
     this.maxLength,
+    this.onlyLowerCase = false,
   }) : super(key: key);
 
   @override
@@ -105,6 +107,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
     });
 
     _controller.addListener(() {
+      // _controller.text = _controller.text.toLowerCase();
       if (_controller.text.isEmpty) {
         if (!mounted) return;
         setState(() {});
@@ -125,6 +128,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       });
     }
     return TextFormField(
+      // textCapitalization: TextCapitalization.none, // .sentences,
       scrollPadding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
@@ -144,6 +148,12 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       textInputAction: widget.textInputAction,
       keyboardType: widget.textInputType,
       onChanged: (value) {
+        if (widget.onlyLowerCase!) {
+          _controller.value = TextEditingValue(
+            text: value.toLowerCase().trim(),
+            selection: _controller.selection,
+          );
+        }
         setState(() {
           hasError = (value.isNotEmpty) ? false : null;
         });
