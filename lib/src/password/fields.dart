@@ -92,35 +92,37 @@ class NewPasswordFieldsECA extends StatelessWidget {
   }
 
   _formGroupToNewPassword() {
-    return FormFieldGroup(
-      obscureText: newPasswordStore.obscureNewPasswordText,
-      textTitle: 'Nova senha',
-      focusNode: _passwordFocusNode,
-      requiredOrientation: true,
-      valueToTextController: newPasswordStore.newPassword,
-      errorMessages: [
-        kNewPasswordNullError,
-        passwordInvalidError,
-      ],
-      validationFunctions: [
-        (_password) => isNotEmptyValidator(_password ?? ''),
-        (_password) => invalidPasswordFunction(_password ?? ''),
-      ],
-      registerValueInStoreForm: (value) {
-        newPasswordStore.registerNewPassword(value, invalidPasswordFunction);
-        if (registerPasswordCallback != null) {
-          registerPasswordCallback!(newPasswordStore.formIsValid);
-        }
-      },
-      aditionalSufixIcons: const [
-        FontAwesomeIcons.eye,
-        FontAwesomeIcons.eyeSlash,
-      ],
-      onPressAditionalSufixIcon: () =>
-          newPasswordStore.registerObscureNewPasswordText(
-              value: !newPasswordStore.obscureNewPasswordText),
-      errorMaxLines: 2,
-      nextFocus: _confirmedFocusNode,
+    return Observer(
+      builder: (_) => FormFieldGroup(
+        obscureText: newPasswordStore.obscureNewPasswordText,
+        textTitle: 'Nova senha',
+        focusNode: _passwordFocusNode,
+        requiredOrientation: true,
+        valueToTextController: newPasswordStore.newPassword,
+        errorMessages: [
+          kNewPasswordNullError,
+          passwordInvalidError,
+        ],
+        validationFunctions: [
+          (_password) => isNotEmptyValidator(_password ?? ''),
+          (_password) => invalidPasswordFunction(_password ?? ''),
+        ],
+        registerValueInStoreForm: (value) {
+          newPasswordStore.registerNewPassword(value, invalidPasswordFunction);
+          if (registerPasswordCallback != null) {
+            registerPasswordCallback!(newPasswordStore.formIsValid);
+          }
+        },
+        aditionalSufixIcons: const [
+          FontAwesomeIcons.eye,
+          FontAwesomeIcons.eyeSlash,
+        ],
+        onPressAditionalSufixIcon: () =>
+            newPasswordStore.registerObscureNewPasswordText(
+                value: !newPasswordStore.obscureNewPasswordText),
+        errorMaxLines: 2,
+        nextFocus: _confirmedFocusNode,
+      ),
     );
   }
 
@@ -140,37 +142,39 @@ class NewPasswordFieldsECA extends StatelessWidget {
   }
 
   _formGroupToConfirmedPassword() {
-    return FormFieldGroup(
-      textInputAction: TextInputAction.done,
-      textTitle: 'Confimar senha',
-      obscureText: newPasswordStore.obscureConfirmedPasswordText,
-      focusNode: _confirmedFocusNode,
-      requiredOrientation: true,
-      valueToTextController: newPasswordStore.confirmedPassword,
-      errorMessages: const [
-        kConfirmedPasswordNullError,
-        kPasswordMatchError,
-      ],
-      validationFunctions: [
-        (_confirmedPassword) => isNotEmptyValidator(_confirmedPassword ?? ''),
-        (_confirmedPassword) => isMatchValidator(
-            value: _confirmedPassword ?? '',
-            otherValue: newPasswordStore.newPassword),
-      ],
-      registerValueInStoreForm: (value) {
-        newPasswordStore.registerConfirmedPassword(value);
-        if (registerPasswordCallback != null) {
-          registerPasswordCallback!(newPasswordStore.formIsValid);
-        }
-      },
-      aditionalSufixIcons: const [
-        FontAwesomeIcons.eye,
-        FontAwesomeIcons.eyeSlash,
-      ],
-      onPressAditionalSufixIcon: () =>
-          newPasswordStore.registerObscureConfirmedPasswordText(
-              value: !newPasswordStore.obscureConfirmedPasswordText),
-      errorMaxLines: 2,
+    return Observer(
+      builder: (_) => FormFieldGroup(
+        textInputAction: TextInputAction.done,
+        textTitle: 'Confimar senha',
+        obscureText: newPasswordStore.obscureConfirmedPasswordText,
+        focusNode: _confirmedFocusNode,
+        requiredOrientation: true,
+        valueToTextController: newPasswordStore.confirmedPassword,
+        errorMessages: const [
+          kConfirmedPasswordNullError,
+          kPasswordMatchError,
+        ],
+        validationFunctions: [
+          (_confirmedPassword) => isNotEmptyValidator(_confirmedPassword ?? ''),
+          (_confirmedPassword) => isMatchValidator(
+              value: _confirmedPassword ?? '',
+              otherValue: newPasswordStore.newPassword),
+        ],
+        registerValueInStoreForm: (value) {
+          newPasswordStore.registerConfirmedPassword(value);
+          if (registerPasswordCallback != null) {
+            registerPasswordCallback!(newPasswordStore.formIsValid);
+          }
+        },
+        aditionalSufixIcons: const [
+          FontAwesomeIcons.eye,
+          FontAwesomeIcons.eyeSlash,
+        ],
+        onPressAditionalSufixIcon: () =>
+            newPasswordStore.registerObscureConfirmedPasswordText(
+                value: !newPasswordStore.obscureConfirmedPasswordText),
+        errorMaxLines: 2,
+      ),
     );
   }
 }

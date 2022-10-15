@@ -151,7 +151,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       textInputAction: widget.textInputAction,
       keyboardType: widget.textInputType,
       onChanged: (value) {
-        if (widget.onlyLowerCase!) {
+        if (widget.onlyLowerCase != null && widget.onlyLowerCase!) {
           _controller.value = TextEditingValue(
             text: value.toLowerCase().trim(),
             selection: _controller.selection,
