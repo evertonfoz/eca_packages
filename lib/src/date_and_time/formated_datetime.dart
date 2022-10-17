@@ -23,6 +23,10 @@ DateTime convertDDMMYYYYHHMMToDateTime(String dateTime) {
   return DateFormat("dd/MM/yyyy hh:mm").parse(dateTime);
 }
 
+String convertDateTimeToShortormat(DateTime dateTime) {
+  return DateFormat.yMMMd('pt_BR').format(dateTime);
+}
+
 String convertDateTimeToLongFormat(DateTime dateTime) {
   return DateFormat.yMMMMEEEEd('pt_BR').format(dateTime);
 }

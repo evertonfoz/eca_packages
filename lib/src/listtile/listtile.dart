@@ -30,6 +30,7 @@ class ListTileECA extends StatelessWidget {
   Widget build(BuildContext context) {
     if (useCard) {
       return Card(
+        // clipBehavior: Clip.hardEdge,
         color: emphasisColor ? Colors.white : Colors.grey.shade200,
         elevation: 10,
         borderOnForeground: true,
