@@ -1,10 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 enum TypeOfImageToAvatar { kAsset, kWeb, kFile }
 
@@ -17,7 +13,7 @@ class CircleAvatarECA extends StatelessWidget {
   final BoxFit? boxFit;
   final double? width;
   final double? height;
-  dynamic placeHolderImage;
+  dynamic? placeHolderImage;
   // final bool useCachedImage;
 
   CircleAvatarECA({
@@ -72,11 +68,20 @@ class CircleAvatarECA extends StatelessWidget {
       ).image;
     }
 
-    return FadeInImage.assetNetwork(
-      image: imageURL,
-      placeholder: placeHolderImage,
+    if (placeHolderImage != null) {
+      return FadeInImage.assetNetwork(
+        image: imageURL,
+        placeholder: placeHolderImage,
+        width: width ?? 210,
+        // placeholderCacheHeight: 200,
+        height: height ?? 210,
+        fit: boxFit,
+      ).image;
+    }
+
+    return Image.network(
+      imageURL,
       width: width ?? 210,
-      // placeholderCacheHeight: 200,
       height: height ?? 210,
       fit: boxFit,
     ).image;
