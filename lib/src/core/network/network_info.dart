@@ -14,6 +14,7 @@ class NetworkInfoImpl implements NetworkInfo {
 
   @override
   Future<bool> get isConnected async {
+    // return true;
     try {
       Modular.get<
           http.Client>(); //TODO POG para o XBUsiness, tirar após refatoração
@@ -22,7 +23,7 @@ class NetworkInfoImpl implements NetworkInfo {
         headers: {
           'Content-Type': 'application/json',
         },
-      );
+      ).timeout(Duration(seconds: 5));
 
       if (response.statusCode == 200) {
         return true;
