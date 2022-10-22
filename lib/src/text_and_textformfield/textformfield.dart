@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TextFormFieldECA extends StatefulWidget {
+  final TextCapitalization? textCapitalization;
   final Function(String?)? onSaved;
   final List<String> errorMessages;
   final List<Function(String?)> validationFunctions;
@@ -41,6 +42,7 @@ class TextFormFieldECA extends StatefulWidget {
   final int? maxLength;
   final bool? onlyLowerCase;
   final String? fontFamily;
+  final List<String>? autofillHints;
 
   const TextFormFieldECA({
     Key? key,
@@ -82,6 +84,8 @@ class TextFormFieldECA extends StatefulWidget {
     this.maxLength,
     this.onlyLowerCase = false,
     this.fontFamily,
+    this.textCapitalization,
+    this.autofillHints,
   }) : super(key: key);
 
   @override
@@ -130,7 +134,8 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       });
     }
     return TextFormField(
-      // textCapitalization: TextCapitalization.none, // .sentences,
+      autofillHints: widget.autofillHints,
+      textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
       scrollPadding: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
@@ -186,6 +191,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       controller: _controller,
       textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
+        // labelText: 'Name',
         fillColor: widget.fillColor ?? Colors.white,
         errorStyle: TextStyle(
           fontSize: widget.errorFontSize,

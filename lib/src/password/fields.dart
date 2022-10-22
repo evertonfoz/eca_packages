@@ -9,7 +9,7 @@ import '../../eca_packages.dart';
 const String kNewPasswordNullError = 'Por favor, informe a sua senha';
 const String kConfirmedNewPasswordlNullError = 'Por favor, informe o seu email';
 const String kPasswordInvalidError =
-    'Mínimo 8 caracteres, sendo necessário: 1 letra maiuscula, 1 minúscula, 1 número e 1 símbolo';
+    'Mínimo 8 caracteres, sendo necessário: 1 letra maiúscula, 1 minúscula, 1 número e 1 símbolo';
 const String kConfirmedPasswordNullError =
     'Por favor, informe a confirmação da senha';
 const String kPasswordMatchError = 'Confirmação deve ser igual a nova senha';

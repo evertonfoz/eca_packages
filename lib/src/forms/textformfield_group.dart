@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FormFieldGroup extends StatelessWidget {
+  final TextCapitalization? textCapitalization;
   final Function(String?)? onSaved;
   final bool autoFocus;
   final String textTitle;
@@ -36,6 +37,7 @@ class FormFieldGroup extends StatelessWidget {
   final int? maxLength;
   final bool? onlyLowerCase;
   final String? fontFamily;
+  final List<String>? autofillHints;
 
   const FormFieldGroup({
     Key? key,
@@ -71,6 +73,8 @@ class FormFieldGroup extends StatelessWidget {
     this.maxLength,
     this.onlyLowerCase,
     this.fontFamily,
+    this.textCapitalization,
+    this.autofillHints,
   }) : super(key: key);
 
   @override
@@ -118,6 +122,7 @@ class FormFieldGroup extends StatelessWidget {
           registerStatusInStoreForm: registerStatusInStoreForm,
           autofocus: autoFocus,
           fontSize: textFieldFontSize,
+          textCapitalization: textCapitalization,
         ),
         const SizedBox(height: 10),
       ],
