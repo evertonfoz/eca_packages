@@ -42,28 +42,28 @@ class _MarkdownShowFileState extends State<MarkdownShowFile> {
   void initState() {
     super.initState();
     file = widget.fileName;
-    if (widget.showStatusBar) {
-      _showStatusBar();
-    } else {
-      _hideStatusBar();
-    }
+    // if (widget.showStatusBar) {
+    //   _showStatusBar();
+    // } else {
+    //   _hideStatusBar();
+    // }
   }
 
-  _showStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  }
+  // _showStatusBar() {
+  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // }
 
-  _hideStatusBar() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
-  }
+  // _hideStatusBar() {
+  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+  //       overlays: [SystemUiOverlay.bottom]);
+  // }
 
   @override
   void dispose() {
     super.dispose();
-    if (widget.hideStatusBarOnDispose) {
-      _hideStatusBar();
-    }
+    // if (widget.hideStatusBarOnDispose) {
+    //   _hideStatusBar();
+    // }
   }
 
   @override
