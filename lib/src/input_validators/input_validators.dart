@@ -7,7 +7,14 @@ bool isNotEmptyValidator(String value) {
 }
 
 bool isMoreThanOneWordValidator(String value) {
-  return value.split(' ').length > 2;
+  final List<String> nameParts = value.split(' ');
+  if (nameParts.length < 2) {
+    return false;
+  }
+  if (nameParts[1].trim().isEmpty) {
+    return false;
+  }
+  return true;
 }
 
 bool isMinMaxLengthValidator(String value, int minLength,

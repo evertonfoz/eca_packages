@@ -2,6 +2,7 @@ library eca_packages;
 
 export 'src/absorb_pointer_page/absorb_pointer_page.dart';
 export 'src/appbar/appbar.dart';
+export 'src/appbar/appbar_with_back_leading.dart';
 export 'src/appbar/container.dart';
 export 'src/buttons/default_rounded_border_button.dart';
 export 'src/buttons/default_text_button.dart';
@@ -13,6 +14,7 @@ export 'src/core/usecases/usecase.dart';
 export 'src/core/network/debounce.dart';
 export 'src/core/network/http_overrides.dart';
 export 'src/core/network/network_info.dart';
+export 'src/crop_image/crop_image.dart';
 export 'src/device/read_and_write_file.dart';
 export 'src/dropdown_citys_states/dropdown_citys_states.dart';
 export 'src/forms/body.dart';

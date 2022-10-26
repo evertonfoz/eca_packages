@@ -1,6 +1,21 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+// if (!_addressStore.isStateValid && !_addressStore.isCEPValid) {
+//   Future.delayed(const Duration(milliseconds: 500), () {
+//     if (_addressStore.state.isNotEmpty) {
+//       _addressStore.registerState(_addressStore.state);
+//     }
+//     print(_addressStore.state);
+//     print(_addressStore.city);
+//     //   try {
+//     //     setState(() {});
+//     //   } catch (e) {
+//     //     debugPrint(e.toString());
+//     //   }
+//   });
+// }
+
 Future<Placemark> getCurrentLocation() async {
   try {
     await handleLocationPermission();

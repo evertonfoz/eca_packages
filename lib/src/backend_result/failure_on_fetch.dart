@@ -24,6 +24,7 @@ failureOnFetch({
       durationSeconds: 3,
     );
     Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
+    Modular.get<InProcessingStore>().registerIsInProcessing(false);
   } else if (failure is NotUniqueDataFailure) {
     showBottomSnackBar(
       title: 'Erro',
