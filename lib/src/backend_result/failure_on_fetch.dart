@@ -8,12 +8,14 @@ failureOnFetch({
   required VoidCallback? animateToCurrentPage,
   required VoidCallback? onTapToBack,
   String? notFoundException,
-  required Color onHideNavigationBarColor,
-  required Color onShowNavigationBarColor,
+  Color? onHideNavigationBarColor,
+  Color? onShowNavigationBarColor,
 }) async {
   // Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
-  await hideStatusBarAndSetColorToNavigationBar(
-      navigationBarColor: onHideNavigationBarColor);
+  if (onHideNavigationBarColor != null) {
+    await hideStatusBarAndSetColorToNavigationBar(
+        navigationBarColor: onHideNavigationBarColor);
+  }
   await Future.delayed(const Duration(seconds: 1));
   if (failure is TimeOutFailure || failure is ServerFailure) {
     showBottomSnackBar(
@@ -59,8 +61,10 @@ failureOnFetch({
     );
   }
   Future.delayed(Duration.zero, () async {
-    await showStatusBarAndSetColorToNavigationBar(
-        navigationBarColor: onShowNavigationBarColor);
+    if (onShowNavigationBarColor != null) {
+      await showStatusBarAndSetColorToNavigationBar(
+          navigationBarColor: onShowNavigationBarColor);
+    }
     if (onTapToBack != null) {
       onTapToBack();
     }

@@ -5,10 +5,10 @@ import 'package:flutter/cupertino.dart';
 List<T> fetchListFold<T>({
   required Either<Failure, List<T>> dataToFold,
   required BuildContext context,
-  required VoidCallback? animateToCurrentPage,
-  required VoidCallback? onTapToBack,
-  required Color onHideNavigationBarColor,
-  required Color onShowNavigationBarColor,
+  VoidCallback? animateToCurrentPage,
+  VoidCallback? onTapToBack,
+  Color? onHideNavigationBarColor,
+  Color? onShowNavigationBarColor,
 }) {
   List<T> listToReturn = [];
   dataToFold.fold(

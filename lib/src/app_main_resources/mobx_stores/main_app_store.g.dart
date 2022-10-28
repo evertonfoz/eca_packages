@@ -16,6 +16,13 @@ mixin _$MainAppStore on _MainAppStore, Store {
       (_$actualModuleComputed ??= Computed<String>(() => super.actualModule,
               name: '_MainAppStore.actualModule'))
           .value;
+  Computed<bool>? _$haveConnectionComputed;
+
+  @override
+  bool get haveConnection =>
+      (_$haveConnectionComputed ??= Computed<bool>(() => super.haveConnection,
+              name: '_MainAppStore.haveConnection'))
+          .value;
 
   late final _$_actualModuleAtom =
       Atom(name: '_MainAppStore._actualModule', context: context);
@@ -30,6 +37,22 @@ mixin _$MainAppStore on _MainAppStore, Store {
   set _actualModule(String value) {
     _$_actualModuleAtom.reportWrite(value, super._actualModule, () {
       super._actualModule = value;
+    });
+  }
+
+  late final _$_haveConnectionAtom =
+      Atom(name: '_MainAppStore._haveConnection', context: context);
+
+  @override
+  bool get _haveConnection {
+    _$_haveConnectionAtom.reportRead();
+    return super._haveConnection;
+  }
+
+  @override
+  set _haveConnection(bool value) {
+    _$_haveConnectionAtom.reportWrite(value, super._haveConnection, () {
+      super._haveConnection = value;
     });
   }
 
@@ -48,9 +71,21 @@ mixin _$MainAppStore on _MainAppStore, Store {
   }
 
   @override
+  dynamic registerHaveConnection(bool value) {
+    final _$actionInfo = _$_MainAppStoreActionController.startAction(
+        name: '_MainAppStore.registerHaveConnection');
+    try {
+      return super.registerHaveConnection(value);
+    } finally {
+      _$_MainAppStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-actualModule: ${actualModule}
+actualModule: ${actualModule},
+haveConnection: ${haveConnection}
     ''';
   }
 }

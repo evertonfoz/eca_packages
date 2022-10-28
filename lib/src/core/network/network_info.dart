@@ -1,12 +1,12 @@
+import 'dart:io';
+
 import 'package:eca_packages/eca_packages.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class NetworkInfo {
   Future<bool> get isConnected;
   Future<String> get serverIPAddress;
   resetServerIPAddress();
+  Future<bool> isAppServerAvailable(Function verifyServerAvailability);
 }
 
 class NetworkInfoImpl implements NetworkInfo {
@@ -14,53 +14,26 @@ class NetworkInfoImpl implements NetworkInfo {
 
   @override
   Future<bool> get isConnected async {
-    // return true;
+    bool isOnline = false;
     try {
-      Modular.get<
-          http.Client>(); //TODO POG para o XBUsiness, tirar após refatoração
-      final response = await Modular.get<http.Client>().get(
-        Uri.parse('https://www.google.com'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      ).timeout(Duration(seconds: 5));
-
-      if (response.statusCode == 200) {
-        return true;
-      }
-
-      return false;
-    } catch (e) {
-      return true;
+      final lookupResult = await InternetAddress.lookup('www.google.com');
+      // 'https://clownfish-app-lrirg.ondigitalocean.app');
+      isOnline =
+          lookupResult.isNotEmpty && lookupResult[0].rawAddress.isNotEmpty;
+    } on SocketException catch (_) {
+      isOnline = false;
     }
-    // final response = await Modular.get<http.Client>().get(
-    //   Uri.parse('http://www.google.com'),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // );
-
-    // if (response.statusCode == 200) {
-    //   return true;
-    // }
-
-    // return false;
+    return isOnline;
   }
 
   @override
   Future<String> get serverIPAddress async {
-    // return await await EnvManager.getUrlToServer(serverUrl: 'server_url');
     try {
       String? serverURL;
       if (_serverIPAddress == null) {
         serverURL = await EnvManager.getUrlToServer(serverUrl: 'server_url');
       }
 
-      // if (!kIsWeb && Platform.isAndroid && _serverIPAddress == null) {
-      // final prefs = await SharedPreferences.getInstance();
-      // _serverIPAddress = 'http://${prefs.getString('serverIP') ?? serverURL}';
-      // TODO REVER ECA_PACKAGES
-      // }
       return _serverIPAddress ?? serverURL!;
     } on Exception catch (e) {
       throw ServerException(errorMessage: e.toString());
@@ -70,5 +43,10 @@ class NetworkInfoImpl implements NetworkInfo {
   @override
   resetServerIPAddress() {
     _serverIPAddress = null;
+  }
+
+  @override
+  Future<bool> isAppServerAvailable(Function verifyServerAvailability) async {
+    return await verifyServerAvailability();
   }
 }

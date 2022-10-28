@@ -1,3 +1,5 @@
+import 'package:eca_packages/eca_packages.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 part 'main_app_store.g.dart';
@@ -20,11 +22,23 @@ abstract class _MainAppStore with Store {
 
   bool errorWhenTryConnectToServerOccurs = false;
 
+  @observable
+  bool _haveConnection = true;
+
   @computed
   String get actualModule => _actualModule;
+
+  @computed
+  bool get haveConnection => _haveConnection;
 
   @action
   registerActualModule(String value) {
     _actualModule = value;
+  }
+
+  @action
+  registerHaveConnection(bool value) {
+    _haveConnection = value;
+    Modular.get<InProcessingStore>().registerIsInProcessing(!value);
   }
 }

@@ -26,8 +26,8 @@ class AbsorbPointerPageWidget extends StatelessWidget {
   _buildAbsorbPointerChild() {
     if (useSchimmer && isInProcessing) {
       return ShimmerECA(
-        child: child,
         isInProcessing: isInProcessing,
+        child: child,
       );
     } else if (!isInProcessing) {
       return child;

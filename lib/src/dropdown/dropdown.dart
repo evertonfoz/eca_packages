@@ -10,7 +10,7 @@ class DropDown<T> extends StatelessWidget {
   final String? searchHintText;
   // final double maxHeight;
   final T? selectedItem;
-  List<T> items;
+  List<T>? items;
   bool Function(T?, T?)? compareFn;
   Function(T?)? onChanged;
   String Function(T?)? itemAsString;
@@ -19,58 +19,98 @@ class DropDown<T> extends StatelessWidget {
   final bool enabled;
   final bool showSearchBox;
   bool Function(T, String)? filterFn;
+  Future<List<T>> Function(String)? asyncItemsFunction;
 
-  DropDown(
-      {Key? key,
-      required this.hintText,
-      // this.maxHeight = 300,
-      this.selectedItem,
-      required this.items,
-      required this.compareFn,
-      required this.onChanged,
-      required this.itemAsString,
-      this.fillColor,
-      this.selectedColorItem,
-      this.enabled = true,
-      this.showSearchBox = false,
-      this.searchHintText,
-      this.filterFn})
-      : super(key: key);
+  DropDown({
+    Key? key,
+    required this.hintText,
+    // this.maxHeight = 300,
+    this.selectedItem,
+    this.items,
+    required this.compareFn,
+    required this.onChanged,
+    required this.itemAsString,
+    this.fillColor,
+    this.selectedColorItem,
+    this.enabled = true,
+    this.showSearchBox = false,
+    this.searchHintText,
+    this.filterFn,
+    this.asyncItemsFunction,
+  })  : assert((items != null && asyncItemsFunction == null) ||
+            items == null && asyncItemsFunction != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DropdownSearch<T>(
-      enabled: enabled,
-      dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
-          fillColor: fillColor ?? Colors.white,
-          // labelText: "Modal mode",
-          hintText: hintText,
-          filled: true,
-          // isDense: false,
-          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
-        ),
-      ),
-      popupProps: PopupProps.menu(
-        showSelectedItems: true,
-        itemBuilder: _customPopupItemBuilder,
-        fit: FlexFit.loose,
-        showSearchBox: showSearchBox,
-        searchFieldProps: TextFieldProps(
-          decoration: InputDecoration(
-            hintText: searchHintText ?? '',
+    if (items == null) {
+      return DropdownSearch<T>(
+        asyncItems: asyncItemsFunction == null ? null : asyncItemsFunction!,
+        enabled: enabled,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: InputDecoration(
+            fillColor: fillColor ?? Colors.white,
+            // labelText: "Modal mode",
+            hintText: hintText,
             filled: true,
+            // isDense: false,
+            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
           ),
         ),
-      ),
-      onChanged: onChanged,
-      selectedItem: selectedItem,
-      items: items,
-      compareFn: compareFn,
-      itemAsString: itemAsString,
-      dropdownBuilder: _customDropDown,
-      filterFn: filterFn,
-    );
+        popupProps: PopupProps.menu(
+          showSelectedItems: true,
+          itemBuilder: _customPopupItemBuilder,
+          fit: FlexFit.loose,
+          showSearchBox: showSearchBox,
+          searchFieldProps: TextFieldProps(
+            decoration: InputDecoration(
+              hintText: searchHintText ?? '',
+              filled: true,
+            ),
+          ),
+        ),
+        onChanged: onChanged,
+        selectedItem: selectedItem,
+        compareFn: compareFn,
+        itemAsString: itemAsString,
+        dropdownBuilder: _customDropDown,
+        filterFn: filterFn,
+      );
+    } else {
+      final List<T> itemsSync = items!;
+      return DropdownSearch<T>(
+        items: itemsSync,
+        enabled: enabled,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: InputDecoration(
+            fillColor: fillColor ?? Colors.white,
+            // labelText: "Modal mode",
+            hintText: hintText,
+            filled: true,
+            // isDense: false,
+            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+          ),
+        ),
+        popupProps: PopupProps.menu(
+          showSelectedItems: true,
+          itemBuilder: _customPopupItemBuilder,
+          fit: FlexFit.loose,
+          showSearchBox: showSearchBox,
+          searchFieldProps: TextFieldProps(
+            decoration: InputDecoration(
+              hintText: searchHintText ?? '',
+              filled: true,
+            ),
+          ),
+        ),
+        onChanged: onChanged,
+        selectedItem: selectedItem,
+        compareFn: compareFn,
+        itemAsString: itemAsString,
+        dropdownBuilder: _customDropDown,
+        filterFn: filterFn,
+      );
+    }
   }
 
   Widget _customDropDown(BuildContext context, T? item) {
