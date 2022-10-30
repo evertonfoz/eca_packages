@@ -18,7 +18,8 @@ class _PackageVersionECAState extends State<PackageVersionECA> {
         if (snapshot.hasData) {
           return TextECA(
             text: '${snapshot.data.version}/${snapshot.data.buildNumber}',
-            color: Theme.of(context).textTheme.bodyText1?.color,
+            color: Colors.white,
+            // color: Theme.of(context).textTheme.bodyText1?.color,
           );
         } else if (snapshot.hasError) {
           return TextECA(text: 'Erro');
