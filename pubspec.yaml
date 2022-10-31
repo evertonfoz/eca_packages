@@ -19,6 +19,7 @@ dependencies:
   dartz: ^0.10.1
   device_info_plus: ^4.1.2
   dropdown_search: ^5.0.3
+  ed_screen_recorder_v3: ^0.0.12
   equatable: ^2.0.5
   flash: ^2.0.5
   flutter:

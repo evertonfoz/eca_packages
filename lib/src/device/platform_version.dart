@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class PackageVersionECA extends StatefulWidget {
-  const PackageVersionECA({Key? key}) : super(key: key);
+  final Color textColor;
+
+  const PackageVersionECA({
+    Key? key,
+    this.textColor = Colors.white,
+  }) : super(key: key);
 
   @override
   State<PackageVersionECA> createState() => _PackageVersionECAState();
@@ -18,7 +23,7 @@ class _PackageVersionECAState extends State<PackageVersionECA> {
         if (snapshot.hasData) {
           return TextECA(
             text: '${snapshot.data.version}/${snapshot.data.buildNumber}',
-            color: Colors.white,
+            color: widget.textColor,
             // color: Theme.of(context).textTheme.bodyText1?.color,
           );
         } else if (snapshot.hasError) {

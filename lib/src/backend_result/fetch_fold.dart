@@ -35,8 +35,8 @@ T? fetchSingleFold<T>({
   VoidCallback? animateToCurrentPage,
   VoidCallback? onTapToBack,
   String? notFoundException,
-  required Color onHideNavigationBarColor,
-  required Color onShowNavigationBarColor,
+  Color? onHideNavigationBarColor,
+  Color? onShowNavigationBarColor,
 }) {
   T? objectToReturn;
 
