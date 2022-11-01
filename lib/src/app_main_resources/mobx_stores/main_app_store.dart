@@ -1,5 +1,5 @@
 import 'package:eca_packages/eca_packages.dart';
-import 'package:ed_screen_recorder/ed_screen_recorder.dart';
+import 'package:ed_screen_recorder_v3/ed_screen_recorder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
