@@ -1,10 +1,8 @@
 import 'dart:io';
 
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:http/http.dart' as http;
 
 enum FileTypeECA { image }
 
@@ -12,6 +10,14 @@ Future<String> get _localPath async {
   final directory = await getApplicationDocumentsDirectory();
 
   return directory.path;
+}
+
+Future<void> removeFile({required String filePath}) async {
+  final File sourceFile = File(filePath);
+
+  if (await sourceFile.exists()) {
+    await sourceFile.delete();
+  }
 }
 
 Future<void> copyFileFromPath(

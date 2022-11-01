@@ -295,10 +295,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.3"
-  ed_screen_recorder_v3:
+  ed_screen_recorder:
     dependency: "direct main"
     description:
-      name: ed_screen_recorder_v3
+      name: ed_screen_recorder
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.12"
