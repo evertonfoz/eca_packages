@@ -57,19 +57,19 @@ class DropDown<T> extends StatelessWidget {
             contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 8),
           ),
         ),
-
         popupProps: PopupPropsMultiSelection.menu(
           isFilterOnline: true,
           showSelectedItems: true,
           showSearchBox: true,
-          itemBuilder: _customPopupItemBuilder, fit: FlexFit.loose,
+          itemBuilder: _customPopupItemBuilder,
+          fit: FlexFit.loose,
           searchFieldProps: TextFieldProps(
             decoration: InputDecoration(
               hintText: searchHintText ?? '',
               filled: true,
             ),
           ),
-         
+        ),
         onChanged: onChanged,
         selectedItem: selectedItem,
         compareFn: compareFn,
