@@ -12,6 +12,7 @@ class DropDownCitiesStates extends StatefulWidget {
   final String? cityName;
   final Function(String)? updateState;
   final Function(String)? updateCity;
+  final List<dynamic>? externalData;
 
   const DropDownCitiesStates({
     Key? key,
@@ -20,6 +21,7 @@ class DropDownCitiesStates extends StatefulWidget {
     this.cityName,
     this.updateState,
     this.updateCity,
+    this.externalData,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
   @override
   void initState() {
     super.initState();
-    _controller.getStates().then((value) {
+    _controller.getStates(externalData: widget.externalData).then((value) {
       if (widget.stateName != null &&
           widget.stateName!.isNotEmpty &&
           _controller.states.isNotEmpty) {
@@ -71,7 +73,8 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
             items: _controller.states,
             compareFn: (item, selectedItem) => item?.id == selectedItem?.id,
             onChanged: (value) {
-              _controller.registerState(value);
+              _controller.registerState(value,
+                  externalData: widget.externalData);
               if (widget.updateState != null) {
                 widget.updateState!(value!.name);
               }

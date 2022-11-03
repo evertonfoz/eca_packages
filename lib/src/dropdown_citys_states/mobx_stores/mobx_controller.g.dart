@@ -106,8 +106,9 @@ mixin _$StateAndCityController on _StateAndCityControllerBase, Store {
       AsyncAction('_StateAndCityControllerBase.getStates', context: context);
 
   @override
-  Future<void> getStates() {
-    return _$getStatesAsyncAction.run(() => super.getStates());
+  Future<void> getStates({List<dynamic>? externalData}) {
+    return _$getStatesAsyncAction
+        .run(() => super.getStates(externalData: externalData));
   }
 
   late final _$getCitiesBySelectedStateAsyncAction = AsyncAction(
@@ -115,20 +116,20 @@ mixin _$StateAndCityController on _StateAndCityControllerBase, Store {
       context: context);
 
   @override
-  Future<void> getCitiesBySelectedState() {
+  Future<void> getCitiesBySelectedState({List<dynamic>? externalData}) {
     return _$getCitiesBySelectedStateAsyncAction
-        .run(() => super.getCitiesBySelectedState());
+        .run(() => super.getCitiesBySelectedState(externalData: externalData));
   }
 
   late final _$_StateAndCityControllerBaseActionController =
       ActionController(name: '_StateAndCityControllerBase', context: context);
 
   @override
-  void registerState(StateModel? stateSelected) {
+  void registerState(StateModel? stateSelected, {List<dynamic>? externalData}) {
     final _$actionInfo = _$_StateAndCityControllerBaseActionController
         .startAction(name: '_StateAndCityControllerBase.registerState');
     try {
-      return super.registerState(stateSelected);
+      return super.registerState(stateSelected, externalData: externalData);
     } finally {
       _$_StateAndCityControllerBaseActionController.endAction(_$actionInfo);
     }
