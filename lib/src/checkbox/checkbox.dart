@@ -13,6 +13,7 @@ class CheckBoxECA extends StatefulWidget {
   final FontWeight fontWeight;
   final bool isObservable;
   final double spaceBetweenCheckAndText;
+  final Widget? afterTextWidget;
 
   ///[CheckBoxECA] widget para adicionar um checkbox personalizado permitindo
   ///adicionar um widget ao lado dele, como por exemplo, um texto.
@@ -29,6 +30,7 @@ class CheckBoxECA extends StatefulWidget {
     this.fontWeight = FontWeight.normal,
     this.isObservable = false,
     this.spaceBetweenCheckAndText = 5,
+    this.afterTextWidget,
   })  : assert((text != null && widget == null) ||
             (text == null && widget != null)),
         super(key: key);
@@ -85,13 +87,13 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
             ),
           ),
         ),
-        SizedBox(
-          width: widget.spaceBetweenCheckAndText,
-        ),
+        SizedBox(width: widget.spaceBetweenCheckAndText),
         Expanded(
           flex: 8,
           child: _buildText(),
         ),
+        SizedBox(width: widget.spaceBetweenCheckAndText),
+        widget.afterTextWidget ?? Container(),
       ],
     );
   }
