@@ -227,7 +227,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
           ? null
-          : (value) => FocusScope.of(context).requestFocus(widget.nextFocus),
+          : (value) {
+              print(value);
+              FocusScope.of(context).requestFocus(widget.nextFocus);
+            },
     );
   }
 
