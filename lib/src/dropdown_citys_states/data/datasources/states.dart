@@ -6,6 +6,7 @@ class StateGetAllDataSource {
     StateModel(id: 'AL', name: 'Alagoas'),
     StateModel(id: 'AP', name: 'Amapá'),
     StateModel(id: 'AM', name: 'Amazonas'),
+    StateModel(id: 'AR', name: 'Argentina'),
     StateModel(id: 'BA', name: 'Bahia'),
     StateModel(id: 'CE', name: 'Ceará'),
     StateModel(id: 'DF', name: 'Distrito Federal'),
