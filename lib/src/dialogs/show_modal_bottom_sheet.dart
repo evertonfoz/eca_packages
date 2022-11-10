@@ -5,6 +5,7 @@ import 'package:image_crop/image_crop.dart';
 showModalBottomSheetToPickAPhoto({
   required final BuildContext context,
   String title = 'Selecione uma opção',
+  String? subtitle,
   Color? titleColor,
   Color? cameraIconColor,
   Color? galleryIconColor,
@@ -44,6 +45,15 @@ showModalBottomSheetToPickAPhoto({
                 color:
                     titleColor ?? Theme.of(context).textTheme.headline1?.color,
                 fontWeight: FontWeight.bold,
+              ),
+              Visibility(
+                visible: subtitle != null,
+                child: TextECA(
+                  text: subtitle ?? '',
+                  fontSize: 20,
+                  color: titleColor ??
+                      Theme.of(context).textTheme.headline1?.color,
+                ),
               ),
               ImagePickerECA(
                 // imageCropKey: imageCropKey,
