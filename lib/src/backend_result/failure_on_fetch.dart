@@ -43,6 +43,8 @@ failureOnFetch({
       iconIndicator: Icons.error_outline,
       durationSeconds: 3,
     );
+    Modular.get<MainAppStore>().errorWhenTryConnectToServerOccurs = true;
+    Modular.get<InProcessingStore>().registerIsInProcessing(false);
   } else if (failure is NotFoundFailure) {
     showBottomSnackBar(
       title: 'Erro',
