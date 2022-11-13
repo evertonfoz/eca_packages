@@ -14,6 +14,7 @@ class CropImagePageECA extends StatefulWidget {
   final Color iconProgressBarColor;
   final Color progressBarContainerColor;
   final Color valueProgressBarContainerColor;
+  final BuildContext parentContext;
 
   const CropImagePageECA({
     Key? key,
@@ -23,6 +24,7 @@ class CropImagePageECA extends StatefulWidget {
     required this.iconProgressBarColor,
     required this.progressBarContainerColor,
     required this.valueProgressBarContainerColor,
+    required this.parentContext,
   }) : super(key: key);
 
   @override
@@ -36,7 +38,9 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
   late File fileOriginalImage;
   late double progressBarWidthToAspectRadio;
   late int widthFactorToProgressBarWidthToAspectRadio = 0;
-  late Size originalImageSize;
+  // late Size originalImageSize;
+  late int imageWidth;
+  late int imageHeigth;
 
   @override
   void initState() {
@@ -45,16 +49,32 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
       await hideNavigationBar();
     });
     fileOriginalImage = File(widget.originalFilePath);
-    originalImageSize = ImageSizeGetter.getSize(
+    final Size originalImageSize = ImageSizeGetter.getSize(
       FileInput(fileOriginalImage),
     );
-    if (originalImageSize.width > originalImageSize.height) {
+
+    imageWidth = originalImageSize.width;
+    imageHeigth = originalImageSize.height;
+
+    if (imageHeigth > (MediaQuery.of(widget.parentContext).size.height * 0.5)) {
+      double sizeDiference = ((imageHeigth -
+                  MediaQuery.of(widget.parentContext).size.height * 0.5) *
+              100 /
+              imageHeigth) /
+          100;
+
+      sizeDiference = (imageHeigth * sizeDiference) / 100;
+
+      imageWidth = (imageWidth * sizeDiference).toInt();
+      imageHeigth = (imageHeigth * sizeDiference).toInt();
+    }
+
+    if (imageWidth > imageHeigth) {
       aspectImageSizeToScreeSize = 0.35;
-    } else if (originalImageSize.width == originalImageSize.height) {
+    } else if (imageWidth == imageHeigth) {
       aspectImageSizeToScreeSize = 0.75;
     } else {
-      aspectImageSizeToScreeSize =
-          originalImageSize.width / originalImageSize.height;
+      aspectImageSizeToScreeSize = imageWidth / imageHeigth;
     }
   }
 
@@ -66,64 +86,71 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
       body: SafeArea(
         child: Stack(
           children: [
-            SingleChildScrollView(
-              child: Stack(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: TextECA(
-                          text: widget.title,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: widget.titleColor,
-                          textAlign: TextAlign.start,
-                        ),
+            Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: TextECA(
+                        text: widget.title,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: widget.titleColor,
+                        textAlign: TextAlign.start,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: TextECA(
-                          text:
-                              'Pressione de maneira prolongada os botões abaixo para obter uma dica do funcionamento deles. Faça o mesmo com o + e - na barra ao lado dos botões.',
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: widget.titleColor,
-                          textAlign: TextAlign.start,
-                        ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: TextECA(
+                        text:
+                            'Pressione de maneira prolongada os botões abaixo para obter uma dica do funcionamento deles. Faça o mesmo com o + e - na barra ao lado dos botões.',
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: widget.titleColor,
+                        textAlign: TextAlign.start,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
-                        child: Card(
-                          color: Colors.black,
-                          // margin: EdgeInsets.all(8),
-                          surfaceTintColor: Colors.amber,
-                          elevation: 2,
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            height: (originalImageSize.height ==
-                                    originalImageSize.width)
-                                ? MediaQuery.of(context).size.width
-                                : MediaQuery.of(context).size.height *
-                                    aspectImageSizeToScreeSize,
-                            child: Crop(
-                              alwaysShowGrid: true,
-                              key: _imageCropKey,
-                              image: Image.file(
-                                fileOriginalImage,
-                                fit: BoxFit.fitHeight,
-                              ).image,
-                              aspectRatio: _buildAspectRadio(),
-                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Card(
+                        color: Colors.black,
+                        // margin: EdgeInsets.all(8),
+                        surfaceTintColor: Colors.amber,
+                        elevation: 2,
+                        child: SizedBox(
+                          width: (imageWidth <
+                                  MediaQuery.of(widget.parentContext)
+                                      .size
+                                      .width)
+                              ? MediaQuery.of(widget.parentContext).size.width
+                              : imageWidth.toDouble(),
+                          height: (imageHeigth == imageWidth)
+                              ? imageWidth.toDouble()
+                              : imageHeigth
+                                  .toDouble(), // * aspectImageSizeToScreeSize,
+                          child: Crop(
+                            alwaysShowGrid: true,
+                            key: _imageCropKey,
+                            image: Image.file(
+                              fileOriginalImage,
+                              fit: (imageWidth <
+                                      MediaQuery.of(widget.parentContext)
+                                          .size
+                                          .width)
+                                  ? BoxFit.fitWidth
+                                  : BoxFit.fitHeight,
+                            ).image,
+                            aspectRatio: _buildAspectRadio(),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
 
             Positioned(
@@ -283,9 +310,9 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
   }
 
   _buildAspectRadio() {
-    if (originalImageSize.height > originalImageSize.width) {
+    if (imageHeigth > imageWidth) {
       return ((2 - widthFactorToProgressBarWidthToAspectRadio / 10) - 0.4);
-    } else if (originalImageSize.height == originalImageSize.width) {
+    } else if (imageHeigth == imageWidth) {
       return ((2 - widthFactorToProgressBarWidthToAspectRadio / 10));
     }
     return ((2 - widthFactorToProgressBarWidthToAspectRadio / 10) + 0.3);

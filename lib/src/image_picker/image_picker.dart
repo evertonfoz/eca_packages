@@ -217,7 +217,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       if (!widget.pickAVideo) {
         pickedFile = await _picker.pickImage(
           source: source,
-          maxWidth: widget.maxHeightOfImage,
+          maxWidth: widget.maxWidthOfImage,
           maxHeight: widget.maxHeightOfImage,
           imageQuality: widget.imageQuality,
         );
