@@ -34,7 +34,7 @@ class CropImagePageECA extends StatefulWidget {
 class _CropImagePageECAState extends State<CropImagePageECA> {
   final GlobalKey<CropState> _imageCropKey = GlobalKey<CropState>();
   // double _aspectRation = 1;
-  late double aspectImageSizeToScreeSize;
+  // late double aspectImageSizeToScreeSize;
   late File fileOriginalImage;
   late double progressBarWidthToAspectRadio;
   late int widthFactorToProgressBarWidthToAspectRadio = 0;
@@ -55,6 +55,7 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
 
     imageWidth = originalImageSize.width;
     imageHeigth = originalImageSize.height;
+    // var mqHeight = MediaQuery.of(widget.parentContext).size.height * 0.5;
 
     if (imageHeigth > (MediaQuery.of(widget.parentContext).size.height * 0.5)) {
       double sizeDiference = ((imageHeigth -
@@ -63,24 +64,32 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
               imageHeigth) /
           100;
 
-      sizeDiference = (imageHeigth * sizeDiference) / 100;
+      sizeDiference = 1 - sizeDiference;
 
       imageWidth = (imageWidth * sizeDiference).toInt();
       imageHeigth = (imageHeigth * sizeDiference).toInt();
     }
 
-    if (imageWidth > imageHeigth) {
-      aspectImageSizeToScreeSize = 0.35;
-    } else if (imageWidth == imageHeigth) {
-      aspectImageSizeToScreeSize = 0.75;
-    } else {
-      aspectImageSizeToScreeSize = imageWidth / imageHeigth;
+    if (originalImageSize.needRotate) {
+      var aux = imageHeigth;
+      imageHeigth = imageWidth;
+      imageWidth = aux;
     }
+
+    // if (imageWidth > imageHeigth) {
+    //   aspectImageSizeToScreeSize = 0.35;
+    // } else if (imageWidth == imageHeigth) {
+    //   aspectImageSizeToScreeSize = 0.75;
+    // } else {
+    //   aspectImageSizeToScreeSize = imageWidth / imageHeigth;
+    // }
   }
 
   @override
   Widget build(BuildContext context) {
     progressBarWidthToAspectRadio = MediaQuery.of(context).size.width * 0.6;
+    // double mqWidth = MediaQuery.of(widget.parentContext).size.width;
+    // double mqHeight = MediaQuery.of(widget.parentContext).size.height;
 
     return Scaffold(
       body: SafeArea(
@@ -114,36 +123,31 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 10.0),
-                      child: Card(
-                        color: Colors.black,
-                        // margin: EdgeInsets.all(8),
-                        surfaceTintColor: Colors.amber,
-                        elevation: 2,
-                        child: SizedBox(
-                          width: (imageWidth <
-                                  MediaQuery.of(widget.parentContext)
-                                      .size
-                                      .width)
-                              ? MediaQuery.of(widget.parentContext).size.width
-                              : imageWidth.toDouble(),
-                          height: (imageHeigth == imageWidth)
-                              ? imageWidth.toDouble()
-                              : imageHeigth
-                                  .toDouble(), // * aspectImageSizeToScreeSize,
-                          child: Crop(
-                            alwaysShowGrid: true,
-                            key: _imageCropKey,
-                            image: Image.file(
-                              fileOriginalImage,
-                              fit: (imageWidth <
-                                      MediaQuery.of(widget.parentContext)
-                                          .size
-                                          .width)
-                                  ? BoxFit.fitWidth
-                                  : BoxFit.fitHeight,
-                            ).image,
-                            aspectRatio: _buildAspectRadio(),
+                      padding:
+                          const EdgeInsets.only(top: 10.0, left: 2, right: 2),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(4)),
+                            shape: BoxShape.rectangle,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 4,
+                            )),
+                        child: Center(
+                          child: SizedBox(
+                            width: imageWidth.toDouble(),
+                            height: imageHeigth
+                                .toDouble(), // * aspectImageSizeToScreeSize,
+                            child: Crop(
+                              alwaysShowGrid: true,
+                              key: _imageCropKey,
+                              image: Image.file(
+                                fileOriginalImage,
+                                fit: BoxFit.none,
+                              ).image,
+                              aspectRatio: _buildAspectRadio(),
+                            ),
                           ),
                         ),
                       ),
@@ -160,8 +164,6 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                 color: Colors.white54,
                 width: MediaQuery.of(context).size.width,
                 child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
-                  // crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 30,
@@ -259,7 +261,7 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         area: crop.area!,
                       );
 
-                      Modular.to.pop(croppedFile.path);
+                      Modular.to.pop([croppedFile.path]);
                     },
                     child: Icon(
                       Icons.crop,
@@ -275,7 +277,11 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                     backgroundColor: Colors.black38,
                     heroTag: 'original',
                     onPressed: () async {
-                      Modular.to.pop(widget.originalFilePath);
+                      Modular.to.pop([
+                        widget.originalFilePath,
+                        imageWidth,
+                        imageHeigth,
+                      ]);
                       // Navigator.of(context).pop(widget.originalFilePath);
                     },
                     child: Icon(
