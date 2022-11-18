@@ -18,8 +18,7 @@ class IconNotifications extends StatelessWidget {
     this.textToBadget,
     this.colorToTextToBadget,
   })  : assert((notificationsWidget != null && color == null && size == null) ||
-            (notificationsWidget == null && (color == null || size == null)) &&
-                (textToBadget != null && colorToTextToBadget != null)),
+            (notificationsWidget == null && (color == null || size == null))),
         super(key: key);
 
   @override
