@@ -49,6 +49,7 @@ mixin ListPreferencesMixin<Model> {
     Color? background,
     Widget? widget,
     Color? textColor,
+    String? subTitle,
   }) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
@@ -69,6 +70,18 @@ mixin ListPreferencesMixin<Model> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: textColor ?? Colors.black,
+                  ),
+                  Visibility(
+                    visible: subTitle != null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: TextECA(
+                        text: subTitle ?? '',
+                        fontSize: 16,
+                        // fontWeight: FontWeight.bold,
+                        color: textColor ?? Colors.black,
+                      ),
+                    ),
                   ),
                 ],
               ),
