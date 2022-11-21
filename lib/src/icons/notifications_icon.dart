@@ -30,7 +30,7 @@ class IconNotifications extends StatelessWidget {
               color: colorToTextToBadget,
             ),
             animationType: BadgeAnimationType.scale,
-            animationDuration: const Duration(seconds: 2),
+            animationDuration: const Duration(seconds: 1),
             child: notificationsWidget ??
                 IconECA(icon: kIconBell, color: color ?? colorToTextToBadget),
           )

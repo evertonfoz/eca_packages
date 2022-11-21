@@ -7,6 +7,8 @@ import 'package:image_crop/image_crop.dart';
 import 'package:image_size_getter/file_input.dart';
 import 'package:image_size_getter/image_size_getter.dart';
 
+const int kMaxImageHeight = 825;
+
 class CropImagePageECA extends StatefulWidget {
   final String title;
   final String originalFilePath;
@@ -55,14 +57,10 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
 
     imageWidth = originalImageSize.width;
     imageHeigth = originalImageSize.height;
-    // var mqHeight = MediaQuery.of(widget.parentContext).size.height * 0.5;
 
-    if (imageHeigth > (MediaQuery.of(widget.parentContext).size.height * 0.5)) {
-      double sizeDiference = ((imageHeigth -
-                  MediaQuery.of(widget.parentContext).size.height * 0.5) *
-              100 /
-              imageHeigth) /
-          100;
+    if (imageHeigth > (kMaxImageHeight * 0.5)) {
+      double sizeDiference =
+          ((imageHeigth - kMaxImageHeight * 0.5) * 100 / imageHeigth) / 100;
 
       sizeDiference = 1 - sizeDiference;
 
@@ -75,14 +73,6 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
       imageHeigth = imageWidth;
       imageWidth = aux;
     }
-
-    // if (imageWidth > imageHeigth) {
-    //   aspectImageSizeToScreeSize = 0.35;
-    // } else if (imageWidth == imageHeigth) {
-    //   aspectImageSizeToScreeSize = 0.75;
-    // } else {
-    //   aspectImageSizeToScreeSize = imageWidth / imageHeigth;
-    // }
   }
 
   @override

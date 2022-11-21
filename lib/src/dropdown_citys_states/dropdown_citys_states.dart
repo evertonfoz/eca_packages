@@ -65,9 +65,6 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
     if (_controller.states.isNotEmpty &&
         widget.stateName!.isNotEmpty &&
         widget.stateName != _controller.stateSelected.name) {
-      // var teste = _controller.states.where((element) =>
-      //     (element.name == widget.stateName) ||
-      //     (element.id == widget.stateName));
       var foundState = _controller.states
           .where((element) =>
               (element.name == widget.stateName) ||
