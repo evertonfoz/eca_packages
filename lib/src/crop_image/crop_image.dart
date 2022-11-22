@@ -43,6 +43,8 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
   // late Size originalImageSize;
   late int imageWidth;
   late int imageHeigth;
+  late double mediaWidth;
+  late double mediaHeight;
 
   @override
   void initState() {
@@ -66,6 +68,15 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
 
       imageWidth = (imageWidth * sizeDiference).toInt();
       imageHeigth = (imageHeigth * sizeDiference).toInt();
+    } else {
+      double sizeDiference =
+          (((kMaxImageHeight * 0.5) - imageHeigth) * 100 / kMaxImageHeight) /
+              100;
+
+      sizeDiference = 1 - sizeDiference;
+
+      imageWidth = (imageWidth * sizeDiference).toInt();
+      imageHeigth = (imageHeigth * sizeDiference).toInt();
     }
 
     if (originalImageSize.needRotate) {
@@ -80,6 +91,13 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
     progressBarWidthToAspectRadio = MediaQuery.of(context).size.width * 0.6;
     // double mqWidth = MediaQuery.of(widget.parentContext).size.width;
     // double mqHeight = MediaQuery.of(widget.parentContext).size.height;
+    mediaWidth = imageWidth > MediaQuery.of(context).size.width
+        ? MediaQuery.of(context).size.width
+        : imageWidth.toDouble();
+    mediaHeight = (imageWidth > MediaQuery.of(context).size.width
+        ? MediaQuery.of(context).size.height * 0.5
+        : imageHeigth.toDouble());
+    mediaHeight = mediaHeight * (imageHeigth / imageWidth);
 
     return Scaffold(
       body: SafeArea(
@@ -117,6 +135,7 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                           const EdgeInsets.only(top: 10.0, left: 2, right: 2),
                       child: Container(
                         decoration: BoxDecoration(
+                            color: Colors.black87,
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(4)),
                             shape: BoxShape.rectangle,
@@ -125,16 +144,19 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                               width: 4,
                             )),
                         child: Center(
-                          child: SizedBox(
-                            width: imageWidth.toDouble(),
-                            height: imageHeigth
-                                .toDouble(), // * aspectImageSizeToScreeSize,
+                          child: Container(
+                            color: Colors.black87,
+                            width: mediaWidth - 16, //Padding e borda
+                            height: mediaHeight -
+                                18, // * aspectImageSizeToScreeSize,
                             child: Crop(
                               alwaysShowGrid: true,
                               key: _imageCropKey,
                               image: Image.file(
                                 fileOriginalImage,
                                 fit: BoxFit.none,
+                                width: mediaWidth - 16,
+                                height: mediaHeight - 18,
                               ).image,
                               aspectRatio: _buildAspectRadio(),
                             ),
@@ -251,7 +273,11 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         area: crop.area!,
                       );
 
-                      Modular.to.pop([croppedFile.path]);
+                      Modular.to.pop([
+                        croppedFile.path,
+                        mediaWidth,
+                        mediaHeight,
+                      ]);
                     },
                     child: Icon(
                       Icons.crop,
@@ -269,8 +295,8 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                     onPressed: () async {
                       Modular.to.pop([
                         widget.originalFilePath,
-                        imageWidth,
-                        imageHeigth,
+                        mediaWidth,
+                        mediaHeight,
                       ]);
                       // Navigator.of(context).pop(widget.originalFilePath);
                     },

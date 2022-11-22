@@ -56,8 +56,8 @@ showModalBottomSheetToPickAPhoto({
                 ),
               ),
               ImagePickerECA(
-                maxWidthOfImage: MediaQuery.of(context).size.width,
-                maxHeightOfImage: MediaQuery.of(context).size.height * 0.5,
+                // maxWidthOfImage: MediaQuery.of(context).size.width,
+                // maxHeightOfImage: MediaQuery.of(context).size.height * 0.5,
                 // imageCropKey: imageCropKey,
                 pickAVideo: pickAVideo,
                 imageQuality: imageQuality,
