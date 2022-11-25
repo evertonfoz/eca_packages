@@ -67,7 +67,7 @@ class FormFieldGroup extends StatelessWidget {
     this.isObservable = false,
     this.autoFocus = false,
     this.minLines,
-    this.textFontSize,
+    this.textFontSize = 17,
     this.textFieldFontSize,
     this.errorFontSize,
     this.maxLength,
