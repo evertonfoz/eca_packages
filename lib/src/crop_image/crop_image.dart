@@ -275,12 +275,11 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         area: crop.area!,
                       );
 
-<<<<<<< Updated upstream
                       Modular.to.pop([
                         croppedFile.path,
                         mediaWidth,
                         mediaHeight,
-=======
+                      ]);
                       fileOriginalImage = File(croppedFile.path);
                       final Size originalImageSize = ImageSizeGetter.getSize(
                         FileInput(fileOriginalImage),
@@ -306,7 +305,6 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         croppedFile.path,
                         imageWidth,
                         imageHeigth,
->>>>>>> Stashed changes
                       ]);
                     },
                     child: Icon(
