@@ -29,7 +29,10 @@ class DefaultTextButton extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          fontSize: fontSize ?? 18,
+          fontSize: fontSize ??
+              28 *
+                  (MediaQuery.of(context).size.width /
+                      MediaQuery.of(context).size.height),
           // color: foregroundColor,
           fontWeight: FontWeight.bold,
         ),

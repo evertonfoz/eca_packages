@@ -62,10 +62,30 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
   // @override
   @override
   Widget build(BuildContext context) {
+    if (_controller.states.isNotEmpty &&
+        widget.stateName!.isNotEmpty &&
+        widget.stateName != _controller.stateSelected.name) {
+      var foundState = _controller.states
+          .where((element) =>
+              (element.name == widget.stateName) ||
+              (element.id == widget.stateName))
+          .first;
+      _controller.registerState(foundState);
+      Future.delayed(const Duration(milliseconds: 500)).then((value) {
+        if (widget.cityName!.isNotEmpty &&
+            widget.cityName != _controller.citySelected.name) {
+          var foundCity = _controller.cities
+              .where((element) => element.name == widget.cityName)
+              .first;
+          _controller.registerCity(foundCity);
+        }
+      });
+    }
     return Column(
       children: [
         const SizedBox(height: 5),
         Observer(builder: (context) {
+          print(widget.stateName);
           return DropDown<StateModel>(
             selectedItem: _controller.stateSelected,
             hintText: 'Selecione um Estado',

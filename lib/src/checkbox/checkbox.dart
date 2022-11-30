@@ -92,7 +92,7 @@ class _CheckBoxECAState extends State<CheckBoxECA> {
           flex: 8,
           child: _buildText(),
         ),
-        SizedBox(width: widget.spaceBetweenCheckAndText),
+        // SizedBox(width: widget.spaceBetweenCheckAndText),
         widget.afterTextWidget ?? Container(),
       ],
     );

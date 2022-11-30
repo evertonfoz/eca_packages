@@ -19,4 +19,10 @@ class StateGetlAllRepository {
     final state = await dataSource.getByName(name: name);
     return Right(state);
   }
+
+//TODO Separar em arquivos no padrão
+  Future<Either<Failure, String>> getNameById({required String id}) async {
+    var state = await dataSource.getNameById(id: id);
+    return Right(state);
+  }
 }

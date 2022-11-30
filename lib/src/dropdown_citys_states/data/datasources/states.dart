@@ -42,4 +42,10 @@ class StateGetAllDataSource {
     var state = _states.where((element) => element.name == name).first;
     return Future.value(state);
   }
+
+//TODO Separar em arquivos no padrão
+  String getNameById({required String id}) {
+    var state = _states.where((element) => element.id == id).first.name;
+    return state;
+  }
 }

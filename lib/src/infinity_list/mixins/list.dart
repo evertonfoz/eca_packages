@@ -39,30 +39,52 @@ mixin ListPreferencesMixin<Model> {
     );
   }
 
-  Widget noItemsFoundIndicatorBuilder(
-      {required BuildContext context,
-      required String text,
-      required String urlNoData,
-      double scale = 1.5,
-      bool isLoading = false,
-      MaterialColor? loadingColor}) {
+  Widget noItemsFoundIndicatorBuilder({
+    required BuildContext context,
+    required String text,
+    required String urlNoData,
+    double scale = 1.5,
+    bool isLoading = false,
+    MaterialColor? loadingColor,
+    Color? background,
+    Widget? widget,
+    Color? textColor,
+    String? subTitle,
+  }) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.5,
       child: isLoading
           ? firstPageProgressIndicatorBuilder(
               loadingColor: loadingColor!, text: text)
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(urlNoData, //'assets/no_data.png',
-                    scale: scale),
-                TextECA(
-                  text: 'Nada: Ainda não temos $text para você',
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ],
+          : Container(
+              color: background,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  widget ??
+                      Image.asset(urlNoData, //'assets/no_data.png',
+                          scale: scale),
+                  TextECA(
+                    text: 'Nada: Ainda não temos $text para você',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: textColor ?? Colors.black,
+                  ),
+                  Visibility(
+                    visible: subTitle != null,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: TextECA(
+                        text: subTitle ?? '',
+                        fontSize: 16,
+                        // fontWeight: FontWeight.bold,
+                        color: textColor ?? Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
     );
   }

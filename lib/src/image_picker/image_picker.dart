@@ -10,7 +10,7 @@ import '../../eca_packages.dart';
 
 const double kMaxWidthOfImage = 600;
 const double kMaxHeightOfImage = 1024;
-const int kImageQuality = 80;
+const int kImageQuality = 10;
 
 class ImagePickerECA extends StatefulWidget {
   final bool showFabButtonsInColumn;
@@ -217,8 +217,8 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       if (!widget.pickAVideo) {
         pickedFile = await _picker.pickImage(
           source: source,
-          maxWidth: widget.maxHeightOfImage,
-          maxHeight: widget.maxHeightOfImage,
+          // maxWidth: widget.maxWidthOfImage,
+          // maxHeight: widget.maxHeightOfImage,
           imageQuality: widget.imageQuality,
         );
       } else {
