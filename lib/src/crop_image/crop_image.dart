@@ -280,32 +280,6 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         mediaWidth,
                         mediaHeight,
                       ]);
-                      fileOriginalImage = File(croppedFile.path);
-                      final Size originalImageSize = ImageSizeGetter.getSize(
-                        FileInput(fileOriginalImage),
-                      );
-
-                      imageWidth = originalImageSize.width;
-                      imageHeigth = originalImageSize.height;
-
-                      if (imageHeigth > (kMaxImageHeight * 0.5)) {
-                        double sizeDiference =
-                            ((imageHeigth - kMaxImageHeight * 0.5) *
-                                    100 /
-                                    imageHeigth) /
-                                100;
-
-                        sizeDiference = 1 - sizeDiference;
-
-                        imageWidth = (imageWidth * sizeDiference).toInt();
-                        imageHeigth = (imageHeigth * sizeDiference).toInt();
-                      }
-
-                      Modular.to.pop([
-                        croppedFile.path,
-                        imageWidth,
-                        imageHeigth,
-                      ]);
                     },
                     child: Icon(
                       Icons.crop,
