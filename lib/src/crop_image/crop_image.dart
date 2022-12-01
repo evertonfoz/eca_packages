@@ -52,6 +52,8 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
     Future.delayed(Duration.zero, () async {
       await hideNavigationBar();
     });
+
+//TODO Função
     fileOriginalImage = File(widget.originalFilePath);
     final Size originalImageSize = ImageSizeGetter.getSize(
       FileInput(fileOriginalImage),
@@ -273,10 +275,38 @@ class _CropImagePageECAState extends State<CropImagePageECA> {
                         area: crop.area!,
                       );
 
+<<<<<<< Updated upstream
                       Modular.to.pop([
                         croppedFile.path,
                         mediaWidth,
                         mediaHeight,
+=======
+                      fileOriginalImage = File(croppedFile.path);
+                      final Size originalImageSize = ImageSizeGetter.getSize(
+                        FileInput(fileOriginalImage),
+                      );
+
+                      imageWidth = originalImageSize.width;
+                      imageHeigth = originalImageSize.height;
+
+                      if (imageHeigth > (kMaxImageHeight * 0.5)) {
+                        double sizeDiference =
+                            ((imageHeigth - kMaxImageHeight * 0.5) *
+                                    100 /
+                                    imageHeigth) /
+                                100;
+
+                        sizeDiference = 1 - sizeDiference;
+
+                        imageWidth = (imageWidth * sizeDiference).toInt();
+                        imageHeigth = (imageHeigth * sizeDiference).toInt();
+                      }
+
+                      Modular.to.pop([
+                        croppedFile.path,
+                        imageWidth,
+                        imageHeigth,
+>>>>>>> Stashed changes
                       ]);
                     },
                     child: Icon(
