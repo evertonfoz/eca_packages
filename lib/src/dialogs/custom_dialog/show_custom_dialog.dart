@@ -25,7 +25,7 @@ showCustomDialog({
       (leftButtonText == null && rigthButtonText == null) &&
           centerButtonText != null);
   // print(errorToCopy);
-  showDialog(
+  await showDialog(
     barrierDismissible: false,
     context: context,
     builder: (BuildContext context) => CustomDialogInformation(
