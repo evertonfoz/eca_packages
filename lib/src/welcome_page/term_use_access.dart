@@ -16,6 +16,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   final TextAlign textAlign;
   final double fontSize;
   final Alignment? alignment;
+  final String startText;
 
   const WelcomePoliceAndTermUseAccess({
     Key? key,
@@ -32,6 +33,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     this.textAlign = TextAlign.justify,
     this.fontSize = 18,
     this.alignment,
+    this.startText = 'Ao entrar, ',
   }) : super(key: key);
 
   @override
@@ -48,7 +50,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
                     Theme.of(context).textTheme.bodySmall?.color,
                 fontSize: fontSize),
             children: <TextSpan>[
-              const TextSpan(text: "Ao entrar, você concorda com a nossa "),
+              TextSpan(text: "$startText você concorda com a nossa "),
               TextSpan(
                 text: "política de privacidade",
                 style: const TextStyle(fontWeight: FontWeight.bold),

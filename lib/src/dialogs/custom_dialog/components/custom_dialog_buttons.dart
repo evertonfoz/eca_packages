@@ -63,26 +63,40 @@ class CustomDialogButtonsWidget extends StatelessWidget {
   _centerButton(BuildContext context) {
     return Visibility(
       visible: centerButtonText != null,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 28.0),
-          child: ConstrainedBox(
-            constraints: BoxConstraints.tightFor(
-                width: MediaQuery.of(context).size.width * 0.6, height: 48),
-            child: ElevatedButton(
-              child: Text('opa'),
-              onPressed: () {
-                if (onCenterButtonPressed == null)
-                  Navigator.of(context).pop();
-                else {
-                  Navigator.of(context).pop();
-                  onCenterButtonPressed!();
-                }
-              },
-            ),
-          ),
-        ),
+      child: DefaultTextButton(
+        backgroundColor: leftButtonColor ?? _leftButtonColor(),
+        foregroundColor: Colors.white,
+        text: centerButtonText ?? '',
+        onPressed: () {
+          if (onCenterButtonPressed == null)
+            Navigator.of(context).pop();
+          else {
+            onCenterButtonPressed!();
+            Navigator.of(context).pop();
+          }
+        },
       ),
+
+      // Center(
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(bottom: 28.0),
+      //     child: ConstrainedBox(
+      //       constraints: BoxConstraints.tightFor(
+      //           width: MediaQuery.of(context).size.width * 0.6, height: 48),
+      //       child: ElevatedButton(
+      //         child: Text(c),
+      //         onPressed: () {
+      //           if (onCenterButtonPressed == null)
+      //             Navigator.of(context).pop();
+      //           else {
+      //             Navigator.of(context).pop();
+      //             onCenterButtonPressed!();
+      //           }
+      //         },
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 
