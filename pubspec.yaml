@@ -1,6 +1,6 @@
 name: eca_packages
 description: This package was developed in order to specialize components used in the development of my applications. It's not a single-use package, as the rule of thumb for package adoption dictates. Here at ECA Packages you will see several widgets.
-version: 0.0.1+3
+version: 0.0.1+4
 # publish_to: https://pub.dev/
 repository: https://github.com/evertonfoz/eca_packages
 

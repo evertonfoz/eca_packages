@@ -5,3 +5,7 @@
 ## 0.0.1+3
 
 * Example image URL tweaks.
+
+## 0.0.1+4
+
+* Example image URL tweaks.

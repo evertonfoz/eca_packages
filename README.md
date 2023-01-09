@@ -27,7 +27,7 @@ import 'package:eca_packages/eca_packages.dart';
 
 As a test for viewing a Text, we will initially have the following image, displaying a Scaffold with a single TextECA.
 
-![The benchmark view with a TextECA Widget](https://github.com/evertonfoz/eca_packages/tree/main/assets/readme/texteca.png)
+![The benchmark view with a TextECA Widget](https://cdn.jsdelivr.net/gh/evertonfoz/eca_packages@master/assets/readme/texteca.png)
 
 In order to get to the previous images, we need to implement the widget presented below.
 
