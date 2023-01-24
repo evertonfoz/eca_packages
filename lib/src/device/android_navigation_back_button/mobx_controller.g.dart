@@ -1,101 +1,101 @@
-// // GENERATED CODE - DO NOT MODIFY BY HAND
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
-// part of 'mobx_controller.dart';
+part of 'mobx_controller.dart';
 
-// // **************************************************************************
-// // StoreGenerator
-// // **************************************************************************
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
 
-// // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-// mixin _$AndroidNavigationBackButtonStore
-//     on _AndroidNavigationBackButtonStore, Store {
-//   Computed<bool>? _$backButtonWasPressedComputed;
+mixin _$AndroidNavigationBackButtonStore
+    on _AndroidNavigationBackButtonStore, Store {
+  Computed<bool>? _$backButtonWasPressedComputed;
 
-//   @override
-//   bool get backButtonWasPressed => (_$backButtonWasPressedComputed ??=
-//           Computed<bool>(() => super.backButtonWasPressed,
-//               name: '_AndroidNavigationBackButtonStore.backButtonWasPressed'))
-//       .value;
-//   Computed<String>? _$actualRouteNameComputed;
+  @override
+  bool get backButtonWasPressed => (_$backButtonWasPressedComputed ??=
+          Computed<bool>(() => super.backButtonWasPressed,
+              name: '_AndroidNavigationBackButtonStore.backButtonWasPressed'))
+      .value;
+  Computed<String>? _$actualRouteNameComputed;
 
-//   @override
-//   String get actualRouteName => (_$actualRouteNameComputed ??= Computed<String>(
-//           () => super.actualRouteName,
-//           name: '_AndroidNavigationBackButtonStore.actualRouteName'))
-//       .value;
+  @override
+  String get actualRouteName => (_$actualRouteNameComputed ??= Computed<String>(
+          () => super.actualRouteName,
+          name: '_AndroidNavigationBackButtonStore.actualRouteName'))
+      .value;
 
-//   late final _$_backButtonWasPressedAtom = Atom(
-//       name: '_AndroidNavigationBackButtonStore._backButtonWasPressed',
-//       context: context);
+  late final _$_backButtonWasPressedAtom = Atom(
+      name: '_AndroidNavigationBackButtonStore._backButtonWasPressed',
+      context: context);
 
-//   @override
-//   bool get _backButtonWasPressed {
-//     _$_backButtonWasPressedAtom.reportRead();
-//     return super._backButtonWasPressed;
-//   }
+  @override
+  bool get _backButtonWasPressed {
+    _$_backButtonWasPressedAtom.reportRead();
+    return super._backButtonWasPressed;
+  }
 
-//   @override
-//   set _backButtonWasPressed(bool value) {
-//     _$_backButtonWasPressedAtom.reportWrite(value, super._backButtonWasPressed,
-//         () {
-//       super._backButtonWasPressed = value;
-//     });
-//   }
+  @override
+  set _backButtonWasPressed(bool value) {
+    _$_backButtonWasPressedAtom.reportWrite(value, super._backButtonWasPressed,
+        () {
+      super._backButtonWasPressed = value;
+    });
+  }
 
-//   late final _$_actualRouteNameAtom = Atom(
-//       name: '_AndroidNavigationBackButtonStore._actualRouteName',
-//       context: context);
+  late final _$_actualRouteNameAtom = Atom(
+      name: '_AndroidNavigationBackButtonStore._actualRouteName',
+      context: context);
 
-//   @override
-//   String? get _actualRouteName {
-//     _$_actualRouteNameAtom.reportRead();
-//     return super._actualRouteName;
-//   }
+  @override
+  String? get _actualRouteName {
+    _$_actualRouteNameAtom.reportRead();
+    return super._actualRouteName;
+  }
 
-//   @override
-//   set _actualRouteName(String? value) {
-//     _$_actualRouteNameAtom.reportWrite(value, super._actualRouteName, () {
-//       super._actualRouteName = value;
-//     });
-//   }
+  @override
+  set _actualRouteName(String? value) {
+    _$_actualRouteNameAtom.reportWrite(value, super._actualRouteName, () {
+      super._actualRouteName = value;
+    });
+  }
 
-//   late final _$_AndroidNavigationBackButtonStoreActionController =
-//       ActionController(
-//           name: '_AndroidNavigationBackButtonStore', context: context);
+  late final _$_AndroidNavigationBackButtonStoreActionController =
+      ActionController(
+          name: '_AndroidNavigationBackButtonStore', context: context);
 
-//   @override
-//   dynamic registerBackButtonWasPressed({required bool value}) {
-//     final _$actionInfo =
-//         _$_AndroidNavigationBackButtonStoreActionController.startAction(
-//             name:
-//                 '_AndroidNavigationBackButtonStore.registerBackButtonWasPressed');
-//     try {
-//       return super.registerBackButtonWasPressed(value: value);
-//     } finally {
-//       _$_AndroidNavigationBackButtonStoreActionController
-//           .endAction(_$actionInfo);
-//     }
-//   }
+  @override
+  dynamic registerBackButtonWasPressed({required bool value}) {
+    final _$actionInfo =
+        _$_AndroidNavigationBackButtonStoreActionController.startAction(
+            name:
+                '_AndroidNavigationBackButtonStore.registerBackButtonWasPressed');
+    try {
+      return super.registerBackButtonWasPressed(value: value);
+    } finally {
+      _$_AndroidNavigationBackButtonStoreActionController
+          .endAction(_$actionInfo);
+    }
+  }
 
-//   @override
-//   dynamic registerActualRouteName({required String value}) {
-//     final _$actionInfo =
-//         _$_AndroidNavigationBackButtonStoreActionController.startAction(
-//             name: '_AndroidNavigationBackButtonStore.registerActualRouteName');
-//     try {
-//       return super.registerActualRouteName(value: value);
-//     } finally {
-//       _$_AndroidNavigationBackButtonStoreActionController
-//           .endAction(_$actionInfo);
-//     }
-//   }
+  @override
+  dynamic registerActualRouteName({required String value}) {
+    final _$actionInfo =
+        _$_AndroidNavigationBackButtonStoreActionController.startAction(
+            name: '_AndroidNavigationBackButtonStore.registerActualRouteName');
+    try {
+      return super.registerActualRouteName(value: value);
+    } finally {
+      _$_AndroidNavigationBackButtonStoreActionController
+          .endAction(_$actionInfo);
+    }
+  }
 
-//   @override
-//   String toString() {
-//     return '''
-// backButtonWasPressed: ${backButtonWasPressed},
-// actualRouteName: ${actualRouteName}
-//     ''';
-//   }
-// }
+  @override
+  String toString() {
+    return '''
+backButtonWasPressed: ${backButtonWasPressed},
+actualRouteName: ${actualRouteName}
+    ''';
+  }
+}
