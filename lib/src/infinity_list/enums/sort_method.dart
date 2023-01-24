@@ -1,9 +1,9 @@
-enum SortOrderType {
-  asc(0, 'Asc'),
-  desc(1, 'Desc');
+// enum SortOrderType {
+//   asc(0, 'Asc'),
+//   desc(1, 'Desc');
 
-  final int value;
-  final String text;
+//   final int value;
+//   final String text;
 
-  const SortOrderType(this.value, this.text);
-}
+//   const SortOrderType(this.value, this.text);
+// }
