@@ -20,6 +20,7 @@ class DropDown<T> extends StatelessWidget {
   final bool showSearchBox;
   bool Function(T, String)? filterFn;
   Future<List<T>> Function(String)? asyncItemsFunction;
+  final String? label;
 
   DropDown({
     Key? key,
@@ -37,6 +38,7 @@ class DropDown<T> extends StatelessWidget {
     this.searchHintText,
     this.filterFn,
     this.asyncItemsFunction,
+    this.label,
   })  : assert((items != null && asyncItemsFunction == null) ||
             items == null && asyncItemsFunction != null),
         super(key: key);
@@ -49,6 +51,7 @@ class DropDown<T> extends StatelessWidget {
         enabled: enabled,
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
+            labelText: label ?? '',
             fillColor: fillColor ?? Colors.white,
             // labelText: "Modal mode",
             hintText: hintText,
@@ -84,6 +87,7 @@ class DropDown<T> extends StatelessWidget {
         enabled: enabled,
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
+            labelText: label ?? '',
             fillColor: fillColor ?? Colors.white,
             // labelText: "Modal mode",
             hintText: hintText,
