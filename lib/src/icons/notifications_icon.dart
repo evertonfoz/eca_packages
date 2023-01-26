@@ -29,6 +29,13 @@ class IconNotifications extends StatelessWidget {
               text: textToBadget ?? '',
               color: colorToTextToBadget,
             ),
+            //TODO - Após o uso do package badges: ^3.0.0 ou superior, descomentar o próximo campo
+
+            // badgeAnimation: const BadgeAnimation.slide(
+            //   toAnimate: true,
+            //   animationDuration: Duration(seconds: 1),
+            // ),
+            //TODO - Após o uso do package badges: ^3.0.0 ou superior, apagar os dois campos abaixo
             animationType: BadgeAnimationType.scale,
             animationDuration: const Duration(seconds: 1),
             child: notificationsWidget ??
