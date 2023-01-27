@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// **Está pegando uma fonte diferente da utilizada no Theme**
-///
 // ignore: must_be_immutable
 class TextECA extends StatelessWidget {
   late String text;
@@ -18,6 +16,7 @@ class TextECA extends StatelessWidget {
   final List<Shadow>? shadows;
   final bool softwrap;
   final String? fontFamily;
+  final Color requiredOrientationColor;
 
   TextECA({
     Key? key,
@@ -35,6 +34,7 @@ class TextECA extends StatelessWidget {
     this.shadows,
     this.softwrap = false,
     this.fontFamily,
+    this.requiredOrientationColor = Colors.red,
   }) : super(key: key);
 
   _generateTextSpanChildren() {
@@ -47,7 +47,7 @@ class TextECA extends StatelessWidget {
         TextSpan(
           text: '*',
           style: TextStyle(
-            color: Colors.red,
+            color: requiredOrientationColor,
             fontWeight: FontWeight.bold,
             fontFamily: fontFamily,
           ),
@@ -61,7 +61,6 @@ class TextECA extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      // softWrap: softwrap,
       maxLines: maxLines,
       overflow: textOverflow ?? TextOverflow.fade,
       textAlign: textAlign ?? TextAlign.center,

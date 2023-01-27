@@ -1,3 +1,11 @@
-## 0.0.1
+## 0.0.1+2
 
-* TODO: Describe initial release.
+* Initial release for Markdown publishing and checking tests in README.md.
+
+## 0.0.1+3
+
+* Example image URL tweaks.
+
+## 0.0.1+4
+
+* Example image URL tweaks.

@@ -1,7 +1,8 @@
 name: eca_packages
-description: A new Flutter package project.
-version: 0.0.1+2
-publish_to: none
+description: This package was developed in order to specialize components used in the development of my applications. It's not a single-use package, as the rule of thumb for package adoption dictates. Here at ECA Packages you will see several widgets.
+version: 0.0.1+4
+# publish_to: https://pub.dev/
+repository: https://github.com/evertonfoz/eca_packages
 
 environment:
   sdk: ">=2.17.5 <3.0.0"
@@ -32,6 +33,7 @@ dependencies:
   geocoding: ^2.0.5
   geolocator: ^9.0.2
   getwidget: ^3.0.1
+  http: ^0.13.5
   http_parser: ^4.0.1
   image_crop: ^0.4.1
   image_picker: ^0.8.4+4
