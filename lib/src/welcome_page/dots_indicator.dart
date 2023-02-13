@@ -35,11 +35,11 @@ class WelcomePageDotsIndicator extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       margin: const EdgeInsets.only(right: 5),
-      height: 6,
-      width: currentPage == index ? 20 : 6,
+      height: 12,
+      width: currentPage == index ? 20 : 12,
       decoration: BoxDecoration(
         color: currentPage == index ? color.shade500 : color.shade300,
-        borderRadius: BorderRadius.circular(3),
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

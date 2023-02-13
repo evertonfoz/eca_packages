@@ -49,7 +49,7 @@ class TextECA extends StatelessWidget {
           style: TextStyle(
             color: requiredOrientationColor,
             fontWeight: FontWeight.bold,
-            fontFamily: fontFamily,
+            fontFamily: 'Poppins',
           ),
         ),
       );
@@ -72,6 +72,7 @@ class TextECA extends StatelessWidget {
           color: color ?? Theme.of(context).textTheme.caption?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
+          fontFamily: 'Poppins',
         ),
         children: _generateTextSpanChildren(),
       ),
