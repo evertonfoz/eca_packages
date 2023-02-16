@@ -20,7 +20,7 @@ class DropDown<T> extends StatelessWidget {
   final bool showSearchBox;
   bool Function(T, String)? filterFn;
   Future<List<T>> Function(String)? asyncItemsFunction;
-  final String labelText;
+  final String? labelText;
 
   DropDown({
     Key? key,
@@ -38,7 +38,7 @@ class DropDown<T> extends StatelessWidget {
     this.searchHintText,
     this.filterFn,
     this.asyncItemsFunction,
-    required this.labelText,
+    this.labelText,
   })  : assert((items != null && asyncItemsFunction == null) ||
             items == null && asyncItemsFunction != null),
         super(key: key);
