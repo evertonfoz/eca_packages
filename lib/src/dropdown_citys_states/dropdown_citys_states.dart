@@ -89,6 +89,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
           return DropDown<StateModel>(
             selectedItem: _controller.stateSelected,
             hintText: 'Selecione um Estado',
+            labelText: 'Estado',
             selectedColorItem: widget.selectedColorItem ?? Colors.red,
             items: _controller.states,
             compareFn: (item, selectedItem) => item?.id == selectedItem?.id,
@@ -111,6 +112,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
           return DropDown<CityModel>(
             selectedItem: _controller.citySelected,
             hintText: 'Selecione uma Cidade',
+            labelText: 'Cidade',
             selectedColorItem: widget.selectedColorItem ?? Colors.red,
             items: _controller.cities,
             compareFn: (item, selectedItem) => item?.name == selectedItem?.name,
