@@ -85,7 +85,6 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     );
   }
 
-  ///[_buildMarkdown] resonsável por apresentar os termos de uso.
   _buildMarkdown({required String fileName, required String fileTitle}) {
     return MarkdownShowFile(
       fileName: fileName,
