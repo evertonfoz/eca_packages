@@ -1,39 +1,80 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+This package was developed in order to specialize components used in the development of my applications. It's not a single-use package, as the rule of thumb for package adoption dictates. Here at ECA Packages you will see several widgets.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+It is important that you read all the documentation, check all the widgets and evaluate whether or not to use this package. You can fork it and get just the widget you want.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+TextECA: It is a widget similar to **Text**, however, it uses **RichText** to compose the text to be rendered
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, first of all, you need to configure `pubspec.yaml` according to what is presented below.
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
-```dart
-const like = 'sample';
+```
+dependencies:
+  eca_packages: <última-versão>
 ```
 
-## Additional information
+After configuration, you need to run flutter packages get, on the console / terminal or in your IDE.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+In your Widget it is necessary to import the following package.
+
+```
+import 'package:eca_packages/eca_packages.dart';
+```
+
+## Basic use
+
+As a test for viewing a Text, we will initially have the following image, displaying a Scaffold with a single TextECA.
+
+![The benchmark view with a TextECA Widget](https://cdn.jsdelivr.net/gh/evertonfoz/eca_packages@master/assets/readme/texteca.png)
+
+In order to get to the previous images, we need to implement the widget presented below.
+
+```
+import 'package:eca_packages/eca_packages.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'TextECA Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'TextECA Demo'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: TextECA(
+          maxLines: 1,
+          text: 'ECA Packages',
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontSize: 24,
+          textAlign: TextAlign.start,
+          textOverflow: TextOverflow.ellipsis,
+        ));
+  }
+}
+```

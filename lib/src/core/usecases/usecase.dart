@@ -5,7 +5,7 @@ import 'package:eca_packages/eca_packages.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class UseCase<Type, Params> {
-  FutureOr<Either<Failure, Type>> call(Params params);
+  FutureOr<Either<Failure, Type?>> call(Params params);
 }
 
 class NoParams extends Equatable {

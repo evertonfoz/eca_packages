@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badge;
 import 'package:flutter/material.dart';
 
 import '../../eca_packages.dart';
@@ -24,12 +24,12 @@ class IconNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return textToBadget != null
-        ? Badge(
+        ? badge.Badge(
             badgeContent: TextECA(
               text: textToBadget ?? '',
               color: colorToTextToBadget,
             ),
-            animationType: BadgeAnimationType.scale,
+            animationType: badge.BadgeAnimationType.scale,
             animationDuration: const Duration(seconds: 1),
             child: notificationsWidget ??
                 IconECA(icon: kIconBell, color: color ?? colorToTextToBadget),
