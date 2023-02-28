@@ -38,6 +38,7 @@ class FormFieldGroup extends StatelessWidget {
   final bool? onlyLowerCase;
   final String? fontFamily;
   final List<String>? autofillHints;
+  final Color? colorTextTile;
 
   const FormFieldGroup({
     Key? key,
@@ -75,6 +76,7 @@ class FormFieldGroup extends StatelessWidget {
     this.fontFamily,
     this.textCapitalization,
     this.autofillHints,
+    this.colorTextTile,
   }) : super(key: key);
 
   @override
@@ -90,6 +92,7 @@ class FormFieldGroup extends StatelessWidget {
           fontSize: textFontSize,
           textAlign: TextAlign.start,
           fontFamily: fontFamily,
+          color: colorTextTile,
         ),
         const SizedBox(height: 10),
         TextFormFieldECA(

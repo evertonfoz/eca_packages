@@ -67,9 +67,10 @@ class TextECA extends StatelessWidget {
       text: TextSpan(
         style: TextStyle(
           shadows: shadows,
-          fontSize:
-              (fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 14),
-          color: color ?? Theme.of(context).textTheme.caption?.color,
+          fontSize: (fontSize ??
+              Theme.of(context).textTheme.bodySmall?.fontSize ??
+              14),
+          color: color ?? Theme.of(context).textTheme.bodySmall?.color,
           fontWeight: fontWeight,
           fontStyle: italic ? FontStyle.italic : FontStyle.normal,
         ),
