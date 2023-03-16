@@ -140,7 +140,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
         fontSize: fontSize,
-        color: widget.fontColor ?? Theme.of(context).textTheme.caption?.color,
+        color: widget.fontColor ?? Theme.of(context).textTheme.bodySmall?.color,
         fontFamily: widget.fontFamily,
       ),
       autofocus: widget.autofocus,

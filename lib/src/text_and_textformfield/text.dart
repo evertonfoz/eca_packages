@@ -66,6 +66,7 @@ class TextECA extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       text: TextSpan(
         style: TextStyle(
+          fontFamily: fontFamily,
           shadows: shadows,
           fontSize: (fontSize ??
               Theme.of(context).textTheme.bodySmall?.fontSize ??

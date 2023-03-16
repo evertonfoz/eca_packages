@@ -68,9 +68,10 @@ Future<void> downloadAndSaveToDocumentsDirectory({required String url}) async {
     final response = await Dio().get(
       url,
       options: Options(
-          responseType: ResponseType.bytes,
-          followRedirects: false,
-          receiveTimeout: 0),
+        responseType: ResponseType.bytes,
+        followRedirects: false,
+        receiveTimeout: const Duration(seconds: 0),
+      ),
     );
 
     File file = File('$localPath/$fileName');

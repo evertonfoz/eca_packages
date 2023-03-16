@@ -25,12 +25,13 @@ class IconNotifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return textToBadget != null
         ? badge.Badge(
+            badgeAnimation: const badge.BadgeAnimation.scale(),
             badgeContent: TextECA(
               text: textToBadget ?? '',
               color: colorToTextToBadget,
             ),
-            animationType: badge.BadgeAnimationType.scale,
-            animationDuration: const Duration(seconds: 1),
+            // animationType: badge.BadgeAnimationType.scale,
+            // animationDuration: const Duration(seconds: 1),
             child: notificationsWidget ??
                 IconECA(icon: kIconBell, color: color ?? colorToTextToBadget),
           )

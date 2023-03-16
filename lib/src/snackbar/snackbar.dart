@@ -25,6 +25,7 @@ void showBottomSnackBar({
   double contentFontSize = 20,
   double buttonFontSize = 20,
   IconData iconIndicator = Icons.info_outline,
+  Color foregroundColor = Colors.white,
 }) {
   assert(
       (title != null || content != null) &&
@@ -108,6 +109,8 @@ void showBottomSnackBar({
                         visible: onYesPressed != null,
                         child: TextButton(
                             style: ButtonStyle(
+                              foregroundColor: MaterialStateProperty.all<Color>(
+                                  foregroundColor),
                               textStyle: MaterialStateProperty.all<TextStyle>(
                                 TextStyle(fontSize: buttonFontSize),
                               ),
