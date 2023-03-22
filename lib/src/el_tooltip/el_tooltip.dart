@@ -11,8 +11,6 @@ import 'src/modal.dart';
 import 'src/position_manager.dart';
 import 'src/tooltip_elements_display.dart';
 
-/// Widget that displays a tooltip
-/// It takes a widget as the trigger and a widget as the content
 class ElTooltip extends StatefulWidget {
   const ElTooltip({
     required this.content,

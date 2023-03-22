@@ -27,6 +27,7 @@ export 'src/dropdown_citys_states/dropdown_citys_states.dart';
 export 'src/dropdown_citys_states/data/repositories/states.dart';
 export 'src/dropdown_citys_states/data/datasources/states.dart';
 export 'src/el_tooltip/el_tooltip.dart';
+export 'src/el_tooltip/enum/el_tooltip_position.dart';
 export 'src/forms/body.dart';
 export 'src/forms/button.dart';
 export 'src/forms/header.dart';
