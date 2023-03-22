@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'enum/el_tooltip_position.dart';
-import 'paint/corner.dart';
-import 'paint/triangle.dart';
+import '../enum/el_tooltip_position.dart';
+import '../paint/corner.dart';
+import '../paint/triangle.dart';
 
 /// Loads the arrow from the paint code and applies the correct transformations
 /// color, rotation and mirroring
