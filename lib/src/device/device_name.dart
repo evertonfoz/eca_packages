@@ -9,7 +9,7 @@ getDeviceName() async {
 
   if (Platform.isAndroid) {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    _deviceName = androidInfo.model ?? '';
+    _deviceName = androidInfo.model;
   } else if (Platform.isIOS) {
     IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
     _deviceName = iosInfo.utsname.machine ?? '';
