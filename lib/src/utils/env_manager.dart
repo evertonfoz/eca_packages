@@ -21,7 +21,9 @@ class EnvManager {
 
   static Future<String> getUrlToServer<T>(
       {required String serverUrl, String? serverPort}) async {
-    if (serverPort != null && !Modular.get<MainAppStore>().runOnReleaseMode) {
+    if (!serverUrl.contains('https') &&
+        serverPort != null &&
+        !Modular.get<MainAppStore>().runOnReleaseMode) {
       return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort)}';
     } else {
       return await _get<String>(key: serverUrl);
