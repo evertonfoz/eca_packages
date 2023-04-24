@@ -21,10 +21,12 @@ class EnvManager {
 
   static Future<String> getUrlToServer<T>(
       {required String serverUrl, String? serverPort}) async {
-    if (!serverUrl.contains('https') &&
-        serverPort != null &&
-        !Modular.get<MainAppStore>().runOnReleaseMode) {
-      return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort)}';
+    if (serverPort != null && !Modular.get<MainAppStore>().runOnReleaseMode) {
+      var envServerUrl = await _get<String>(key: serverUrl);
+      if (!envServerUrl.contains('https')) {
+        return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort)}';
+      }
+      return await _get<String>(key: serverUrl);
     } else {
       return await _get<String>(key: serverUrl);
     }
