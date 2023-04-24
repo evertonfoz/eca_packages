@@ -23,9 +23,9 @@ class NetworkInfoImpl implements NetworkInfo {
         // 'https://clownfish-app-lrirg.ondigitalocean.app');
         isOnline =
             lookupResult.isNotEmpty && lookupResult[0].rawAddress.isNotEmpty;
-      } else {
-        final lookupResult = await http.get(Uri.parse('www.google.com'));
-        isOnline = lookupResult.statusCode == 200;
+        // } else {
+        //   final lookupResult = await http.get(Uri.parse('www.google.com'));
+        //   isOnline = lookupResult.statusCode == 200;
       }
     } on SocketException catch (_) {
       isOnline = false;
