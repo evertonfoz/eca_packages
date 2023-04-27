@@ -1,7 +1,7 @@
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
 
-class AlertDialogWithATextFieldWidget extends StatelessWidget {
+class AlertDialogWithATextFieldWidget extends StatefulWidget {
   final Widget title;
   final Widget content;
   final String okButtonText;
@@ -30,49 +30,58 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<AlertDialogWithATextFieldWidget> createState() =>
+      _AlertDialogWithATextFieldWidgetState();
+}
+
+class _AlertDialogWithATextFieldWidgetState
+    extends State<AlertDialogWithATextFieldWidget> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: AlertDialog(
-          backgroundColor: backgroundColor,
+          backgroundColor: widget.backgroundColor,
           // contentPadding: EdgeInsets.zero,
           // titlePadding: EdgeInsets.zero,
-          title: title,
-          content: content,
+          title: widget.title,
+          content: widget.content,
           actions: <Widget>[
             DefaultRoundedBorderButton(
-              fontColor: textButtonColor,
+              fontColor: widget.textButtonColor,
               fontWeight: FontWeight.normal,
               radius: 10,
               onPressed: () => Navigator.of(context).pop(),
-              text: cancelButtonText,
+              text: widget.cancelButtonText,
               textBottomPadding: 6,
               height: 42,
-              backgroundColor: buttonsColor != null
-                  ? buttonsColor!.shade400
-                  : cancelButtonColor ?? Colors.white,
-              hoveredColor: hoverColor,
+              backgroundColor: widget.buttonsColor != null
+                  ? widget.buttonsColor!.shade400
+                  : widget.cancelButtonColor ?? Colors.white,
+              hoveredColor: widget.hoverColor,
             ),
             DefaultRoundedBorderButton(
-              fontColor: textButtonColor,
+              fontColor: widget.textButtonColor,
               fontWeight: FontWeight.normal,
               radius: 10,
               onPressed: () async {
                 bool result = true;
-                if (onOkButtonPressed != null) {
-                  result = await onOkButtonPressed!();
+                if (widget.onOkButtonPressed != null) {
+                  result = await widget.onOkButtonPressed!();
                 }
                 if (result) {
-                  Navigator.of(context).pop();
+                  if (mounted) {
+                    Navigator.of(context).pop();
+                  }
                 }
               },
-              text: okButtonText,
+              text: widget.okButtonText,
               textBottomPadding: 6,
               height: 42,
-              backgroundColor: buttonsColor != null
-                  ? buttonsColor!.shade400
-                  : cancelButtonColor ?? Colors.white,
-              hoveredColor: hoverColor,
+              backgroundColor: widget.buttonsColor != null
+                  ? widget.buttonsColor!.shade400
+                  : widget.cancelButtonColor ?? Colors.white,
+              hoveredColor: widget.hoverColor,
             )
           ]),
     );
