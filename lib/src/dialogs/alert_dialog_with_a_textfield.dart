@@ -6,11 +6,13 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
   final Widget content;
   final String okButtonText;
   final String cancelButtonText;
-  final MaterialColor buttonsColor;
+  final MaterialColor? buttonsColor;
   final Color backgroundColor;
   final Color textButtonColor;
   final Color hoverColor;
   final Function? onOkButtonPressed;
+  final Color? cancelButtonColor;
+  final Color? okButtonColor;
 
   const AlertDialogWithATextFieldWidget({
     Key? key,
@@ -18,11 +20,13 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
     required this.content,
     this.okButtonText = 'OK',
     this.cancelButtonText = 'Cancelar',
-    required this.buttonsColor,
+    this.buttonsColor,
     this.backgroundColor = Colors.white,
     this.textButtonColor = Colors.white,
     this.hoverColor = Colors.blue,
     this.onOkButtonPressed,
+    this.cancelButtonColor,
+    this.okButtonColor,
   }) : super(key: key);
 
   @override
@@ -44,7 +48,9 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
               text: cancelButtonText,
               textBottomPadding: 6,
               height: 42,
-              backgroundColor: buttonsColor.shade400,
+              backgroundColor: buttonsColor != null
+                  ? buttonsColor!.shade400
+                  : cancelButtonColor ?? Colors.white,
               hoveredColor: hoverColor,
             ),
             DefaultRoundedBorderButton(
@@ -63,7 +69,9 @@ class AlertDialogWithATextFieldWidget extends StatelessWidget {
               text: okButtonText,
               textBottomPadding: 6,
               height: 42,
-              backgroundColor: buttonsColor.shade900,
+              backgroundColor: buttonsColor != null
+                  ? buttonsColor!.shade400
+                  : cancelButtonColor ?? Colors.white,
               hoveredColor: hoverColor,
             )
           ]),
