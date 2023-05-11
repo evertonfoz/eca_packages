@@ -44,8 +44,6 @@ class TextFormFieldECA extends StatefulWidget {
   final String? fontFamily;
   final List<String>? autofillHints;
   final InputBorder? inputBorder;
-  final bool showLabelText;
-  final AutovalidateMode? autovalidateMode;
 
   const TextFormFieldECA({
     Key? key,
@@ -90,8 +88,6 @@ class TextFormFieldECA extends StatefulWidget {
     this.textCapitalization,
     this.autofillHints,
     this.inputBorder,
-    this.showLabelText = false,
-    this.autovalidateMode,
   }) : super(key: key);
 
   @override
@@ -141,12 +137,10 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       });
     }
     return TextFormField(
-      autovalidateMode:
-          widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
       autofillHints: widget.autofillHints,
       textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
-      // scrollPadding: EdgeInsets.only(
-      //     bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
+      scrollPadding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom + fontSize * 8),
       style: TextStyle(
         fontSize: fontSize,
         color: widget.fontColor ?? Theme.of(context).textTheme.bodySmall?.color,
@@ -206,7 +200,6 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorStyle: TextStyle(
           fontSize: widget.errorFontSize,
           fontFamily: widget.fontFamily,
-          color: widget.errorSuffixColor ?? Colors.red,
         ),
         counterStyle: TextStyle(
           color: hasError ?? false ? Colors.red : widget.fontColor,
@@ -223,28 +216,18 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorMaxLines: widget.errorMaxLines,
         contentPadding: EdgeInsets.only(
           top: 10.0,
-          // top: widget.showLabelText ? 30 : 10.0,
           bottom: widget.bottomContentPadding ?? 10.0,
-          // bottom:
-          //     widget.showLabelText ? 30 : widget.bottomContentPadding ?? 10.0,
           left: 10.0,
           right: !hasSufixIcons ? 10.0 : 0,
         ),
         // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
         hintText: widget.hintText ?? '',
-        // hintText: !widget.showLabelText ? widget.hintText ?? '' : '',
         hintStyle: TextStyle(
           fontSize: 14,
           color: widget.hintTextColor,
           fontFamily: widget.fontFamily,
         ),
-        // labelText: widget.showLabelText ? widget.hintText ?? '' : '',
-        // labelStyle: TextStyle(
-        //   fontSize: 12,
-        //   color: widget.hintTextColor,
-        //   fontFamily: widget.fontFamily,
-        // ),
-        // floatingLabelBehavior: FloatingLabelBehavior.always,
+        labelText: widget.hintText ?? '',
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
@@ -271,7 +254,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       if (hasError != null && !hasError!) {
         sufixIcons.add(
           FaIcon(
-            FontAwesomeIcons.circleCheck,
+            FontAwesomeIcons.checkCircle,
             color: Theme.of(context).iconTheme.color,
           ),
         );
