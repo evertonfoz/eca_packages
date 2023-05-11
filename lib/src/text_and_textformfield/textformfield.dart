@@ -43,6 +43,7 @@ class TextFormFieldECA extends StatefulWidget {
   final bool? onlyLowerCase;
   final String? fontFamily;
   final List<String>? autofillHints;
+  final InputBorder? inputBorder;
 
   const TextFormFieldECA({
     Key? key,
@@ -86,9 +87,11 @@ class TextFormFieldECA extends StatefulWidget {
     this.fontFamily,
     this.textCapitalization,
     this.autofillHints,
+    this.inputBorder,
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _TextFormFieldECAState createState() => _TextFormFieldECAState();
 }
 
@@ -191,6 +194,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       controller: _controller,
       textAlign: widget.textFieldTextAlign ?? TextAlign.left,
       decoration: InputDecoration(
+        border: widget.inputBorder ?? InputBorder.none,
         // labelText: 'Name',
         fillColor: widget.fillColor ?? Colors.white,
         errorStyle: TextStyle(
@@ -228,7 +232,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       onFieldSubmitted: widget.nextFocus == null
           ? null
           : (value) {
-              print(value);
+              // print(value);
               FocusScope.of(context).requestFocus(widget.nextFocus);
             },
     );
