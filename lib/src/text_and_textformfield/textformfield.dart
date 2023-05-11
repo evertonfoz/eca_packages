@@ -206,6 +206,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorStyle: TextStyle(
           fontSize: widget.errorFontSize,
           fontFamily: widget.fontFamily,
+          color: widget.errorSuffixColor ?? Colors.red,
         ),
         counterStyle: TextStyle(
           color: hasError ?? false ? Colors.red : widget.fontColor,
@@ -221,7 +222,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         filled: true,
         errorMaxLines: widget.errorMaxLines,
         contentPadding: EdgeInsets.only(
-          // top: 30.0,
+          // top: 10.0,
           top: widget.showLabelText ? 30 : 10.0,
           bottom: widget.bottomContentPadding ?? 10.0,
           // bottom:
@@ -242,7 +243,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           color: widget.hintTextColor,
           fontFamily: widget.fontFamily,
         ),
-        floatingLabelBehavior: FloatingLabelBehavior.always,
+        // floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
@@ -269,7 +270,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       if (hasError != null && !hasError!) {
         sufixIcons.add(
           FaIcon(
-            FontAwesomeIcons.checkCircle,
+            FontAwesomeIcons.circleCheck,
             color: Theme.of(context).iconTheme.color,
           ),
         );
