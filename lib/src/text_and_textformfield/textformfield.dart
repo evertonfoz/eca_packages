@@ -223,7 +223,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           right: !hasSufixIcons ? 10.0 : 0,
         ),
         // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
-        hintText: widget.showLabelText ? widget.hintText ?? '' : '',
+        hintText: !widget.showLabelText ? widget.hintText ?? '' : '',
         hintStyle: TextStyle(
           fontSize: 14,
           color: widget.hintTextColor,
