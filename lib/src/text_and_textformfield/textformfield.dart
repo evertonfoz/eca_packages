@@ -44,6 +44,7 @@ class TextFormFieldECA extends StatefulWidget {
   final String? fontFamily;
   final List<String>? autofillHints;
   final InputBorder? inputBorder;
+  final bool showLabelText;
 
   const TextFormFieldECA({
     Key? key,
@@ -88,6 +89,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.textCapitalization,
     this.autofillHints,
     this.inputBorder,
+    this.showLabelText = false,
   }) : super(key: key);
 
   @override
@@ -221,13 +223,18 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           right: !hasSufixIcons ? 10.0 : 0,
         ),
         // vertical: 10.0, horizontal: !hasSufixIcons ? 10.0 : 0),
-        hintText: widget.hintText ?? '',
+        hintText: widget.showLabelText ? widget.hintText ?? '' : '',
         hintStyle: TextStyle(
           fontSize: 14,
           color: widget.hintTextColor,
           fontFamily: widget.fontFamily,
         ),
-        labelText: widget.hintText ?? '',
+        labelText: widget.showLabelText ? widget.hintText ?? '' : '',
+        labelStyle: TextStyle(
+          fontSize: 12,
+          color: widget.hintTextColor,
+          fontFamily: widget.fontFamily,
+        ),
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
