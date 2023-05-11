@@ -45,6 +45,7 @@ class TextFormFieldECA extends StatefulWidget {
   final List<String>? autofillHints;
   final InputBorder? inputBorder;
   final bool showLabelText;
+  final AutovalidateMode? autovalidateMode;
 
   const TextFormFieldECA({
     Key? key,
@@ -90,6 +91,7 @@ class TextFormFieldECA extends StatefulWidget {
     this.autofillHints,
     this.inputBorder,
     this.showLabelText = false,
+    this.autovalidateMode,
   }) : super(key: key);
 
   @override
@@ -139,6 +141,8 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
       });
     }
     return TextFormField(
+      autovalidateMode:
+          widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
       autofillHints: widget.autofillHints,
       textCapitalization: widget.textCapitalization ?? TextCapitalization.none,
       scrollPadding: EdgeInsets.only(
