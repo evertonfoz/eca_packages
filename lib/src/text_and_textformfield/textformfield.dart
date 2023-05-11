@@ -222,7 +222,8 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         errorMaxLines: widget.errorMaxLines,
         contentPadding: EdgeInsets.only(
           top: widget.showLabelText ? 30 : 10.0,
-          bottom: widget.bottomContentPadding ?? 10.0,
+          bottom:
+              widget.showLabelText ? 30 : widget.bottomContentPadding ?? 10.0,
           left: 10.0,
           right: !hasSufixIcons ? 10.0 : 0,
         ),
@@ -239,6 +240,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           color: widget.hintTextColor,
           fontFamily: widget.fontFamily,
         ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
