@@ -227,6 +227,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
           color: widget.hintTextColor,
           fontFamily: widget.fontFamily,
         ),
+        labelText: widget.hintText ?? '',
       ),
       onSaved: widget.onSaved,
       onFieldSubmitted: widget.nextFocus == null
