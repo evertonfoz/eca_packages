@@ -221,7 +221,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
         filled: true,
         errorMaxLines: widget.errorMaxLines,
         contentPadding: EdgeInsets.only(
-          top: 10.0,
+          top: widget.showLabelText ? 30 : 10.0,
           bottom: widget.bottomContentPadding ?? 10.0,
           left: 10.0,
           right: !hasSufixIcons ? 10.0 : 0,
