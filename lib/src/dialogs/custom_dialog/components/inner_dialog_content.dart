@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, duplicate_ignore, use_key_in_widget_constructors
 
 import 'package:eca_packages/eca_packages.dart';
-import 'package:eca_packages/src/dialogs/custom_dialog/custom_dialog_information.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_dialog_buttons.dart';

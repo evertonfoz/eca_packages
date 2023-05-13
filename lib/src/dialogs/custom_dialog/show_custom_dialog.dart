@@ -20,10 +20,6 @@ showCustomDialog({
   Color? rightButtonColor,
   Color? avatarColor,
 }) async {
-  assert(((leftButtonText != null && onLeftButtonPressed != null) ||
-          (leftButtonText == null && onLeftButtonPressed == null)) ||
-      (leftButtonText == null && rigthButtonText == null) &&
-          centerButtonText != null);
   // print(errorToCopy);
   await showDialog(
     barrierDismissible: false,

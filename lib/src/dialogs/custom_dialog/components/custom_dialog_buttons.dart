@@ -34,7 +34,7 @@ class CustomDialogButtonsWidget extends StatelessWidget {
           ? MainAxisAlignment.center
           : MainAxisAlignment.end,
       children: [
-        _leftButton(),
+        _leftButton(context),
         SizedBox(width: 10),
         _centerButton(context),
         SizedBox(width: 10),
@@ -43,17 +43,23 @@ class CustomDialogButtonsWidget extends StatelessWidget {
     );
   }
 
-  _leftButton() {
+  _leftButton(BuildContext context) {
     return Visibility(
-      visible: onLeftButtonPressed != null,
+      visible: rigthButtonText != null,
       child: Column(
         children: [
           DefaultTextButton(
             backgroundColor: leftButtonColor ?? _leftButtonColor(),
             foregroundColor: Colors.white,
             text: leftButtonText ?? '',
-            onPressed:
-                onLeftButtonPressed != null ? onLeftButtonPressed! : () {},
+            onPressed: () {
+              if (onLeftButtonPressed == null)
+                Navigator.of(context).pop();
+              else {
+                onLeftButtonPressed!();
+                Navigator.of(context).pop();
+              }
+            },
           ),
         ],
       ),
