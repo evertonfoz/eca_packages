@@ -111,7 +111,7 @@ class CustomDialogButtonsWidget extends StatelessWidget {
       visible: rigthButtonText != null,
       child: DefaultTextButton(
         foregroundColor: Colors.white,
-        backgroundColor: leftButtonColor ?? _rightButtonColor(),
+        backgroundColor: rigthButtonColor ?? _rightButtonColor(),
         // textColor: this.leftButtonColor ?? _rightButtonColor(),
         text: rigthButtonText ?? 'OK',
         onPressed: () {
