@@ -45,7 +45,7 @@ class CustomDialogButtonsWidget extends StatelessWidget {
 
   _leftButton(BuildContext context) {
     return Visibility(
-      visible: rigthButtonText != null,
+      visible: leftButtonText != null,
       child: Column(
         children: [
           DefaultTextButton(
@@ -53,9 +53,9 @@ class CustomDialogButtonsWidget extends StatelessWidget {
             foregroundColor: Colors.white,
             text: leftButtonText ?? '',
             onPressed: () {
-              if (onLeftButtonPressed == null)
+              if (onLeftButtonPressed == null) {
                 Navigator.of(context).pop();
-              else {
+              } else {
                 onLeftButtonPressed!();
                 Navigator.of(context).pop();
               }
