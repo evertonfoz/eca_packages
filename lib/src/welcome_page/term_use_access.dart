@@ -17,6 +17,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   final double fontSize;
   final Alignment? alignment;
   final String startText;
+  final Color? linksColor;
 
   const WelcomePoliceAndTermUseAccess({
     Key? key,
@@ -34,6 +35,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     this.fontSize = 18,
     this.alignment,
     this.startText = 'Ao entrar, ',
+    this.linksColor,
   }) : super(key: key);
 
   @override
@@ -53,7 +55,8 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
               TextSpan(text: "$startText você concorda com a nossa "),
               TextSpan(
                 text: "política de privacidade",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: linksColor),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () => Navigator.push(
                         context,
@@ -67,7 +70,8 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
               const TextSpan(text: " e nosso "),
               TextSpan(
                 text: "Termo de uso",
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: linksColor),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () => Navigator.push(
                         context,
