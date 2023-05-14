@@ -18,6 +18,7 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
   final Alignment? alignment;
   final String startText;
   final Color? linksColor;
+  final double? height;
 
   const WelcomePoliceAndTermUseAccess({
     Key? key,
@@ -36,12 +37,13 @@ class WelcomePoliceAndTermUseAccess extends StatelessWidget {
     this.alignment,
     this.startText = 'Ao entrar, ',
     this.linksColor,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.08,
+      height: height ?? MediaQuery.of(context).size.height * 0.08,
       child: Align(
         alignment: alignment ?? Alignment.centerLeft,
         child: RichText(
