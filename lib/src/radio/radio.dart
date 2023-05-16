@@ -49,9 +49,11 @@ class RadioECA<T> extends StatelessWidget {
               groupValue: groupValue,
               fillColor: MaterialStateProperty.resolveWith((states) {
                 if (states.contains(MaterialState.selected)) {
-                  return Colors.red; // Cor quando marcado
+                  return activeColor ??
+                      Theme.of(context).textTheme.displayLarge!.color;
                 }
-                return Colors.green; // Cor quando não marcado
+                return textColor ??
+                    Theme.of(context).textTheme.displayLarge!.color;
               }),
             ),
           ),
