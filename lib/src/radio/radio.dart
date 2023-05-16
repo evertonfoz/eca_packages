@@ -52,7 +52,7 @@ class RadioECA<T> extends StatelessWidget {
                   return activeColor ??
                       Theme.of(context).textTheme.displayLarge!.color;
                 }
-                return textColor ??
+                return activeColor ??
                     Theme.of(context).textTheme.displayLarge!.color;
               }),
             ),
@@ -65,8 +65,10 @@ class RadioECA<T> extends StatelessWidget {
                 text: text,
                 fontSize: fontSize,
                 textAlign: TextAlign.start,
-                color: textColor ??
-                    Theme.of(context).textTheme.displayLarge!.color,
+                color: value == null
+                    ? textColor
+                    : activeColor ??
+                        Theme.of(context).textTheme.displayLarge!.color,
               ),
             ),
           ),
