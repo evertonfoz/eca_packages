@@ -11,6 +11,7 @@ class RadioECA<T> extends StatelessWidget {
   final double? fontSize;
   final Color? activeColor;
   final double spaceBetweenRadionAndText;
+  final Color? textColor;
 
   const RadioECA({
     Key? key,
@@ -23,6 +24,7 @@ class RadioECA<T> extends StatelessWidget {
     this.fontSize = 20,
     this.activeColor,
     this.spaceBetweenRadionAndText = 10,
+    this.textColor,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -39,8 +41,8 @@ class RadioECA<T> extends StatelessWidget {
                 vertical: VisualDensity.minimumDensity,
               ),
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              activeColor:
-                  activeColor ?? Theme.of(context).textTheme.headline1!.color,
+              activeColor: activeColor ??
+                  Theme.of(context).textTheme.displayLarge!.color,
               toggleable: false,
               value: value,
               onChanged: !enabled ? null : (value) => onChanged(value),
@@ -55,6 +57,8 @@ class RadioECA<T> extends StatelessWidget {
                 text: text,
                 fontSize: fontSize,
                 textAlign: TextAlign.start,
+                color: activeColor ??
+                    Theme.of(context).textTheme.displayLarge!.color,
               ),
             ),
           ),
