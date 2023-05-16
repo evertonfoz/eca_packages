@@ -57,7 +57,7 @@ class RadioECA<T> extends StatelessWidget {
                 text: text,
                 fontSize: fontSize,
                 textAlign: TextAlign.start,
-                color: activeColor ??
+                color: textColor ??
                     Theme.of(context).textTheme.displayLarge!.color,
               ),
             ),
