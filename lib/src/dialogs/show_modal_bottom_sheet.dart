@@ -1,6 +1,5 @@
 import 'package:eca_packages/eca_packages.dart';
 import 'package:flutter/material.dart';
-import 'package:image_crop/image_crop.dart';
 
 showModalBottomSheetToPickAPhoto({
   required final BuildContext context,
@@ -21,6 +20,8 @@ showModalBottomSheetToPickAPhoto({
   IconData secondButtonIcon = Icons.landscape_outlined,
   required final Function(String?) onPickedNewAvatar,
   bool pickAVideo = false,
+  Color? backgroundButtonCameraColor,
+  Color? backgroundButtonGalleryColor,
   // GlobalKey<CropState>? imageCropKey,
 }) async {
   FocusScope.of(context).unfocus();
@@ -73,7 +74,8 @@ showModalBottomSheetToPickAPhoto({
                 cameraPicker: RoundedContainerECA(
                   height: 50,
                   borderColor: Colors.transparent,
-                  backgroundColor: Colors.grey.shade100,
+                  backgroundColor:
+                      backgroundButtonCameraColor ?? Colors.grey.shade100,
                   child: Row(children: [
                     Icon(firstButtonIcon, size: 30),
                     const SizedBox(width: 10),
@@ -86,7 +88,8 @@ showModalBottomSheetToPickAPhoto({
                 galleryPicker: RoundedContainerECA(
                   height: 50,
                   borderColor: Colors.transparent,
-                  backgroundColor: Colors.grey.shade100,
+                  backgroundColor:
+                      backgroundButtonGalleryColor ?? Colors.grey.shade100,
                   child: Row(children: [
                     Icon(secondButtonIcon, size: 30),
                     const SizedBox(width: 10),
