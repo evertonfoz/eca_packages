@@ -127,7 +127,7 @@ class _TextFormFieldECAState extends State<TextFormFieldECA> {
   @override
   Widget build(BuildContext context) {
     final fontSize =
-        widget.fontSize ?? Theme.of(context).textTheme.caption?.fontSize ?? 12;
+        widget.fontSize ?? Theme.of(context).textTheme.bodySmall?.fontSize ?? 12;
 
     if (widget.isObservable &&
         widget.valueToTextController != null &&

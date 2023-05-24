@@ -64,7 +64,7 @@ popupMenuItemECA<T>({
   return PopupMenuItem<T>(
     value: item.value as T,
     child: Container(
-      padding: EdgeInsets.only(left: 8),
+      padding: const EdgeInsets.only(left: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

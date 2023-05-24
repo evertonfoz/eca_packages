@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_crop/image_crop.dart';
 // import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -287,7 +286,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       );
     } else if (_pickImageError != null) {
       if (_imagePathFile == null) {
-        return Text('');
+        return const Text('');
       }
       return TextECA(
         text: 'Erro na captura da imagem: $_pickImageError',

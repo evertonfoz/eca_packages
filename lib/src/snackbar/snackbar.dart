@@ -33,7 +33,7 @@ void showBottomSnackBar({
               Theme.of(context).snackBarTheme.shape.runtimeType ==
                   RoundedRectangleBorder),
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
-  final RoundedRectangleBorder _borderShape =
+  final RoundedRectangleBorder borderShape =
       Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
 
   // FocusScope.of(context).unfocus();
@@ -54,7 +54,7 @@ void showBottomSnackBar({
           topLeft: Radius.circular(8),
           topRight: Radius.circular(8),
         ),
-        borderColor: borderColor ?? _borderShape.side.color,
+        borderColor: borderColor ?? borderShape.side.color,
         backgroundColor:
             backgroundColor ?? Theme.of(context).snackBarTheme.backgroundColor,
         forwardAnimationCurve: Curves.easeInCirc,

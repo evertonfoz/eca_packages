@@ -135,29 +135,29 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _buttonChild() {
-    late Flex _rowOrColumnContainer;
-    late SizedBox _sizedBox;
+    late Flex rowOrColumnContainer;
+    late SizedBox sizedBox;
 
     if (iconPosition == IconPositionOfRoundedBorderButton.top) {
-      _rowOrColumnContainer = Column(
-        children: [],
+      rowOrColumnContainer = const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
-      );
-      _sizedBox = SizedBox(height: icon != null ? 20 : 0);
-    } else {
-      _rowOrColumnContainer = Row(
         children: [],
+      );
+      sizedBox = SizedBox(height: icon != null ? 20 : 0);
+    } else {
+      rowOrColumnContainer = Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
+        children: const [],
       );
-      _sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
+      sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
 
     if (icon != null && text != null) {
-      _rowOrColumnContainer.children.add(icon ?? Container());
+      rowOrColumnContainer.children.add(icon ?? Container());
       // _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
@@ -168,24 +168,24 @@ class DefaultRoundedBorderButton extends StatelessWidget {
 //TODO Avaliar como fica o botão
     if (icon != null && image != null && text == null) {
       // _rowOrColumnContainer.children.add(icon ?? Container());
-      _rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
+      rowOrColumnContainer.children.add(Expanded(child: icon ?? Container()));
     }
 
     if (image != null) {
       if (iconPosition == IconPositionOfRoundedBorderButton.top) {
-        _rowOrColumnContainer.children.add(Center(child: image ?? Container()));
+        rowOrColumnContainer.children.add(Center(child: image ?? Container()));
       } else {
-        _rowOrColumnContainer.children
+        rowOrColumnContainer.children
             .add(Expanded(child: image ?? Container()));
       }
     }
 
     if ((text != null && text != '') && (icon != null || image != null)) {
-      _rowOrColumnContainer.children.add(_sizedBox);
+      rowOrColumnContainer.children.add(sizedBox);
     }
 
     if (text != null && text != '') {
-      _rowOrColumnContainer.children.add(
+      rowOrColumnContainer.children.add(
         Padding(
           padding: EdgeInsets.only(bottom: textBottomPadding),
           child: FittedBox(
@@ -205,22 +205,22 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         ),
       );
     }
-    return _rowOrColumnContainer;
+    return rowOrColumnContainer;
   }
 
   _definingBorderSide() {
     if (borderColor != null) {
       return MaterialStateProperty.resolveWith<BorderSide?>(
           (Set<MaterialState> states) {
-        Color? _borderColor = borderColor ?? _buttonBorderColor();
+        Color? borderColor = this.borderColor ?? _buttonBorderColor();
 
         if (states.contains(MaterialState.disabled)) {
-          _borderColor = Colors.grey.shade200;
+          borderColor = Colors.grey.shade200;
         }
 
         return BorderSide(
           width: 1,
-          color: _borderColor ?? Colors.transparent,
+          color: borderColor ?? Colors.transparent,
         );
       });
     }

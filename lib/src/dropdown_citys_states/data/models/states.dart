@@ -28,5 +28,5 @@ class StateModel extends StateEntity {
   }*/
 
   @override
-  String toString() => '$name';
+  String toString() => name;
 }

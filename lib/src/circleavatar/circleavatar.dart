@@ -13,7 +13,7 @@ class CircleAvatarECA extends StatelessWidget {
   final BoxFit? boxFit;
   final double? width;
   final double? height;
-  dynamic? placeHolderImage;
+  dynamic placeHolderImage;
   // final bool useCachedImage;
 
   CircleAvatarECA({

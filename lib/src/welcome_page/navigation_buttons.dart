@@ -31,16 +31,16 @@ class WelcomePageNavigationButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _buttons = [];
+    List<Widget> buttons = [];
     if (withNotJumpButton && currentPageNumber != lastPageNumber) {
-      _buttons.add(_generateNextButton(context));
+      buttons.add(_generateNextButton(context));
     }
     if (!withNotJumpButton && currentPageNumber != lastPageNumber) {
-      _buttons.add(_generateJumpButton(context));
-      _buttons.add(
+      buttons.add(_generateJumpButton(context));
+      buttons.add(
         const Expanded(flex: 6, child: SizedBox()),
       );
-      _buttons.add(_generateNextButton(context));
+      buttons.add(_generateNextButton(context));
     }
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -48,7 +48,7 @@ class WelcomePageNavigationButtons extends StatelessWidget {
           mainAxisAlignment: currentPageNumber != lastPageNumber
               ? MainAxisAlignment.spaceBetween
               : MainAxisAlignment.center,
-          children: _buttons),
+          children: buttons),
     );
   }
 

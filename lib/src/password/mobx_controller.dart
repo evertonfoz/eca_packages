@@ -1,5 +1,3 @@
-import 'package:eca_packages/src/password/fields.dart';
-import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
 
 part 'mobx_controller.g.dart';

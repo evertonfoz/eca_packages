@@ -3,19 +3,19 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 
 getDeviceName() async {
-  late String _deviceName;
+  late String deviceName;
 
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   if (Platform.isAndroid) {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    _deviceName = androidInfo.model;
+    deviceName = androidInfo.model;
   } else if (Platform.isIOS) {
     IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-    _deviceName = iosInfo.utsname.machine ?? '';
+    deviceName = iosInfo.utsname.machine ?? '';
   } else {
-    _deviceName = 'Desconhecido';
+    deviceName = 'Desconhecido';
   }
 
-  return _deviceName;
+  return deviceName;
 }

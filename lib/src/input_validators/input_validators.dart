@@ -72,7 +72,7 @@ bool isGreaterAndEqualThenValue({
       return isGreaterThenValue(
         value: value,
         min: convertDDMMYYYYToDateTime(value).add(
-          Duration(days: 1),
+          const Duration(days: 1),
         ),
       );
     } catch (e) {

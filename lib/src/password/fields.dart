@@ -104,8 +104,8 @@ class NewPasswordFieldsECA extends StatelessWidget {
           passwordInvalidError,
         ],
         validationFunctions: [
-          (_password) => isNotEmptyValidator(_password ?? ''),
-          (_password) => invalidPasswordFunction(_password ?? ''),
+          (password) => isNotEmptyValidator(password ?? ''),
+          (password) => invalidPasswordFunction(password ?? ''),
         ],
         registerValueInStoreForm: (value) {
           newPasswordStore.registerNewPassword(value, invalidPasswordFunction);
@@ -155,9 +155,9 @@ class NewPasswordFieldsECA extends StatelessWidget {
           kPasswordMatchError,
         ],
         validationFunctions: [
-          (_confirmedPassword) => isNotEmptyValidator(_confirmedPassword ?? ''),
-          (_confirmedPassword) => isMatchValidator(
-              value: _confirmedPassword ?? '',
+          (confirmedPassword) => isNotEmptyValidator(confirmedPassword ?? ''),
+          (confirmedPassword) => isMatchValidator(
+              value: confirmedPassword ?? '',
               otherValue: newPasswordStore.newPassword),
         ],
         registerValueInStoreForm: (value) {

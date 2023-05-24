@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:eca_packages/eca_packages.dart';
-import 'package:eca_packages/src/dropdown_citys_states/data/datasources/states.dart';
 import 'package:eca_packages/src/dropdown_citys_states/data/models/states.dart';
 
 class StateGetlAllRepository {
@@ -22,7 +21,7 @@ class StateGetlAllRepository {
 
 //TODO Separar em arquivos no padrão
   Future<Either<Failure, String>> getNameById({required String id}) async {
-    var state = await dataSource.getNameById(id: id);
+    var state = dataSource.getNameById(id: id);
     return Right(state);
   }
 }

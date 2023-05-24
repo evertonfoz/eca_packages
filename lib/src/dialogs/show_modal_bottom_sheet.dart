@@ -44,7 +44,7 @@ showModalBottomSheetToPickAPhoto({
                 text: title,
                 fontSize: 30,
                 color:
-                    titleColor ?? Theme.of(context).textTheme.headline1?.color,
+                    titleColor ?? Theme.of(context).textTheme.displayLarge?.color,
                 fontWeight: FontWeight.bold,
               ),
               Visibility(
@@ -53,7 +53,7 @@ showModalBottomSheetToPickAPhoto({
                   text: subtitle ?? '',
                   fontSize: 20,
                   color: titleColor ??
-                      Theme.of(context).textTheme.headline1?.color,
+                      Theme.of(context).textTheme.displayLarge?.color,
                 ),
               ),
               ImagePickerECA(
@@ -163,7 +163,7 @@ showModalBottomSheetToSimpleInformation({
                   text: title,
                   fontSize: 50,
                   color: titleColor ??
-                      Theme.of(context).textTheme.headline1?.color,
+                      Theme.of(context).textTheme.displayLarge?.color,
                   fontWeight: FontWeight.bold,
                 ),
                 if (imageBetweenTitleAndInformation != null)
@@ -178,7 +178,7 @@ showModalBottomSheetToSimpleInformation({
                       text: information,
                       fontSize: 20,
                       color: titleColor ??
-                          Theme.of(context).textTheme.headline1?.color,
+                          Theme.of(context).textTheme.displayLarge?.color,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -194,7 +194,7 @@ showModalBottomSheetToSimpleInformation({
                         radius: 10,
                         backgroundColor: backgroundButtonColor,
                         fontColor: textButtonColor ??
-                            Theme.of(context).textTheme.headline2?.color,
+                            Theme.of(context).textTheme.displayMedium?.color,
                         text: backButtonText,
                         onPressed: () {
                           Navigator.of(context).pop();

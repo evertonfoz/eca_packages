@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:status_bar_control/status_bar_control.dart';
 
@@ -43,7 +42,7 @@ showStatusBarAndSetColorToNavigationBar({
   await StatusBarControl.setFullscreen(false);
   if (navigationBarColor != null || statusBarColor != null) {
     await StatusBarControl.setColor(
-      statusBarColor != null ? statusBarColor : navigationBarColor!,
+      statusBarColor ?? navigationBarColor!,
     );
   }
   await StatusBarControl.setStyle(

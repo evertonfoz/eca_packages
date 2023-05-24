@@ -24,7 +24,7 @@ class IconECA extends StatelessWidget {
   Widget build(BuildContext context) {
     return FaIcon(
       icon,
-      color: color ?? Theme.of(context).textTheme.caption?.color,
+      color: color ?? Theme.of(context).textTheme.bodySmall?.color,
       size: size ?? 32,
     );
   }
