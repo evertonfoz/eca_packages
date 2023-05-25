@@ -254,16 +254,20 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
   }
 
   Future<void> _retrieveLostData() async {
-    final LostDataResponse response = await _picker.retrieveLostData();
-    if (response.isEmpty) {
+    try {
+      final LostDataResponse response = await _picker.retrieveLostData();
+      if (response.isEmpty) {
+        return;
+      }
+      if (response.file != null) {
+        setState(() {
+          _imageFile = response.file;
+        });
+      } else {
+        _retrieveDataError = response.exception!.code;
+      }
+    } on Exception {
       return;
-    }
-    if (response.file != null) {
-      setState(() {
-        _imageFile = response.file;
-      });
-    } else {
-      _retrieveDataError = response.exception!.code;
     }
   }
 
