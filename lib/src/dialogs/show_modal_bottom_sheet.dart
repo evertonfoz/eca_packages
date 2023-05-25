@@ -100,25 +100,36 @@ showModalBottomSheetToPickAPhoto({
                   ]),
                 ),
               ),
-              // Center(
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(bottom: 28.0),
-              //     child: ConstrainedBox(
-              //       constraints: BoxConstraints.tightFor(
-              //           width: MediaQuery.of(context).size.width * 0.75,
-              //           height: 56),
-              //       child: DefaultRoundedBorderButton(
-              //         radius: 10,
-              //         backgroundColor: backgroundButtonColor,
-              //         fontColor: textButtonColor,
-              //         text: backButtonText,
-              //         onPressed: () {
-              //           Navigator.of(context).pop();
-              //         },
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 28.0),
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tightFor(
+                        width: MediaQuery.of(context).size.width * 0.75,
+                        height: 56),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        // aboutYouStore.registerAvatar('');
+                        // Modular.to.pop();
+                      },
+                      child: TextECA(
+                        text: 'Vou escolher outra',
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                    // DefaultRoundedBorderButton(
+                    //   radius: 10,
+                    //   backgroundColor: backgroundButtonColor,
+                    //   fontColor: textButtonColor,
+                    //   text: backButtonText,
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
+                  ),
+                ),
+              ),
             ],
           ),
         );
