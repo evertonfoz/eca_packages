@@ -43,8 +43,8 @@ showModalBottomSheetToPickAPhoto({
               TextECA(
                 text: title,
                 fontSize: 30,
-                color:
-                    titleColor ?? Theme.of(context).textTheme.displayLarge?.color,
+                color: titleColor ??
+                    Theme.of(context).textTheme.displayLarge?.color,
                 fontWeight: FontWeight.bold,
               ),
               Visibility(
@@ -100,25 +100,25 @@ showModalBottomSheetToPickAPhoto({
                   ]),
                 ),
               ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 28.0),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints.tightFor(
-                        width: MediaQuery.of(context).size.width * 0.75,
-                        height: 56),
-                    child: DefaultRoundedBorderButton(
-                      radius: 10,
-                      backgroundColor: backgroundButtonColor,
-                      fontColor: textButtonColor,
-                      text: backButtonText,
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ),
-                ),
-              ),
+              // Center(
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(bottom: 28.0),
+              //     child: ConstrainedBox(
+              //       constraints: BoxConstraints.tightFor(
+              //           width: MediaQuery.of(context).size.width * 0.75,
+              //           height: 56),
+              //       child: DefaultRoundedBorderButton(
+              //         radius: 10,
+              //         backgroundColor: backgroundButtonColor,
+              //         fontColor: textButtonColor,
+              //         text: backButtonText,
+              //         onPressed: () {
+              //           Navigator.of(context).pop();
+              //         },
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         );
