@@ -109,14 +109,27 @@ showModalBottomSheetToPickAPhoto({
                         height: 56),
                     child: ElevatedButton(
                       onPressed: () {
-                        // aboutYouStore.registerAvatar('');
-                        // Modular.to.pop();
+                        Navigator.of(context).pop();
                       },
-                      child: TextECA(
-                        text: 'Vou escolher outra',
-                        color: Colors.white,
-                        fontSize: 12,
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                        ),
+                        backgroundColor: backgroundButtonColor,
+                        foregroundColor: textButtonColor,
                       ),
+                      child: Text(
+                        backButtonText,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      // child: TextECA(
+                      //   text: 'Vou escolher outra',
+                      //   color: Colors.white,
+                      //   fontSize: 12,
+                      // ),
                     ),
                     // DefaultRoundedBorderButton(
                     //   radius: 10,
