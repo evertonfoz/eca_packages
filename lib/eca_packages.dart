@@ -12,6 +12,8 @@ export 'src/circle/circle.dart';
 export 'src/circleavatar/circleavatar.dart';
 export 'src/circleavatar/build_avatar.dart';
 export 'src/constants/constants.dart';
+export 'src/core/error/failures.dart';
+export 'src/core/error/exceptions.dart';
 export 'src/core/usecases/usecase.dart';
 export 'src/core/network/debounce.dart';
 export 'src/core/network/http_overrides.dart';
@@ -87,9 +89,6 @@ export 'src/infinity_list/mobx_stores/list_preferences.dart';
 export 'src/infinity_list/mixins/list.dart';
 export 'src/infinity_list/mixins/controller.dart';
 export 'src/infinity_list/enums/sort_method.dart';
-
-export 'src/core/error/failures.dart';
-export 'src/core/error/exceptions.dart';
 
 export 'src/backend_result/fetch_fold.dart';
 export 'src/backend_result/failure_on_fetch.dart';
