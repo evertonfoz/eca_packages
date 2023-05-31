@@ -82,7 +82,7 @@ Future<void> downloadAndSaveToDocumentsDirectory({required String url}) async {
 
     return;
   } on Exception catch (e) {
-    print(e);
+    // print(e);
   }
 }
 

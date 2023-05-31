@@ -21,7 +21,7 @@ hideStatusBarAndSetColorToNavigationBar(
     await StatusBarControl.setNavigationBarColor(navigationBarColor,
         animated: true);
   } catch (e) {
-    print('Erro ${e.toString()}');
+    // print('Erro ${e.toString()}');
   }
 }
 
@@ -37,7 +37,7 @@ showStatusBarAndSetColorToNavigationBar({
       animation: StatusBarAnimation.SLIDE,
     );
   } catch (e) {
-    print(e.toString());
+    // print(e.toString());
   }
   await StatusBarControl.setFullscreen(false);
   if (navigationBarColor != null || statusBarColor != null) {

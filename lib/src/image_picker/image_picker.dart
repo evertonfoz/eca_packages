@@ -236,7 +236,7 @@ class _ImagePikerECAState extends State<ImagePickerECA> {
       }
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        // print(e);
       }
       setState(() {
         _pickImageError = e;

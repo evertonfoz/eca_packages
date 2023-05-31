@@ -111,7 +111,7 @@ abstract class _StateAndCityControllerBase with Store {
           return !externalCities.contains(element.name);
         },
       );
-      print(_cities);
+      // print(_cities);
     }
   }
 }

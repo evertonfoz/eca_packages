@@ -45,7 +45,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
                 (element.id == widget.stateName))
             .first;
         _controller.registerState(foundState);
-        Future.delayed(const Duration(milliseconds: 500)).then((value) {
+        Future.delayed(const Duration(milliseconds: 1000)).then((value) {
           if (widget.cityName != null &&
               widget.cityName!.isNotEmpty &&
               _controller.cities.isNotEmpty) {
@@ -85,7 +85,7 @@ class _DropDownCitiesStates extends State<DropDownCitiesStates> {
       children: [
         const SizedBox(height: 5),
         Observer(builder: (context) {
-          print(widget.stateName);
+          // print(widget.stateName);
           return DropDown<StateModel>(
             selectedItem: _controller.stateSelected,
             hintText: 'Selecione um Estado',

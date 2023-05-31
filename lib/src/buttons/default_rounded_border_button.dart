@@ -135,8 +135,8 @@ class DefaultRoundedBorderButton extends StatelessWidget {
   }
 
   _buttonChild() {
-    late Flex rowOrColumnContainer;
-    late SizedBox sizedBox;
+    Flex rowOrColumnContainer;
+    SizedBox sizedBox;
 
     if (iconPosition == IconPositionOfRoundedBorderButton.top) {
       rowOrColumnContainer = const Column(
@@ -151,7 +151,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
-        children: const [],
+        children: [],
       );
       sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
