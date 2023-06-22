@@ -12,6 +12,16 @@ Future<Placemark> getCurrentLocation() async {
   }
 }
 
+Future<Position> getCurrentPosition() async {
+  try {
+    await handleLocationPermission();
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  } catch (e) {
+    rethrow;
+  }
+}
+
 Future<void> handleLocationPermission() async {
   bool serviceEnabled;
   LocationPermission permission;

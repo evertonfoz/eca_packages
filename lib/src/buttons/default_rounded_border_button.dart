@@ -151,7 +151,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
-        children: [],
+        children: const [],
       );
       sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }

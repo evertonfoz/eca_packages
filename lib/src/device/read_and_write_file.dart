@@ -81,7 +81,7 @@ Future<void> downloadAndSaveToDocumentsDirectory({required String url}) async {
     await raf.close();
 
     return;
-  } on Exception catch (e) {
+  } on Exception {
     // print(e);
   }
 }
