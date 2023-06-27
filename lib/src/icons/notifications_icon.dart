@@ -35,6 +35,7 @@ class IconNotifications extends StatelessWidget {
             child: notificationsWidget ??
                 IconECA(icon: kIconBell, color: color ?? colorToTextToBadget),
           )
-        : IconECA(icon: kIconBell, color: color ?? colorToTextToBadget);
+        : notificationsWidget ??
+            IconECA(icon: kIconBell, color: color ?? colorToTextToBadget);
   }
 }
