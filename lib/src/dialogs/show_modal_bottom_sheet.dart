@@ -39,7 +39,7 @@ showModalBottomSheetToPickAPhoto({
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               TextECA(
                 text: title,
                 fontSize: 30,
@@ -106,7 +106,7 @@ showModalBottomSheetToPickAPhoto({
                   child: ConstrainedBox(
                     constraints: BoxConstraints.tightFor(
                         width: MediaQuery.of(context).size.width * 0.75,
-                        height: 56),
+                        height: 50),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
