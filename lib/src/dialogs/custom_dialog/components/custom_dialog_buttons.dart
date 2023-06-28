@@ -118,8 +118,8 @@ class CustomDialogButtonsWidget extends StatelessWidget {
           if (onRigthButtonPressed == null)
             Navigator.of(context).pop();
           else {
-            onRigthButtonPressed!();
             Navigator.of(context).pop();
+            onRigthButtonPressed!();
           }
         },
       ),
