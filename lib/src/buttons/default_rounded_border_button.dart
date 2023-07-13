@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:eca_packages/src/text_and_textformfield/text.dart';
 import 'package:flutter/material.dart';
 
@@ -151,7 +153,7 @@ class DefaultRoundedBorderButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: rowMainAxisAlignment ?? MainAxisAlignment.center,
         mainAxisSize: rowMainAxisSize ?? MainAxisSize.min,
-        children: const [],
+        children: [],
       );
       sizedBox = SizedBox(width: (icon != null && text != null) ? 10 : 0);
     }
