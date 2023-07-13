@@ -19,6 +19,7 @@ dependencies:
   cropperx: ^1.1.1 
   dartz: ^0.10.1
   device_info_plus: ^9.0.1
+  dio: any
   dropdown_search: ^5.0.3
   # ed_screen_recorder: ^0.0.12
   # ed_screen_recorder_v3: ^0.0.12
@@ -53,7 +54,6 @@ dependencies:
   transparent_image: ^2.0.0
   path_provider: ^2.0.11
   path: ^1.8.2
-  dio: ^5.0.1
 
 dev_dependencies:
   build_runner: ^2.1.11
