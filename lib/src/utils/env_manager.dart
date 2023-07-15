@@ -2,6 +2,7 @@
 
 import 'package:eca_packages/eca_packages.dart';
 import 'package:eca_packages/src/utils/parser_extension.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -21,7 +22,7 @@ class EnvManager {
 
   static Future<String> getUrlToServer<T>(
       {required String serverUrl, String? serverPort}) async {
-    if (serverPort != null && !Modular.get<MainAppStore>().runOnReleaseMode) {
+    if (serverPort != null && !kReleaseMode) {
       var envServerUrl = await _get<String>(key: serverUrl);
       if (!envServerUrl.contains('https')) {
         return '${await _get<String>(key: serverUrl)}:${await EnvManager._get<String>(key: serverPort)}';
