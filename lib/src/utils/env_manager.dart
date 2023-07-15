@@ -45,7 +45,7 @@ class EnvManager {
 
   static Future<String> _readEnvFile() async {
     try {
-      if (Modular.get<MainAppStore>().runOnReleaseMode) {
+      if (kReleaseMode) {
         return await rootBundle.loadString('assets/prod.env');
       } else {
         return await rootBundle.loadString('assets/dev.env');
