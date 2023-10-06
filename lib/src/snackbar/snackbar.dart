@@ -33,8 +33,8 @@ void showBottomSnackBar({
               Theme.of(context).snackBarTheme.shape.runtimeType ==
                   RoundedRectangleBorder),
       'É preciso informar o título ou conteúdo. informar o borderColor ou ter o shape de SnackBarTheme como RoundedRectangleBorder');
-  final RoundedRectangleBorder borderShape =
-      Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
+  // final RoundedRectangleBorder borderShape =
+  //     Theme.of(context).snackBarTheme.shape as RoundedRectangleBorder;
 
   // FocusScope.of(context).unfocus();
   showFlash(
@@ -45,18 +45,19 @@ void showBottomSnackBar({
         : Duration(seconds: durationSeconds),
     builder: (_, controller) {
       return Flash(
-        barrierDismissible: false,
+        dismissDirections: FlashDismissDirection.values,
+        // barrierDismissible: false,
         controller: controller,
-        margin: margin,
-        behavior: FlashBehavior.fixed,
+        // margin: margin,
+        // behavior: FlashBehavior.fixed,
         position: FlashPosition.bottom,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(8),
-          topRight: Radius.circular(8),
-        ),
-        borderColor: borderColor ?? borderShape.side.color,
-        backgroundColor:
-            backgroundColor ?? Theme.of(context).snackBarTheme.backgroundColor,
+        // borderRadius: const BorderRadius.only(
+        //   topLeft: Radius.circular(8),
+        //   topRight: Radius.circular(8),
+        // ),
+        // borderColor: borderColor ?? borderShape.side.color,
+        // backgroundColor:
+        //     backgroundColor ?? Theme.of(context).snackBarTheme.backgroundColor,
         forwardAnimationCurve: Curves.easeInCirc,
         reverseAnimationCurve: Curves.bounceIn,
         child: DefaultTextStyle(
@@ -64,6 +65,7 @@ void showBottomSnackBar({
               color:
                   textColor ?? Theme.of(context).snackBarTheme.actionTextColor),
           child: FlashBar(
+            controller: controller,
             padding: const EdgeInsets.all(25),
             showProgressIndicator: progressIndicatorBackgroundColor != null ||
                 progressIndicatorValueColor != null,
@@ -162,8 +164,9 @@ void _showMessage({required String message, required BuildContext context}) {
         return Flash(
           controller: controller,
           position: FlashPosition.top,
-          behavior: FlashBehavior.fixed,
+          // behavior: FlashBehavior.fixed,
           child: FlashBar(
+            controller: controller,
             icon: const Icon(
               Icons.face,
               size: 36.0,

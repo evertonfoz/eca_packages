@@ -24,7 +24,7 @@ dependencies:
   # ed_screen_recorder: ^0.0.12
   # ed_screen_recorder_v3: ^0.0.12
   equatable: ^2.0.5
-  flash: ^2.0.5
+  flash: ^3.0.5+1
   flutter:
     sdk: flutter
   flutter_markdown: ^0.6.6
