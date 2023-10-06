@@ -153,7 +153,6 @@ bool isAValidDate(String value) {
 
 bool isNotAMinor(String value) {
   initializeDateFormatting();
-  final DateFormat formatter = DateFormat('dd/MM/yyyy');
   try {
     var parsedDate = DateFormat('dd/MM/yyyy', 'pt_BR').parse(value);
     return (DateTime.now().year - parsedDate.year) >= 18;
